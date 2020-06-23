@@ -6,7 +6,7 @@
 --this is a test
 
 
-
+MIR!!
 
 #Description
 - collection of activities for multiple circumstances (rainy, only 15 minutes left, number of participants, ...)
