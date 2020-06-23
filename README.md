@@ -3,7 +3,9 @@
 #Basic setup
 - (irongenerate summer-is-coming/)
 - npm install ironhack_generator
-# summer-is-coming
+--this is a test
+
+
 
 
 #Description
@@ -16,3 +18,4 @@
 general scoping / mvp:
 - user authentification
 - db-requests via react and filtering
+
