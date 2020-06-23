@@ -10,7 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
-// Hallo
+
 
 mongoose
   .connect('mongodb://localhost/summer-is-coming', {useNewUrlParser: true})
