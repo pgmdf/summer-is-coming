@@ -1,14 +1,6 @@
-#Summer is coming
+# Summer is coming
 
-#Basic setup
-- (irongenerate summer-is-coming/)
-- npm install ironhack_generator
---this is a test
-
-
-MIR T
-
-#Description
+## Description
 - collection of activities for multiple circumstances (rainy, only 15 minutes left, number of participants, ...)
 - app suggests users activities by their filter criteria
 - users can add activities, share their experiences with an activity and rate it
@@ -19,3 +11,9 @@ general scoping / mvp:
 - user authentification
 - db-requests via react and filtering
 
+## Basic setup
+- (irongenerate summer-is-coming/)
+- npm install ironhack_generator
+
+## Backend NPM
+- 
