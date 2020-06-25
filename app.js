@@ -11,7 +11,6 @@ const path         = require('path');
 
 
 
-
 mongoose
   .connect('mongodb://localhost/summer-is-coming', {useNewUrlParser: true})
   .then(x => {
