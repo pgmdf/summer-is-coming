@@ -1,4 +1,4 @@
-// routes/activity_routes.js
+// routes/user_routes.js
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
@@ -22,17 +22,16 @@ router.get('/activities', (req, res, next) => {
 
 // POST /activities
 // POST route => to create a new activity
-router.post('/activities', (req, res, next) => {
+router.post('/user', (req, res, next) => {
 
-  Activity.create({
-    title: req.body.title,
-    tags: req.body.tags,
-    description: req.body.description,
-    pictureUrl: req.file ? req.file.secure_url : undefined,
-    location: req.body.location,
-    rating: req.body.rating,
-    //createdBy: req.user._id,
-    comments: req.body.comments    
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    profilePicUrl: req.file ? req.file.secure_url : undefined,
+    //myFavoriteActivities: req.body.myFavoriteActivities,
+    myInterests: req.body.myInterests,
+    created: req.body.date
   })
     .then(newActivity => {
       res.json(newActivity); // { title: '', description: '', _id: '123' }
@@ -42,8 +41,8 @@ router.post('/activities', (req, res, next) => {
 
 // GET /activities/19283719273587123jhf
 // GET route => to get a specific activity/detailed view
-router.get('/activities/:identifier', (req, res, next) => {
-res.send(`I am id ${req.params.identifier} of an activity`)
+router.get('/user/:identifier/profile', (req, res, next) => {
+res.send(`I am id ${req.params.identifier} of an user and showing actual profile page`)
 
   /* Activity.findById(req.params.identifier)
     .then(response => {
@@ -51,19 +50,19 @@ res.send(`I am id ${req.params.identifier} of an activity`)
     }) */
 })
 
-// PUT route => to update a specific project
-router.put('/activities/:identifier', (req, res, next) => {
+// PUT route => to update a specific user profile
+router.put('/user/:identifier/update', (req, res, next) => {
 
 // TODO: updates should only be performed by creator and admins
 
-  Activity.findByIdAndUpdate(req.params.id,
+  User.findByIdAndUpdate(req.params.id,
     {
       title: req.body.title,
       description: req.body.description,
       tasks: []
     })
     .then(() => {
-      res.json({ message: `Activity with ${req.params.id} is updated successfully.` });
+      res.json({ message: `User with ${req.params.id} is updated successfully.` });
     })
 })
 
