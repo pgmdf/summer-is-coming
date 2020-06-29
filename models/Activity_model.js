@@ -9,7 +9,9 @@ const activitySchema = new Schema({
   location: String, 
   rating: Number, 
   createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
-  comments: {type: Array}
+  comments: {type: Array, }, //needs user_ID and multiple comments
+  timeStamp: {type: Date, default: Date.now},
+  completedBy: {type: Array, } //like comments. needs to be able to store multiple usernames. 
 
 });
 
