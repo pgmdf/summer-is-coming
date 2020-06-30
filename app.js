@@ -8,6 +8,10 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const session       = require('express-session');
+const passport      = require('passport');
+
+require('./configs/passport');
 
 
 
@@ -24,6 +28,20 @@ const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
+
+// ADD SESSION SETTINGS HERE:
+const MongoStore    = require('connect-mongo')(session);
+app.use(session({
+  secret: "doesn't matter in our case", // but it's required
+  resave: false,
+  saveUninitialized: false, // don't create cookie for non-logged-in user
+  // MongoStore makes sure the user stays logged in also when the server restarts
+  store: new MongoStore({ mongooseConnection: mongoose.connection }) 
+}));
+
+// USE passport.initialize() and passport.session() HERE:
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -54,6 +72,10 @@ app.locals.title = 'Express - Generated with IronGenerator SUMMER';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+
+const authRoutes = require('./routes/auth_routes');
+app.use('/api', authRoutes);
 
 app.use('/', require('./routes/activity_routes'));
 app.use('/', require('./routes/user_routes'));
