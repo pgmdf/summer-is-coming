@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 // TODO: require models activity and user
-const Activity = require('../models/activity_model');
+const Activity = require('../models/Activity_model');
 const User = require('../models/User_model'); 
 
 // GET /activities

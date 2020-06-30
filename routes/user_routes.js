@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 // TODO: require models activity and user
-const Activity = require('../models/activity_model');
+const Activity = require('../models/Activity_model');
 const User = require('../models/User_model'); 
 
 // GET /activities
-router.get('/activities', (req, res, next) => {
-  res.send('I am the activities route')
+router.get('/user', (req, res, next) => {
+  res.send('I am the user route')
 
   // TODO: delete, if activities aren't listed
 /*   Activity.find().populate('tasks')
