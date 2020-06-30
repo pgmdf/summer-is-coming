@@ -1,29 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
-  {
-  username: String,
-  email: String,
-  password: String,
-  profilePic: String,
 
+const userSchema = new Schema({
+  username: { type: String, required: true },
+  email: String,
+  password: { type: String, required: true },
+  profilePicUrl: String, 
+  myFavoriteActivities: { type: Schema.Types.ObjectId, ref: 'Activity' },
+  myInterests: [],
   googleID: String, 
   verifiedEmail: { type: Boolean, default: false },
-  token: String
-  },
-
-  {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-  },
-
-  //,
-  //activityfeed: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
-  //owner: { type: Schema.Types.ObjectId, ref: 'User' }
+  token: String,
+  created: {type: Date, default: Date.now},
 });
 
-
 const User = mongoose.model('User', userSchema);
+
 module.exports = User;
