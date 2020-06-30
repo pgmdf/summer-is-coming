@@ -5,7 +5,7 @@ const router = express.Router();
 
 // TODO: require models activity and user
 const Activity = require('../models/activity_model');
-const User = require('../models/user_model'); 
+const User = require('../models/User_model'); 
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
