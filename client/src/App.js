@@ -19,7 +19,8 @@ class App extends Component {
   <Navigation></Navigation>
     <Switch>
     <Route exact path="/signup" component={Signup}/>
-    <Route path="/activities" component={Activities}/>
+    <Route exact path="/activities" component={Activities}/>
+    <Route exact path="/activities/:identifier" component={ActivityDetail}/>
     </Switch>
     </div>
     )

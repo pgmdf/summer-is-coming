@@ -7,37 +7,37 @@ import { Container, Row, Col } from 'react-bootstrap'
 class ActivityDetail extends Component {
 
   state = {
+    activity: null,
     loading: true
-
   }
 
   componentDidMount() {
-    axios.get('https://ih-beers-api2.herokuapp.com/beers/' + this.props.match.params.id).then((response) => {
+    axios.get('/activities/' + this.props.match.params.identifier).then((response) => {
         this.setState({
-            beer: response.data,
+            activity: response.data,
             loading: false
         })
     })
 }
 
   // you can use for every input field
-  handleChange = (event) => {
+/*   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  } */
 
 
   render() {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
-
+    console.log('here i am')
     return (
       <div>
         <Container>
           <Row>
-            <Col><h1>{this.state.title}Test</h1>
-              <img src={this.state.pictureUrl} alt={this.state.title} className="img-fluid img-max-width" /></Col>
+            <Col><h1>{this.state.activity.title}Test</h1>
+              <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" /></Col>
           </Row>
         </Container>
       </div>
