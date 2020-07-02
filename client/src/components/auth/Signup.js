@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import { signup } from '../../api.js';
-import { Link } from 'react-router-dom'; 
+import { Link, Redirect } from 'react-router-dom'; 
+import axios from 'axios'
 
 class Signup extends Component {
-  constructor(props){
-    super(props);
-    this.state = { username: '', password: '' };
-  }
+  state = { username: '', password: '', redirect: false }
+  
 
   // handleChange() and handleSubmit()
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
-    signup(username, password)
+    axios.post('/api/signup', { username, password })    
       .then(response => {
         this.setState({
           username: "",
           password: "",
+          redirect: true
         });
-        // this.props.updateUser(response)
+        this.props.updateUser(response)
       })
       .catch(error => console.log(error))
   }
@@ -32,6 +31,7 @@ class Signup extends Component {
   render(){
     return(
     <div>
+        { this.state.redirect ? <Redirect to="/" /> : null}
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
@@ -43,7 +43,7 @@ class Signup extends Component {
         </form>
 
         <p>Already have account?
-            <Link to={"/"}> Login</Link>
+            <Link to={"/login"}> Login</Link>
         </p>
 
       </div>    )
