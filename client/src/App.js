@@ -2,7 +2,8 @@ import React, { Component }  from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Signup from './components/auth/Signup';
-import Activity from './components/Activity';
+import ActivityDetail from './components/ActivityDetail';
+import Activities from './components/Activities';
 import Navigation from './components/Navigation';
 import { Switch, Route } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ class App extends Component {
   <Navigation></Navigation>
     <Switch>
     <Route exact path="/signup" component={Signup}/>
-    <Route path="/activity" component={Activity}/>
+    <Route path="/activities" component={Activities}/>
     </Switch>
     </div>
     )
