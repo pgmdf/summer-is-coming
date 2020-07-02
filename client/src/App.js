@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Signup from './components/auth/Signup';
+import Userprofile from './components/Userprofile';
 import Activity from './components/Activity';
 import Navigation from './components/Navigation';
 import { Switch, Route } from 'react-router-dom';
@@ -18,6 +19,7 @@ class App extends Component {
   <Navigation></Navigation>
     <Switch>
     <Route exact path="/signup" component={Signup}/>
+    <Route path="/userprofile" component={Userprofile}/>
     <Route path="/activity" component={Activity}/>
     </Switch>
     </div>
