@@ -3,18 +3,20 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 
 class Signup extends Component {
-  state = { username: '', password: '', redirect: false }
+  state = { username: '', email: '', password: '', redirect: false }
   
 
   // handleChange() and handleSubmit()
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
+    const email = this.state.email;
     const password = this.state.password;
-    axios.post('/api/signup', { username, password })    
+    axios.post('/api/signup', { username, email, password })    
       .then(response => {
         this.setState({
           username: "",
+          email:"",
           password: "",
           redirect: true
         });
@@ -35,6 +37,9 @@ class Signup extends Component {
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+
+          <label>E-Mail:</label>
+          <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
 
           <label>Password:</label>
           <textarea name="password" value={this.state.password} onChange={e => this.handleChange(e)} />

@@ -3,13 +3,31 @@ const authRoutes = express.Router();
 
 const passport   = require('passport');
 const bcrypt     = require('bcryptjs');
+const nodemailer = require('nodemailer');
+
 
 // require the user model 
 const User       = require('../models/User_model');
 
 
+// SMTP
+let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'tester123.peterpan@gmail.com',
+      pass: '89675rutitgzrvuz',
+    },
+  });
+
+  // creates a 4 digit random token
+  const tokenArr = Array.from({ length: 4 }, () =>
+    Math.floor(Math.random() * 10)
+  ); // [ 1, 4, 5, 8 ]
+  const token = tokenArr.join(''); // "1458"
+
 authRoutes.post('/signup', (req, res, next) => {
     const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
   
     if (!username || !password) {
@@ -39,6 +57,7 @@ authRoutes.post('/signup', (req, res, next) => {
   
         const aNewUser = new User({
             username:username,
+            email: email,
             password: hashPass
         });
   
