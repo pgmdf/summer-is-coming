@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Signup from './components/auth/Signup';
 import ActivityDetail from './components/ActivityDetail';
 import Activities from './components/Activities';
+import Userprofile from './components/Userprofile';
+import Login from './components/auth/Login';
 import Navigation from './components/Navigation';
 import { Switch, Route } from 'react-router-dom';
 
@@ -21,6 +23,9 @@ class App extends Component {
     <Route exact path="/signup" component={Signup}/>
     <Route exact path="/activities" component={Activities}/>
     <Route exact path="/activities/:identifier" component={ActivityDetail}/>
+    <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser}/>}/>
+      <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser}/>}/> 
+    <Route path="/userprofile" component={Userprofile}/>
     </Switch>
     </div>
     )
