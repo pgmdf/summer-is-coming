@@ -19,16 +19,18 @@ let transporter = nodemailer.createTransport({
     },
   });
 
-  // creates a 4 digit random token
+
+authRoutes.post('/signup', (req, res, next) => {
+
+  const username = req.body.username;
+  const email = req.body.email;
+  const password = req.body.password;
+
+
   const tokenArr = Array.from({ length: 4 }, () =>
     Math.floor(Math.random() * 10)
   ); // [ 1, 4, 5, 8 ]
   const token = tokenArr.join(''); // "1458"
-
-authRoutes.post('/signup', (req, res, next) => {
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
   
     if (!username || !password) {
       res.status(400).json({ message: 'Provide username and password' });
@@ -51,14 +53,23 @@ authRoutes.post('/signup', (req, res, next) => {
             res.status(400).json({ message: 'Username taken. Choose another one.' });
             return;
         }
-  
+        transporter
+        .sendMail({
+          from: '"Willkommen bei HelloCook " <myawesome@project.com>',
+          to: email,
+          subject: 'Bitte bestätige deine Anmeldung',
+          text: `Guten Tag, vielen Dank für deine Anmeldung. Wir freuen uns, dass wir dich bei HelloCook begrüßen dürfen!
+        Um Ihren Zugang zu bestätigen, klicken Sie einfach hier: http://localhost:5555/api/verify-email-link/${token}`,
+          html: `Um Ihren Zugang zu bestätigen, klicken Sie einfach: <a href="http://localhost:5555/api/verify-email-link/${token}">hier!</a>`,
+        }).then(()=>{
         const salt     = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
   
         const aNewUser = new User({
             username:username,
             email: email,
-            password: hashPass
+            password: hashPass,
+            token: token
         });
   
         aNewUser.save(err => {
@@ -81,9 +92,22 @@ authRoutes.post('/signup', (req, res, next) => {
                 res.status(200).json(aNewUser);
             });
         });
+      }).catch(error=>{
+        console.log("something wrong",error)
+      })
     });
 });
 
+authRoutes.get('/verify-email-link/:token', (req, res) => {
+  if (req.user.token === req.params.token) {
+    req.user.verifiedEmail = true;
+    req.user.save().then(() => {
+      // more professional : res.redirect and set a flash message before
+
+      res.redirect('http://localhost:3000/');
+    });
+  }
+});
 
 
 authRoutes.post('/login', (req, res, next) => {
