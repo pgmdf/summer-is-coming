@@ -9,7 +9,8 @@ const User = require('../models/User_model');
 
 // GET /activities
 router.get('/user', (req, res, next) => {
-  res.send('I am the user route')
+  res.send('i am the user route')//, flashMessages: req.flash('error')})
+  // res.send('I am the user route')
 
   // TODO: delete, if activities aren't listed
 /*   Activity.find().populate('tasks')
