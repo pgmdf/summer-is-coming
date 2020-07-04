@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
 
-class Activity extends Component {
+
+
+class Userprofile extends Component {
 
   state = {
 
@@ -17,11 +18,11 @@ class Activity extends Component {
   render() {
     return (
       <div>
-        I'm the activity component
+        Hello, I'm ... and this is my profile page!
       </div>
     )
   }
 
 }
 
-export default Activity;
+export default Userprofile;
