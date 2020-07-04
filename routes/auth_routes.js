@@ -55,12 +55,11 @@ authRoutes.post('/signup', (req, res, next) => {
         }
         transporter
         .sendMail({
-          from: '"Willkommen bei HelloCook " <myawesome@project.com>',
+          from: '"Welcome to Summer-is-Coming" <myawesome@project.com>',
           to: email,
-          subject: 'Bitte bestätige deine Anmeldung',
-          text: `Guten Tag, vielen Dank für deine Anmeldung. Wir freuen uns, dass wir dich bei HelloCook begrüßen dürfen!
-        Um Ihren Zugang zu bestätigen, klicken Sie einfach hier: http://localhost:5555/api/verify-email-link/${token}`,
-          html: `Um Ihren Zugang zu bestätigen, klicken Sie einfach: <a href="http://localhost:5555/api/verify-email-link/${token}">hier!</a>`,
+          subject: 'Please verify your e-mail',
+          text: `Welcome. Please verify your e-mail with this link: http://localhost:5555/api/verify-email-link/${token}`,
+          html: `Welcome. Please verify your e-mail with this link: <a href="http://localhost:5555/api/verify-email-link/${token}">hier!</a>`,
         }).then(()=>{
         const salt     = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
