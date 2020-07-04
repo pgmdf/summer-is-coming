@@ -10,6 +10,7 @@ import Userprofile from './components/Userprofile';
 import Login from './components/auth/Login';
 import Navigation from './components/Navigation';
 import Dummy from './components/Dummy';
+import Home from './components/Home';
 import { Switch, Route } from 'react-router-dom';
 
 
@@ -23,6 +24,7 @@ class App extends Component {
       <div>
         <Navigation></Navigation>
         <Switch>
+        <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/activities" component={Activities} />
           <Route exact path="/activities/add" component={ActivityAdd} />
