@@ -4,7 +4,8 @@ import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 
-
+// TODO: find a way to access username via objectId and to convert timestamp to readable date
+// TODO: tags, comments and users that joined an activity should be stored in an own component  to better list them
 class ActivityDetail extends Component {
 
   state = {
@@ -68,6 +69,11 @@ class ActivityDetail extends Component {
                   </Accordion.Collapse>
                 </Card>
               </Accordion>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <p>Many thanks to {this.state.activity.createdBy}, who added that activity on {this.state.activity.timestamp} to our portfolio!</p>
             </Col>
           </Row>
         </Container>
