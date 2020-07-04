@@ -20,6 +20,7 @@ class Navigation extends React.Component {
                             <Nav.Link href="/login">Login</Nav.Link>
                             <Nav.Link href="/userprofile">my Profile</Nav.Link>
                             <Nav.Link href="/activities">Activities</Nav.Link>
+                            <Nav.Link href="/activities/add">Add an activity</Nav.Link>
                             <Nav.Link href="/dummy">Styles Dummy</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>

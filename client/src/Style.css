@@ -2,3 +2,7 @@
 body {
     background-color: lightblue;
 }
+
+.img-max-width {
+    max-width: 100%;
+}

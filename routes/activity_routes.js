@@ -5,7 +5,7 @@ const router = express.Router();
 
 // TODO: require models activity and user
 const Activity = require('../models/Activity_model');
-const User = require('../models/User_model'); 
+// const User = require('../models/User_model'); 
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
@@ -18,10 +18,11 @@ router.get('/activities', (req, res, next) => {
 });
 
 
-// POST /activities
+// POST /activities/add
 // POST route => to create a new activity
-router.post('/activities', (req, res, next) => {
+router.post('/activities/add', (req, res, next) => {
 
+  // TODO: add timeStamp
   Activity.create({
     title: req.body.title,
     tags: req.body.tags,
@@ -29,18 +30,19 @@ router.post('/activities', (req, res, next) => {
     pictureUrl: req.file ? req.file.secure_url : undefined,
     location: req.body.location,
     rating: req.body.rating,
-    //createdBy: req.user._id,
-    comments: req.body.comments    
+    createdBy: req.user._id,
+    comments: req.body.comments,
+    completedBy: req.body.completedBy   
   })
     .then(newActivity => {
-      res.json(newActivity); // { title: '', description: '', _id: '123' }
+      res.json(newActivity); 
     })
 });
 
 
 // GET /activities/19283719273587123jhf
 router.get('/activities/:identifier', (req, res, next) => {
-  Activity.findById(req.params.identifier)
+  Activity.findById(req.params.identifier).populate('createdBy')
     .then(response => {
       res.json(response);
     })
