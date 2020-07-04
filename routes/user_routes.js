@@ -2,6 +2,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+// package to allow <input type="file"> in forms
+const multer = require('multer');
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET
+});
+
+let storage = new cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: 'profilePic', // The name of the folder in cloudinary
+  allowedFormats: ['jpg', 'png'],
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
+  }
+});
+
+const uploadCloud = multer({ storage: storage });
 
 // TODO: require models activity and user
 const Activity = require('../models/Activity_model');
@@ -9,7 +30,7 @@ const User = require('../models/User_model');
 
 // GET /activities
 router.get('/user', (req, res, next) => {
-  res.send('i am the user route')//, flashMessages: req.flash('error')})
+  res.send("i am the user route in backend")//, flashMessages: req.flash('error')})
   // res.send('I am the user route')
 
   // TODO: delete, if activities aren't listed

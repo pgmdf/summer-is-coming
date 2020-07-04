@@ -5,6 +5,7 @@ import Signup from './components/auth/Signup';
 import Userprofile from './components/Userprofile';
 import Login from './components/auth/Login';
 import Activity from './components/Activity';
+import Editprofile from './components/Editprofile';
 import Navigation from './components/Navigation';
 import { Switch, Route } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ class App extends Component {
       <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser}/>}/> 
     <Route path="/userprofile" component={Userprofile}/>
     <Route path="/activity" component={Activity}/>  
+    <Route path="/fileupload" component={Editprofile}/>  
     </Switch>
     </div>
     )
