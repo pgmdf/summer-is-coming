@@ -77,7 +77,7 @@ class ActivityDetail extends Component {
           </Row>
           <Row>
             <Col>
-              <p>Many thanks to {this.state.activity.createdBy.username}, who added that activity on {this.state.activity.timestamp} to our portfolio!</p>
+              <p>Many thanks to {this.state.activity.createdBy.username}, who added that activity on {this.state.activity.timeStamp} to our portfolio!</p>
             </Col>
           </Row>
         </Container>

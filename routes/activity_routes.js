@@ -20,8 +20,9 @@ router.get('/activities', (req, res, next) => {
 
 // POST /activities
 // POST route => to create a new activity
-router.post('/activities', (req, res, next) => {
+router.post('/activities/add', (req, res, next) => {
 
+  // TODO: add timeStamp
   Activity.create({
     title: req.body.title,
     tags: req.body.tags,
@@ -29,11 +30,12 @@ router.post('/activities', (req, res, next) => {
     pictureUrl: req.file ? req.file.secure_url : undefined,
     location: req.body.location,
     rating: req.body.rating,
-    //createdBy: req.user._id,
-    comments: req.body.comments    
+    createdBy: req.user._id,
+    comments: req.body.comments,
+    completedBy: req.body.completedBy   
   })
     .then(newActivity => {
-      res.json(newActivity); // { title: '', description: '', _id: '123' }
+      res.json(newActivity); 
     })
 });
 
