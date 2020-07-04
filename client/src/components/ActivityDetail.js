@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import moment from 'moment';
+// import moment from 'moment';
 
 // TODO: find a way to access username via objectId and to convert timestamp to readable date
 // TODO: tags, comments and users that joined an activity should be stored in an own component  to better list them

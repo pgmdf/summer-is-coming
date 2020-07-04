@@ -5,7 +5,7 @@ const router = express.Router();
 
 // TODO: require models activity and user
 const Activity = require('../models/Activity_model');
-const User = require('../models/User_model'); 
+// const User = require('../models/User_model'); 
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
@@ -18,7 +18,7 @@ router.get('/activities', (req, res, next) => {
 });
 
 
-// POST /activities
+// POST /activities/add
 // POST route => to create a new activity
 router.post('/activities/add', (req, res, next) => {
 
