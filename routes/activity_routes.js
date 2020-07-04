@@ -40,7 +40,7 @@ router.post('/activities', (req, res, next) => {
 
 // GET /activities/19283719273587123jhf
 router.get('/activities/:identifier', (req, res, next) => {
-  Activity.findById(req.params.identifier)
+  Activity.findById(req.params.identifier).populate('createdBy')
     .then(response => {
       res.json(response);
     })
