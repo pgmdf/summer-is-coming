@@ -9,13 +9,11 @@ const User = require('../models/User_model');
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
-  res.send('I am the activities route')
-
-  // TODO: delete, if activities aren't listed
-/*   Activity.find().populate('tasks')
-    .then(allTheProjects => {
-      res.json(allTheProjects);
-    }) */
+  
+  Activity.find()
+    .then(activities => {
+      res.json(activities);
+    })
 
 });
 
@@ -41,14 +39,11 @@ router.post('/activities', (req, res, next) => {
 
 
 // GET /activities/19283719273587123jhf
-// GET route => to get a specific activity/detailed view
 router.get('/activities/:identifier', (req, res, next) => {
-res.send(`I am id ${req.params.identifier} of an activity`)
-
-  /* Activity.findById(req.params.identifier)
+  Activity.findById(req.params.identifier)
     .then(response => {
       res.json(response);
-    }) */
+    })
 })
 
 // PUT route => to update a specific project

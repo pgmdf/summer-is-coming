@@ -11,9 +11,6 @@ import axios from 'axios';
 axios.get('/api/checkuser').then(res => {
   ReactDOM.render(
     <Router><App user={res.data} /></Router>, document.getElementById('root'));
-}).catch(err => {
-  console.log(err)
-  alert('backend not running or /checkuser route not defined !')
 })
 
 

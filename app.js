@@ -80,5 +80,7 @@ app.use('/api', authRoutes);
 app.use('/', require('./routes/activity_routes'));
 app.use('/', require('./routes/user_routes'));
 
+app.use('/', require('./routes/dummy_routes'));
+
 
 module.exports = app;
