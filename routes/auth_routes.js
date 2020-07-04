@@ -108,6 +108,28 @@ authRoutes.get('/verify-email-link/:token', (req, res) => {
   }
 });
 
+// GOOGLE LOGIN ROUTE
+
+authRoutes.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+
+authRoutes.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:3000/",
+    failureRedirect: "/login",
+    passReqToCallback: true,
+  })
+);
+
+
 
 authRoutes.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {

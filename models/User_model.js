@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: { type: String, required: true },
   email: String,
-  password: { type: String, required: true },
+  password: { type: String },
   profilePicUrl: String, 
   myFavoriteActivities: { type: Schema.Types.ObjectId, ref: 'Activity' },
   myInterests: [],

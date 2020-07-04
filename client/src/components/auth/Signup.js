@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Form, Button, FormControl, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 
 class Signup extends Component {
@@ -87,9 +87,12 @@ class Signup extends Component {
   <Button variant="primary" type="submit">
     Submit
   </Button>
+<br/>
+  <a href="http://localhost:5555/api/google">Sign up with Google</a> 
+
 </Form>
 
-        <p>Already have account?
+        <p>Already have an account?
             <Link to={"/login"}> Login</Link>
         </p>
 
