@@ -3,9 +3,13 @@ import axios from 'axios';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 
 // TODO: find a way to access username via objectId and to convert timestamp to readable date
 // TODO: tags, comments and users that joined an activity should be stored in an own component  to better list them
+// TODO: fix timestamp output with moment
 class ActivityDetail extends Component {
 
   state = {
@@ -41,7 +45,7 @@ class ActivityDetail extends Component {
               <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" /></Col>
             <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags}</strong></p>
               <p>Location: {this.state.activity.location}<br />
-              Rating: {this.state.activity.rating} </p>
+              Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
             </Col>
           </Row>
@@ -73,7 +77,7 @@ class ActivityDetail extends Component {
           </Row>
           <Row>
             <Col>
-              <p>Many thanks to {this.state.activity.createdBy}, who added that activity on {this.state.activity.timestamp} to our portfolio!</p>
+              <p>Many thanks to {this.state.activity.createdBy.username}, who added that activity on {this.state.activity.timestamp} to our portfolio!</p>
             </Col>
           </Row>
         </Container>
