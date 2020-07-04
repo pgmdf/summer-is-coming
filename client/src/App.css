@@ -37,12 +37,13 @@
   }
 }
 
-.Signup, .Login {
+#Signup, #Login {
   margin-top:20px;
   border: 1px solid #dadce0;
   border-radius: 8px;
   padding: 50px;
   background: white;
+  max-width: 450px;
 }
 
 
