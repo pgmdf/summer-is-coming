@@ -37,7 +37,7 @@ class Signup extends Component {
   render(){
     return(
     <div>
-            <Container className="Signup">
+            <Container id="Signup">
             <Row>
             <Col>
 
@@ -85,7 +85,7 @@ class Signup extends Component {
   </Form.Group> */}
 
   <Button variant="primary" type="submit">
-    Submit
+    Signup
   </Button>
 <br/>
   <a href="http://localhost:5555/api/google">Sign up with Google</a> 

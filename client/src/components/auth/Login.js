@@ -36,7 +36,7 @@ class Login extends Component {
   render(){
     return(
       <div>
-      <Container className="Login">
+      <Container id="Login">
             <Row>
             <Col>
 
@@ -69,7 +69,7 @@ class Login extends Component {
   </Form.Group>
 
   <Button variant="primary" value="Login" type="submit">
-    Submit
+    Login
   </Button>
 
 </Form>
