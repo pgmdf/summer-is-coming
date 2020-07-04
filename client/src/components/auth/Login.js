@@ -36,6 +36,8 @@ class Login extends Component {
       <div>
         { this.state.redirect ? <Redirect to="/" /> : null}
         <form onSubmit={this.handleFormSubmit}>
+        {/* <Form.Group controlId="formBasicUsername"> */}
+
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
           <label>Password:</label>
@@ -51,6 +53,7 @@ class Login extends Component {
       </div>
     )
   }
+
 }
 
 export default Login;

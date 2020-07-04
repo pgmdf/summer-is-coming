@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'; 
 import axios from 'axios'
+import '../../App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+// import FormControl from 'react-bootstrap/lib/FormControl';
+
 
 class Signup extends Component {
   state = { username: '', email: '', password: '', redirect: false }
@@ -35,8 +39,13 @@ class Signup extends Component {
     <div>
         { this.state.redirect ? <Redirect to="/" /> : null}
         <form onSubmit={this.handleFormSubmit}>
+
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+
+
+
+
 
           <label>E-Mail:</label>
           <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
@@ -51,7 +60,14 @@ class Signup extends Component {
             <Link to={"/login"}> Login</Link>
         </p>
 
-      </div>    )
+      </div>
+     
+     
+     
+     
+     
+     
+     )
   }
 }
 
