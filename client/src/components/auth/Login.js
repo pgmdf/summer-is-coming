@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 // import { login } from '../../api'
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
-
+import '../../App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Form, Button, FormControl, Container, Row, Col } from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props){
@@ -34,23 +36,54 @@ class Login extends Component {
   render(){
     return(
       <div>
+      <Container className="Login">
+            <Row>
+            <Col>
+
         { this.state.redirect ? <Redirect to="/" /> : null}
-        <form onSubmit={this.handleFormSubmit}>
+        
+        {/* old form */}
+        {/* <form onSubmit={this.handleFormSubmit}>
+
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+          
           <label>Password:</label>
-
-          {/* <textarea name="password" value={this.state.password} onChange={ e => this.handleChange(e)} /> */}
           <input name="password" type="password" value={this.state.password} onChange={ e => this.handleChange(e)} /> 
           
           <input type="submit" value="Login" />
-        </form>
+        </form> */}
+
+        {/* new bootstrap form */}
+
+        <Form onSubmit={this.handleFormSubmit}>
+  <Form.Group controlId="formBasicUsername">
+    <Form.Label>Username</Form.Label>
+    <Form.Control type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} placeholder="Enter username" />
+    
+  </Form.Group>
+
+  <Form.Group controlId="formBasicPassword">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" name="password" value={this.state.password}onChange={e=> this.handleChange(e)} placeholder="Password" />
+  </Form.Group>
+
+  <Button variant="primary" value="Login" type="submit">
+    Submit
+  </Button>
+</Form>
+
+
         <p>Don't have an account? 
             <Link to={"/signup"}> Signup</Link>
         </p>
+</Col>
+</Row>
+ </Container>
       </div>
     )
   }
+
 }
 
 export default Login;

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'; 
 import axios from 'axios'
+import '../../App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Form, Button, FormControl, Container, Row, Col } from 'react-bootstrap';
+
 
 class Signup extends Component {
   state = { username: '', email: '', password: '', redirect: false }
@@ -33,8 +37,17 @@ class Signup extends Component {
   render(){
     return(
     <div>
+            <Container className="Signup">
+            <Row>
+            <Col>
+
+
+
         { this.state.redirect ? <Redirect to="/" /> : null}
-        <form onSubmit={this.handleFormSubmit}>
+
+        {/* old form  */}
+        {/* <form onSubmit={this.handleFormSubmit}>
+
           <label>Username:</label>
           <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
 
@@ -45,13 +58,52 @@ class Signup extends Component {
           <textarea name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
 
           <input type="submit" value="Signup" />
-        </form>
+        </form> */}
+
+{/* new bootstrap code */}
+        <Form onSubmit={this.handleFormSubmit}>
+  <Form.Group controlId="formBasicUsername">
+    <Form.Label>Username</Form.Label>
+    <Form.Control type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} placeholder="Enter username" />
+  </Form.Group>
+
+  <Form.Group controlId="formBasicEmail">
+    <Form.Label>Email address</Form.Label>
+    <Form.Control type="email" name="email" value={this.state.email} onChange={e=> this.handleChange(e)} placeholder="Enter email" />
+    <Form.Text className="text-muted">
+      We'll never share your email with anyone else.
+    </Form.Text>
+  </Form.Group>
+
+  <Form.Group controlId="formBasicPassword">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" name="password" value={this.state.password} onChange={e=> this.handleChange(e)} placeholder="Password" />
+  </Form.Group>
+
+  {/* <Form.Group controlId="formBasicCheckbox">
+    <Form.Check type="checkbox" label="Check me out" />
+  </Form.Group> */}
+
+  <Button variant="primary" type="submit">
+    Submit
+  </Button>
+</Form>
 
         <p>Already have account?
             <Link to={"/login"}> Login</Link>
         </p>
 
-      </div>    )
+</Col>
+</Row>
+ </Container>
+      </div>
+     
+     
+     
+     
+     
+     
+     )
   }
 }
 

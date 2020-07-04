@@ -37,7 +37,7 @@ class Activities extends Component {
 
     return (
       <div>
-        <Container>
+        <Container className="Signup">
           <Row>
             <Col>
             {this.state.activitiesArr.length > 0 ?
