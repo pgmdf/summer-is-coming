@@ -9,7 +9,7 @@ const Activity = require('../models/Activity_model');
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
-  
+
   Activity.find()
     .then(activities => {
       res.json(activities);
@@ -36,10 +36,10 @@ router.post('/activities/add', (req, res, next) => {
     rating: req.body.rating,
     createdBy: req.user._id,
     comments: req.body.comments,
-    completedBy: req.body.completedBy   
-  })
+    completedBy: req.body.completedBy,
+    $currentDate: { timeStamp: true }})
     .then(newActivity => {
-      res.json(newActivity); 
+      res.json(newActivity);
     })
 });
 
@@ -55,7 +55,7 @@ router.get('/activities/:identifier', (req, res, next) => {
 // PUT route => to update a specific project
 router.put('/activities/:identifier', (req, res, next) => {
 
-// TODO: updates should only be performed by creator and admins
+  // TODO: updates should only be performed by creator and admins
 
   Activity.findByIdAndUpdate(req.params.id,
     {
