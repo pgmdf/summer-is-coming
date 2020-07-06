@@ -25,7 +25,7 @@ router.post('/activities/add', (req, res, next) => {
   // TODO: add timeStamp
   Activity.create({
     title: req.body.title,
-    tags: req.body.tags,
+    tags: req.body.tags.split(' ').join('').split(','),
     description: req.body.description,
     pictureUrl: req.file ? req.file.secure_url : undefined,
     location: req.body.location,
