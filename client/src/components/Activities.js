@@ -4,6 +4,7 @@ import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import ActivityAdd from './ActivityAdd';
 
 class Activities extends Component {
 
@@ -14,18 +15,27 @@ class Activities extends Component {
 
   componentDidMount() {
     axios.get('/activities').then((response) => {
-        this.setState({
-            activitiesArr: response.data,
-            loading: false
-        })
+      this.setState({
+        activitiesArr: response.data,
+        loading: false
+      })
     })
-}
+  }
 
-  // you can use for every input field
-/*   handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  } */
+  addActivityHandler = (newActivity) => {
+    this.setState({
+      activitiesArr: this.state.activitiesArr.concat(newActivity),
+      // set button back to appear and let form disappear again:
+      activityAddForm: false
+    })
+  }
+
+  // TODO: add if condition for AddActivity to appear on button click
+  toggleForm = (event) => {
+    this.setState({
+      activityAddForm: true
+    })
+  }
 
 
   render() {
@@ -40,20 +50,22 @@ class Activities extends Component {
         <Container className="Signup">
           <Row>
             <Col>
-            {this.state.activitiesArr.length > 0 ?
-                            this.state.activitiesArr.map(activity =>
-                                <Link to={"/activities/" + activity._id} key={activity._id}>
-                                <Row className="mb-4">
-                                    <Col xs={3} className="to-the-right"><img src={activity.pictureUrl} alt={activity.name} className="img-fluid img-max-width" /></Col>
-                                    <Col xs={9}>
-                                        <h2>{activity.title}</h2>
-                                    </Col>
-                                    </Row>
-                                    <hr></hr>
-                                </Link>
-                            ) :
-                            <img src={imgUrl} alt="Draft activity like Homer"></img>
-                        }</Col>
+              {this.state.activityAddForm ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : <button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add a activity?</button>}
+
+              {this.state.activitiesArr.length > 0 ?
+                this.state.activitiesArr.map(activity =>
+                  <Link to={"/activities/" + activity._id} key={activity._id}>
+                    <Row className="mb-4">
+                      <Col xs={3} className="to-the-right"><img src={activity.pictureUrl} alt={activity.name} className="img-fluid img-max-width" /></Col>
+                      <Col xs={9}>
+                        <h2>{activity.title}</h2>
+                      </Col>
+                    </Row>
+                    <hr></hr>
+                  </Link>
+                ) :
+                <img src={imgUrl} alt="Draft activity like Homer"></img>
+              }</Col>
           </Row>
         </Container>
       </div>

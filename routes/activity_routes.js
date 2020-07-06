@@ -9,7 +9,7 @@ const Activity = require('../models/Activity_model');
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
-  
+
   Activity.find()
     .then(activities => {
       res.json(activities);
@@ -22,20 +22,24 @@ router.get('/activities', (req, res, next) => {
 // POST route => to create a new activity
 router.post('/activities/add', (req, res, next) => {
 
+  // sets all tags to lower case
+  let newTags = req.body.tags.toLowerCase()
+
+
   // TODO: add timeStamp
   Activity.create({
     title: req.body.title,
-    tags: req.body.tags,
+    tags: newTags.split(' ').join('').split(','),
     description: req.body.description,
     pictureUrl: req.file ? req.file.secure_url : undefined,
     location: req.body.location,
     rating: req.body.rating,
     createdBy: req.user._id,
     comments: req.body.comments,
-    completedBy: req.body.completedBy   
-  })
+    completedBy: req.body.completedBy,
+    $currentDate: { timeStamp: true }})
     .then(newActivity => {
-      res.json(newActivity); 
+      res.json(newActivity);
     })
 });
 
@@ -51,7 +55,7 @@ router.get('/activities/:identifier', (req, res, next) => {
 // PUT route => to update a specific project
 router.put('/activities/:identifier', (req, res, next) => {
 
-// TODO: updates should only be performed by creator and admins
+  // TODO: updates should only be performed by creator and admins
 
   Activity.findByIdAndUpdate(req.params.id,
     {
