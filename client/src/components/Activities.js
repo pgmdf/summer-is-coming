@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './../App.css';
+import './../Style.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ActivityAdd from './ActivityAdd';
 
@@ -10,7 +11,7 @@ class Activities extends Component {
 
   state = {
     activitiesArr: [],
-    loading: true
+    loading: true    
   }
 
   componentDidMount() {
@@ -47,10 +48,9 @@ class Activities extends Component {
 
     return (
       <div>
-        <Container className="Signup">
           <Row>
             <Col>
-              {this.state.activityAddForm ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : <button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add a activity?</button>}
+              {(this.state.activityAddForm && this.props.loggedInUser.userDoc) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser.userDoc &&  <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
 
               {this.state.activitiesArr.length > 0 ?
                 this.state.activitiesArr.map(activity =>
@@ -67,7 +67,6 @@ class Activities extends Component {
                 <img src={imgUrl} alt="Draft activity like Homer"></img>
               }</Col>
           </Row>
-        </Container>
       </div>
     )
   }
