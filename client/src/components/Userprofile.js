@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import './../App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Navbar, Nav } from 'react-bootstrap'
 
 
 
@@ -18,7 +21,9 @@ class Userprofile extends Component {
   render() {
     return (
       <div>
-        Hello, I'm ... and this is my profile page!
+      {/* // ERROR MESSAGE IF USER IS NOT LOGGED IN // */}
+      {/* {this.state.errorMessage ? <h1>{this.state.errorMessage}</h1> : null} */}
+        Hello, I'm {this.state.username} and this is my profile page!
       </div>
     )
   }
