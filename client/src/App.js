@@ -45,7 +45,7 @@ class App extends Component {
         <Navigation></Navigation>
         <Container>
         <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" render={() => <Home userInSession={this.state.loggedInUser} updateUser={this.updateTheUser}/>}/>
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/activities" render={() => <Activities updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
           <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
