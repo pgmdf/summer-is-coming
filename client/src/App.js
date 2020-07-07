@@ -18,14 +18,23 @@ import Editprofile from './components/Editprofile';
 
 class App extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = { loggedInUser: this.props.user }; 
+  }
 
+  updateTheUser = (userObj) => {
+    this.setState({
+      loggedInUser: userObj
+    })
+  }
 
   render() {
     return (
       <div>
         <Navigation></Navigation>
         <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" render={() => <Home userInSession={this.state.loggedInUser} updateUser={this.updateTheUser}/>}/>
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/activities" component={Activities} />
           <Route exact path="/activities/add" component={ActivityAdd} />
