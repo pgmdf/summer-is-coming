@@ -12,20 +12,20 @@ class ActivityAdd extends Component {
     state = {
         title: "",
         description: "",
-        tags: []
+        tags: [],
+        rating: 0
     }
 
     formSubmitHandler = (event) => {
         event.preventDefault()
 
-        let newActivity = this.state
-
-        this.props.addActivityCallback(newActivity)
-
         axios.post('/activities/add', this.state).then((response) => {
             this.setState({
                 activity: response.data
             })
+            if (this.props.addActivityCallback) {
+                this.props.addActivityCallback(response.data)
+            }
         })
     }
 
@@ -60,7 +60,7 @@ class ActivityAdd extends Component {
                         </Form.Group>
                         <Form.Group controlId="rating">
                             <Form.Label>Rating</Form.Label>
-                            <Form.Control type="number" placeholder="Enter your rating from 0 (min.) to 5 (max.)" name="rating" value={this.state.rating} onChange={this.changeHandler}  />
+                            <Form.Control type="number" placeholder="Enter your rating from 1 (min.) to 6 (max.)" name="rating" value={this.state.rating} onChange={this.changeHandler}  />
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

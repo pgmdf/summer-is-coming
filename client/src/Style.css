@@ -6,3 +6,8 @@ body {
 .img-max-width {
     max-width: 100%;
 }
+
+.container-reverse {
+    margin-left: -15px;
+    margin-right: -15px;
+}

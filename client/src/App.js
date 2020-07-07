@@ -11,24 +11,34 @@ import Login from './components/auth/Login';
 import Navigation from './components/Navigation';
 import Dummy from './components/Dummy';
 import Home from './components/Home';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Editprofile from './components/Editprofile';
 
 
 
 class App extends Component {
 
+  state = {
+    redirectActivities : false
+  }
 
+  addActivityHandler = () => {
+    this.setState({
+      redirectActivities : true
+    })
+  }
 
   render() {
     return (
+      
       <div>
+        {this.state.redirectActivities ? <Redirect to="/activities"></Redirect>: null}
         <Navigation></Navigation>
         <Switch>
         <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/activities" component={Activities} />
-          <Route exact path="/activities/add" component={ActivityAdd} />
+          <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
           <Route exact path="/activities/:identifier" component={ActivityDetail} />
           <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
           <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
