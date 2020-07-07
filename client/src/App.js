@@ -12,6 +12,7 @@ import Navigation from './components/Navigation';
 import Dummy from './components/Dummy';
 import Home from './components/Home';
 import { Switch, Route } from 'react-router-dom';
+import Editprofile from './components/Editprofile';
 
 
 
@@ -32,6 +33,7 @@ class App extends Component {
           <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
           <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
           <Route path="/userprofile" component={Userprofile} />
+          <Route path="/editprofile" component={Editprofile} />
           <Route path="/dummy" component={Dummy} />
         </Switch>
       </div>
