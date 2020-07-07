@@ -3,7 +3,7 @@ import axios from 'axios';
 import './../App.css';
 import './../Style.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ActivityAdd from './ActivityAdd';
 
@@ -48,10 +48,9 @@ class Activities extends Component {
 
     return (
       <div>
-        <Container className="Signup">
           <Row>
             <Col>
-              {this.state.activityAddForm ? <ActivityAdd addActivityCallback={this.addActivityHandler} className="container-reverse"></ActivityAdd> : <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
+              {this.state.activityAddForm ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
 
               {this.state.activitiesArr.length > 0 ?
                 this.state.activitiesArr.map(activity =>
@@ -68,7 +67,6 @@ class Activities extends Component {
                 <img src={imgUrl} alt="Draft activity like Homer"></img>
               }</Col>
           </Row>
-        </Container>
       </div>
     )
   }

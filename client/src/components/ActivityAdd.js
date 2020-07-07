@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, Form, Button } from 'react-bootstrap';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-// import moment from 'moment';
+import { Form, Button } from 'react-bootstrap';
 
 class ActivityAdd extends Component {
 
@@ -43,7 +40,6 @@ class ActivityAdd extends Component {
 
         return (
             <div>
-                <Container>
                     <h1>Add your favourite activity</h1>
                     <Form onSubmit={this.formSubmitHandler}>
                         <Form.Group controlId="title">
@@ -67,7 +63,6 @@ class ActivityAdd extends Component {
                             Submit activity
                         </Button>
                     </Form>
-                </Container>
             </div>
         );
     }

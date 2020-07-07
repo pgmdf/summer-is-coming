@@ -11,8 +11,10 @@ import Login from './components/auth/Login';
 import Navigation from './components/Navigation';
 import Dummy from './components/Dummy';
 import Home from './components/Home';
-import { Switch, Route, Redirect } from 'react-router-dom';
 import Editprofile from './components/Editprofile';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+
 
 
 
@@ -34,6 +36,7 @@ class App extends Component {
       <div>
         {this.state.redirectActivities ? <Redirect to="/activities"></Redirect>: null}
         <Navigation></Navigation>
+        <Container>
         <Switch>
         <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
@@ -46,6 +49,7 @@ class App extends Component {
           <Route path="/editprofile" component={Editprofile} />
           <Route path="/dummy" component={Dummy} />
         </Switch>
+        </Container>
       </div>
     )
   }

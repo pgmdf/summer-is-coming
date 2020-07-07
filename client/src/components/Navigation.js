@@ -2,7 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 
 class Navigation extends React.Component {
     state = ""
@@ -18,8 +18,11 @@ class Navigation extends React.Component {
                             <Nav.Link href="/signup">Signup</Nav.Link>
                             <Nav.Link href="/login">Login</Nav.Link>
                             <Nav.Link href="/userprofile">my Profile</Nav.Link>
-                            <Nav.Link href="/activities">Activities</Nav.Link>
-                            <Nav.Link href="/activities/add">Add an activity</Nav.Link>
+                            <NavDropdown title="Activities" id="collasible-nav-dropdown">
+                                <NavDropdown.Item href="/activities">See all activities</NavDropdown.Item>
+                                <NavDropdown.Item href="/activities/add">Add an activity</NavDropdown.Item>
+                            </NavDropdown>
+
                             <Nav.Link href="/dummy">Styles Dummy</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
