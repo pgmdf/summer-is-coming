@@ -18,7 +18,7 @@ class Editprofile extends Component {
   render() {
     return (
       <div>
-<img src="https://ksb-friesland.de/wp-content/uploads/2017/05/profile-default.jpg"></img>
+<img src="https://ksb-friesland.de/wp-content/uploads/2017/05/profile-default.jpg" alt="default-pic"></img>
     <form action="/profile/addprofilepic" method="POST" enctype="multipart/form-data"> <br/>
     <input type="file" name="my-photo" id=""/> <br></br>
     <button type="submit">Upload</button>
