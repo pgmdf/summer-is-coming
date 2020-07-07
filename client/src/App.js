@@ -21,7 +21,14 @@ import { Container } from 'react-bootstrap';
 class App extends Component {
 
   state = {
-    redirectActivities : false
+    redirectActivities : false,
+    loggedInUser: this.props.user
+  }
+
+  updateTheUser = (userObj) => {
+    this.setState({
+      loggedInUser: userObj
+    })
   }
 
   addActivityHandler = () => {
@@ -40,7 +47,7 @@ class App extends Component {
         <Switch>
         <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/activities" component={Activities} />
+          <Route exact path="/activities" render={() => <Activities updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
           <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
           <Route exact path="/activities/:identifier" component={ActivityDetail} />
           <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
