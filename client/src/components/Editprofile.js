@@ -39,6 +39,7 @@ class Editprofile extends Component {
           type="file"
           onChange={this.handleFileUpload} />
       </div>
+
     )
   }
 
