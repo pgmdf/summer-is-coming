@@ -52,8 +52,8 @@ class App extends Component {
           <Route exact path="/activities/:identifier" component={ActivityDetail} />
           <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
           <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
-          <Route path="/userprofile" component={Userprofile} />
-          <Route path="/editprofile" component={Editprofile} />
+          <Route path="/userprofile" component={Userprofile} loggedInUser={this.state.loggedInUser}/>
+          <Route exact path="/editprofile" render={() => <Editprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser}/>}/>
           <Route path="/dummy" component={Dummy} />
         </Switch>
         </Container>
