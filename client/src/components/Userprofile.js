@@ -18,7 +18,7 @@ class Userprofile extends Component {
   render() {
     return (
       <div>
-        Hello, I'm ... and this is my profile page!
+        Hello, I'm {this.props.userInSession.username} and this is my profile page!
       </div>
     )
   }

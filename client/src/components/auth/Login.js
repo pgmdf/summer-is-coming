@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 class Login extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = { username: '', password: '', redirect: false };
   }
@@ -17,73 +17,62 @@ class Login extends Component {
     const username = this.state.username;
     const password = this.state.password;
     axios.post('/api/login', { username, password })
-        .then( response => {
-        this.setState({ 
-            username: "", 
-            password: "",
-            redirect: true
-         });
-        this.props.updateUser(response)
-    })
-    .catch( error => console.log(error) )
+      .then(response => {
+        this.setState({
+          username: "",
+          password: "",
+          redirect: true
+        });
+        this.props.updateUser(response.data)
+      })
+      .catch(error => console.log(error))
   }
-    
-  handleChange = (event) => {  
-    const {name, value} = event.target;
-    this.setState({[name]: value});
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
-    
-  render(){
-    return(
+
+  render() {
+    return (
       <div>
-      <Container id="Login">
-            <Row>
+        <Container id="Login">
+          <Row>
             <Col>
 
-        { this.state.redirect ? <Redirect to="/" /> : null}
-        
-        {/* old form */}
-        {/* <form onSubmit={this.handleFormSubmit}>
+              {this.state.redirect ? <Redirect to="/" /> : null}
 
-          <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
-          
-          <label>Password:</label>
-          <input name="password" type="password" value={this.state.password} onChange={ e => this.handleChange(e)} /> 
-          
-          <input type="submit" value="Login" />
-        </form> */}
+              {/* new bootstrap form */}
+              <h3>Welcome Back</h3>
+              <p>Sign in to stay updated on the latest activities.</p>
+              <Form onSubmit={this.handleFormSubmit}>
+                <Form.Group controlId="formBasicUsername">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} placeholder="Enter username" />
 
-        {/* new bootstrap form */}
+                </Form.Group>
 
-        <Form onSubmit={this.handleFormSubmit}>
-  <Form.Group controlId="formBasicUsername">
-    <Form.Label>Username</Form.Label>
-    <Form.Control type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} placeholder="Enter username" />
-    
-  </Form.Group>
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} placeholder="Password" />
+                </Form.Group>
 
-  <Form.Group controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" name="password" value={this.state.password}onChange={e=> this.handleChange(e)} placeholder="Password" />
-  </Form.Group>
-
-  <Button variant="primary" value="Login" type="submit">
-    Login
+                <Button variant="primary" value="Login" type="submit">
+                  Login
   </Button>
 
-</Form>
+              </Form>
 
-<a href="http://localhost:5555/api/google">Login with Google</a> 
+              <a href="http://localhost:5555/api/google">Login with Google</a>
 
 
 
-        <p>Don't have an account? 
+              <p>Don't have an account?
             <Link to={"/signup"}> Signup</Link>
-        </p>
-</Col>
-</Row>
- </Container>
+              </p>
+            </Col>
+          </Row>
+        </Container>
       </div>
     )
   }

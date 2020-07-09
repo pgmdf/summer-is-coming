@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
 // import moment from 'moment';
 
 // TODO: find a way to access username via objectId and to convert timestamp to readable date
@@ -14,7 +16,8 @@ class ActivityDetail extends Component {
 
   state = {
     activity: null,
-    loading: true
+    loading: true,
+    myFavoriteActivities: false
   }
 
   componentDidMount() {
@@ -26,17 +29,19 @@ class ActivityDetail extends Component {
     })
   }
 
-  // you can use for every input field
-  /*   handleChange = (event) => {
-      const { name, value } = event.target;
-      this.setState({ [name]: value });
-    } */
-
+  handleClick() {
+    this.setState(state => ({
+      myFavoriteActivities: true
+    }));
+  }
 
   render() {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
+
+    console.log("user_id:" + " " + this.props.loggedInUser.userDoc.username)
+
     return (
       <div>
         <Container>
@@ -47,6 +52,8 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
+              <p>{this.props.loggedInUser.userDoc ? <Button onClick={this.handleClick}><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
+              <p>{this.props.loggedInUser.userDoc ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{color: "#FFF"}} /> Add to my bucket list</Button> : null }</p>
             </Col>
           </Row>
           <Row>
@@ -56,17 +63,17 @@ class ActivityDetail extends Component {
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
                       Show recent comments
-      </Accordion.Toggle>
+                  </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>{this.state.activity.comments}</Card.Body>
+                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet.</p>}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="1">
                       Who joined that activity?
-      </Accordion.Toggle>
+                  </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="1">
                     <Card.Body>{this.state.activity.completedBy}</Card.Body>
@@ -87,4 +94,4 @@ class ActivityDetail extends Component {
 
 }
 
-export default ActivityDetail;
+export default withRouter(ActivityDetail);

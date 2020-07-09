@@ -41,26 +41,12 @@ class Signup extends Component {
             <Row>
             <Col>
 
+  {/* Here it defines where to redirect after clicking Sign up */}
+        { this.state.redirect ? <Redirect to="/confirm-email" /> : null}
 
-
-        { this.state.redirect ? <Redirect to="/" /> : null}
-
-        {/* old form  */}
-        {/* <form onSubmit={this.handleFormSubmit}>
-
-          <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-
-          <label>E-Mail:</label>
-          <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
-
-          <label>Password:</label>
-          <textarea name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-
-          <input type="submit" value="Signup" />
-        </form> */}
 
 {/* new bootstrap code */}
+<h3>Create a new account</h3>
         <Form onSubmit={this.handleFormSubmit}>
   <Form.Group controlId="formBasicUsername">
     <Form.Label>Username</Form.Label>
@@ -79,13 +65,8 @@ class Signup extends Component {
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" name="password" value={this.state.password} onChange={e=> this.handleChange(e)} placeholder="Password" />
   </Form.Group>
-
-  {/* <Form.Group controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group> */}
-
   <Button variant="primary" type="submit">
-    Signup
+    Sign Up
   </Button>
 <br/>
   <a href="http://localhost:5555/api/google">Sign up with Google</a> 
@@ -99,13 +80,7 @@ class Signup extends Component {
 </Col>
 </Row>
  </Container>
-      </div>
-     
-     
-     
-     
-     
-     
+      </div>  
      )
   }
 }
