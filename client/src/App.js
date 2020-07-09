@@ -12,9 +12,10 @@ import Navigation from './components/Navigation';
 import Dummy from './components/Dummy';
 import Home from './components/Home';
 import Editprofile from './components/Editprofile';
+import ConfirmEmail from './components/auth/ConfirmEmail';
+
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-
 
 
 
@@ -42,7 +43,7 @@ class App extends Component {
       
       <div>
         {this.state.redirectActivities ? <Redirect to="/activities"></Redirect>: null}
-        <Navigation></Navigation>
+        <Navigation  user={this.state.loggedInUser} ></Navigation>
         <Container>
         <Switch>
         <Route exact path="/" render={() => <Home userInSession={this.state.loggedInUser} updateUser={this.updateTheUser}/>}/>
@@ -52,8 +53,12 @@ class App extends Component {
           <Route exact path="/activities/:identifier" component={ActivityDetail} />
           <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
           <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
-          <Route path="/userprofile" component={Userprofile} />
+
+          <Route exact path="/userprofile" render={() => <Userprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser}/>}/>
+
+          {/* <Route path="/userprofile" component={Userprofile} /> */}
           <Route path="/editprofile" component={Editprofile} />
+          <Route path="/confirm-email" component={ConfirmEmail} />
           <Route path="/dummy" component={Dummy} />
         </Switch>
         </Container>
