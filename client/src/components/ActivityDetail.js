@@ -50,7 +50,7 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser.userDoc ? <FontAwesomeIcon icon={farStar} /> : null }</p>
+              <p>{this.props.loggedInUser.userDoc ? <FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> : null }</p>
             </Col>
           </Row>
           <Row>
