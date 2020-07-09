@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
 // import moment from 'moment';
 
 // TODO: find a way to access username via objectId and to convert timestamp to readable date
@@ -50,7 +50,8 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser.userDoc ? <FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> : null }</p>
+              <p>{this.props.loggedInUser.userDoc ? <Button><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
+              <p>{this.props.loggedInUser.userDoc ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{color: "#FFF"}} /> Add to my bucket list</Button> : null }</p>
             </Col>
           </Row>
           <Row>
