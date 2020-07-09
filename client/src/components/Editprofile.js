@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-
-
+import axios from 'axios';
 
 class Editprofile extends Component {
 
   state = {
+    title: '',
+    description: '',
+    image_url: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
+    loading: false, 
 
   }
 
@@ -15,17 +18,41 @@ class Editprofile extends Component {
   }
 
 
+
+  handleFileUpload = (e) => {
+this.setState({
+  loading: true, 
+})
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    axios.post('/api/image', uploadData).then((resp) => {
+
+      this.setState({
+        loading:false, 
+        image_url: resp.data.image_url
+      })
+    })
+
+  }
+
   render() {
+let spinner = "";
+    if (this.state.loading === true) {
+    this.state.image_url = "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif";
+  
+  } else {};
+
     return (
       <div>
-<img src="https://ksb-friesland.de/wp-content/uploads/2017/05/profile-default.jpg" alt="default-pic"></img>
-    <form action="/profile/addprofilepic" method="POST" enctype="multipart/form-data"> <br/>
-    <input type="file" name="my-photo" id=""/> <br></br>
-    <button type="submit">Upload</button>
-    </form>
+{spinner}
 
-</div>
- 
+      <img src={this.state.image_url} height="100px" width="100px" alt="profile pic"></img>
+        <input
+          type="file"
+          onChange={this.handleFileUpload} />
+      </div>
+
     )
   }
 

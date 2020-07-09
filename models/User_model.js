@@ -6,7 +6,7 @@ const userSchema = new Schema({
   username: { type: String, required: true },
   email: String,
   password: { type: String },
-  profilePicUrl: String, 
+  profilePicUrl: { type: String, default: "https://ksb-friesland.de/wp-content/uploads/2017/05/profile-default.jpg"},
   myFavoriteActivities: { type: Schema.Types.ObjectId, ref: 'Activity' },
   myInterests: [],
   googleID: String, 

@@ -65,6 +65,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 
+
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator SUMMER';
 
@@ -79,7 +80,7 @@ app.use('/api', authRoutes);
 
 app.use('/', require('./routes/activity_routes'));
 app.use('/', require('./routes/user_routes'));
-
+app.use('/', require('./routes/editProfile_routes'));
 app.use('/', require('./routes/dummy_routes'));
 
 

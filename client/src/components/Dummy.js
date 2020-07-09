@@ -12,6 +12,7 @@ class Dummy extends React.Component {
         return (
             <div className="App">
                 <Container>
+
                     <Row>
                         <Col>
                             <h1>Title 1</h1>
