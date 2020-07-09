@@ -1,12 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
-const cloudinary = require('cloudinary');
-const {CloudinaryStorage} = require('multer-storage-cloudinary');
 // package to allow <input type="file"> in forms
-const multer = require('multer');
 const User = require('../models/User_model')
-const ensureLogin = require('connect-ensure-login'); //Middleware for authentication 
+
 
 
 const uploader = require('../configs/cloudinary');
