@@ -14,16 +14,17 @@ import Home from './components/Home';
 import Editprofile from './components/Editprofile';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-
+import Mapping from './components/Mapdummy';
 
 
 
 class App extends Component {
 
   state = {
-    redirectActivities : false,
+    redirectActivities: false,
     loggedInUser: this.props.user
   }
+
 
   updateTheUser = (userObj) => {
     this.setState({
@@ -33,29 +34,30 @@ class App extends Component {
 
   addActivityHandler = () => {
     this.setState({
-      redirectActivities : true
+      redirectActivities: true
     })
   }
 
   render() {
     return (
-      
+
       <div>
-        {this.state.redirectActivities ? <Redirect to="/activities"></Redirect>: null}
+        {this.state.redirectActivities ? <Redirect to="/activities"></Redirect> : null}
         <Navigation></Navigation>
         <Container>
-        <Switch>
-        <Route exact path="/" render={() => <Home userInSession={this.state.loggedInUser} updateUser={this.updateTheUser}/>}/>
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/activities" render={() => <Activities updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
-          <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
-          <Route exact path="/activities/:identifier" component={ActivityDetail} />
-          <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
-          <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
-          <Route path="/userprofile" component={Userprofile} />
-          <Route path="/editprofile" component={Editprofile} />
-          <Route path="/dummy" component={Dummy} />
-        </Switch>
+          <Switch>
+            <Route exact path="/" render={() => <Home userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/activities" render={() => <Activities updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
+            <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
+            <Route exact path="/activities/:identifier" component={ActivityDetail} />
+            <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
+            <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
+            <Route exact path="/userprofile" component={Userprofile} />
+            <Route exact path="/editprofile" component={Editprofile} />
+            <Route exact path="/dummy" component={Dummy} />
+            <Route exact path="/mapdummy" component={Mapping} />
+          </Switch>
         </Container>
       </div>
     )
