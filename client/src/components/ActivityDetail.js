@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -37,6 +38,7 @@ class ActivityDetail extends Component {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
+
     return (
       <div>
         <Container>
@@ -87,4 +89,4 @@ class ActivityDetail extends Component {
 
 }
 
-export default ActivityDetail;
+export default withRouter(ActivityDetail);
