@@ -56,17 +56,17 @@ class ActivityDetail extends Component {
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
                       Show recent comments
-      </Accordion.Toggle>
+                  </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map(comment => <li>{comment}</li>) : <p>No comments yet.</p>}</Card.Body>
+                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet.</p>}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="1">
                       Who joined that activity?
-      </Accordion.Toggle>
+                  </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="1">
                     <Card.Body>{this.state.activity.completedBy}</Card.Body>
