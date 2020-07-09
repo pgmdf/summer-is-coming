@@ -57,11 +57,9 @@ router.put('/activities/:identifier', (req, res, next) => {
 
   // TODO: updates should only be performed by creator and admins
 
-  Activity.findByIdAndUpdate(req.params.id,
+  User.findByIdAndUpdate(req.params.id,
     {
-      title: req.body.title,
-      description: req.body.description,
-      tasks: []
+      myFavoriteActivities: req.params.favorite
     })
     .then(() => {
       res.json({ message: `Activity with ${req.params.id} is updated successfully.` });

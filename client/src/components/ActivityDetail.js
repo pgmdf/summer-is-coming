@@ -16,7 +16,8 @@ class ActivityDetail extends Component {
 
   state = {
     activity: null,
-    loading: true
+    loading: true,
+    myFavoriteActivities: false
   }
 
   componentDidMount() {
@@ -28,17 +29,18 @@ class ActivityDetail extends Component {
     })
   }
 
-  // you can use for every input field
-  /*   handleChange = (event) => {
-      const { name, value } = event.target;
-      this.setState({ [name]: value });
-    } */
-
+  handleClick() {
+    this.setState(state => ({
+      myFavoriteActivities: true
+    }));
+  }
 
   render() {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
+
+    console.log("user_id:" + " " + this.props.loggedInUser.userDoc.username)
 
     return (
       <div>
@@ -50,7 +52,7 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser.userDoc ? <Button><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
+              <p>{this.props.loggedInUser.userDoc ? <Button onClick={this.handleClick}><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
               <p>{this.props.loggedInUser.userDoc ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{color: "#FFF"}} /> Add to my bucket list</Button> : null }</p>
             </Col>
           </Row>
