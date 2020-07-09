@@ -50,7 +50,7 @@ class Activities extends Component {
       <div>
           <Row>
             <Col>
-              {(this.state.activityAddForm && this.props.loggedInUser.userDoc) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser.userDoc &&  <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
+              {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser &&  <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
 
               {this.state.activitiesArr.length > 0 ?
                 this.state.activitiesArr.map(activity =>
