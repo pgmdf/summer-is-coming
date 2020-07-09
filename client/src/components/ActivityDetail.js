@@ -59,7 +59,7 @@ class ActivityDetail extends Component {
       </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>{this.state.activity.comments}</Card.Body>
+                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map(comment => <li>{comment}</li>) : <p>No comments yet.</p>}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
                 <Card>
