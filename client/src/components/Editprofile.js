@@ -6,7 +6,7 @@ class Editprofile extends Component {
   state = {
     title: '',
     description: '',
-    image_url: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
+    image_url: this.props.userInSession.userDoc.profilePicUrl,
     loading: false, 
 
   }
@@ -25,13 +25,13 @@ this.setState({
 })
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
-
-    axios.post('/api/image', uploadData).then((resp) => {
+    axios.put('/api/image', uploadData).then((resp) => {
 
       this.setState({
         loading:false, 
         image_url: resp.data.image_url
       })
+      console.log("image url" + resp.data.image_url)
     })
 
   }
@@ -42,6 +42,7 @@ let spinner = "";
     this.state.image_url = "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif";
   
   } else {};
+  console.log(this.props.userInSession.userDoc.profilePicUrl)
 
     return (
       <div>
@@ -51,7 +52,9 @@ let spinner = "";
         <input
           type="file"
           onChange={this.handleFileUpload} />
+
       </div>
+     
 
     )
   }
