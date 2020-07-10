@@ -40,7 +40,7 @@ class ActivityDetail extends Component {
       return <div>Loading…</div>
     }
 
-    console.log("user_id:" + " " + this.props.loggedInUser.userDoc.username)
+    console.log("user_id:" + " " + this.props.loggedInUser.username)
 
     return (
       <div>
@@ -52,8 +52,8 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser.userDoc ? <Button onClick={this.handleClick}><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
-              <p>{this.props.loggedInUser.userDoc ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{color: "#FFF"}} /> Add to my bucket list</Button> : null }</p>
+              <p>{this.props.loggedInUser ? <Button onClick={this.handleClick}><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
+              <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{color: "#FFF"}} /> Add to my bucket list</Button> : null }</p>
             </Col>
           </Row>
           <Row>
