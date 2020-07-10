@@ -17,7 +17,7 @@ class ActivityDetail extends Component {
   state = {
     activity: null,
     loading: true,
-    //myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities
+    myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
     myInterests: ""
   }
 
@@ -31,13 +31,16 @@ class ActivityDetail extends Component {
   }
 
 // TODO: try componentDidUpdate to trigger PUT-Request
-/*   componentDidUpdate() {
-    axios.put('/activities/' + this.props.match.params.identifier).then((response) => {
+  componentDidUpdate() {
+    if (this.state.myFavoriteActivitiesArr !== this.props.loggedInUser.myFavoriteActivities)
+    console.log("update arr:" + this.state.myFavoriteActivitiesArr)
+    console.log("userArr:" + this.props.loggedInUser.myFavoriteActivities)
+    axios.put('/activities/' + this.props.match.params.identifier).then(() => {
       this.setState({
         myInterests: "Swimming"
       })
     })
-  } */
+  }
 
 
 
