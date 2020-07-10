@@ -6,7 +6,7 @@ class Editprofile extends Component {
   state = {
     title: '',
     description: '',
-    image_url: this.props.userInSession.userDoc.profilePicUrl,
+    image_url: this.props.userInSession.profilePicUrl,
     loading: false, 
 
   }
@@ -42,7 +42,7 @@ let spinner = "";
     this.setState.image_url = "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif";
   
   } else {};
-  console.log(this.props.userInSession.userDoc.profilePicUrl)
+  console.log(this.props.userInSession.profilePicUrl)
 
     return (
       <div>
