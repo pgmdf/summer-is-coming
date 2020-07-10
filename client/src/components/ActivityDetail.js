@@ -17,7 +17,7 @@ class ActivityDetail extends Component {
   state = {
     activity: null,
     loading: true,
-    myFavoriteActivities: false
+    myFavoriteActivities: ""
   }
 
   componentDidMount() {
@@ -29,18 +29,15 @@ class ActivityDetail extends Component {
     })
   }
 
-  handleClick() {
-    this.setState(state => ({
-      myFavoriteActivities: true
-    }));
-  }
+
 
   render() {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
 
-    console.log("user_id:" + this.props.loggedInUser.username)
+    console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
+    console.log("actual myFav-State:" + this.state.myFavoriteActivities)
 
     return (
       <div>
@@ -52,7 +49,10 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser ? <Button onClick={this.handleClick}><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
+              <p>{this.props.loggedInUser ? <Button onClick={() => {this.setState({
+      myFavoriteActivities: "12345678" })}}>
+
+      <FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
               <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{color: "#FFF"}} /> Add to my bucket list</Button> : null }</p>
             </Col>
           </Row>
