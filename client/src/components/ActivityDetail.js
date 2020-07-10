@@ -29,7 +29,7 @@ class ActivityDetail extends Component {
     })
   }
 
-
+// TODO: try componentDidUpdate to trigger PUT-Request
 
   render() {
     if (this.state.loading) {
