@@ -39,7 +39,7 @@ this.setState({
   render() {
 let spinner = "";
     if (this.state.loading === true) {
-    this.state.image_url = "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif";
+    this.setState.image_url = "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif";
   
   } else {};
   console.log(this.props.userInSession.userDoc.profilePicUrl)
