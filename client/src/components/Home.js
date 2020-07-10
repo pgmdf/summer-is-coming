@@ -3,9 +3,7 @@ import './../App.css';
 import Slider from './Slider';
 
 class Home extends Component {
-    constructor(props){
-        super(props);
-      }
+  
     render(){
         // console.log("props",this.props.userInSession.username)
         return( 

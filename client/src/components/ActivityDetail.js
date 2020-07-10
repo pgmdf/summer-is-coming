@@ -40,7 +40,7 @@ class ActivityDetail extends Component {
       return <div>Loading…</div>
     }
 
-    console.log("user_id:" + " " + this.props.loggedInUser.username)
+    console.log("user_id:" + this.props.loggedInUser.username)
 
     return (
       <div>
