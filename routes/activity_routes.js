@@ -3,9 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 
-// TODO: require models activity and user
+
 const Activity = require('../models/Activity_model');
-// const User = require('../models/User_model'); 
+const User = require('../models/User_model'); 
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
@@ -59,7 +59,8 @@ router.put('/activities/:identifier', (req, res, next) => {
 
   User.findByIdAndUpdate(req.user._id,
     {
-      myFavoriteActivities: req.params.favorite
+      myFavoriteActivities: req.params.favorite,
+      myInterests: req.params.interests
     })
     .then(() => {
       console.log("fav acti:" + myFavoriteActivities)
