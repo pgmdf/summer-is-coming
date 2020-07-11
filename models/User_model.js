@@ -8,6 +8,7 @@ const userSchema = new Schema({
   password: { type: String },
   profilePicUrl: { type: String, default: "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"},
   myFavoriteActivities: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
+  myBucketlist: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
   myInterests: [],
   googleID: String, 
   verifiedEmail: { type: Boolean, default: false },

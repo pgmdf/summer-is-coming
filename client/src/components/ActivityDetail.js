@@ -5,7 +5,7 @@ import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
 // import moment from 'moment';
 
@@ -18,7 +18,8 @@ class ActivityDetail extends Component {
     activity: null,
     loading: true,
     myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
-    myInterestsArr: this.props.loggedInUser.myInterests
+    myInterestsArr: this.props.loggedInUser.myInterests, 
+    myBucketlistArr: this.props.loggedInUser.myBucketlist
   }
 
   componentDidMount() {
@@ -37,9 +38,9 @@ class ActivityDetail extends Component {
     let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr.push(this.props.match.params.identifier)
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr}).then(() => {
       this.setState({
-        myFavoriteActivitiesArr: myFavoriteActivitiesArr 
+        myFavoriteActivitiesArr: myFavoriteActivitiesArr
       })
     })
   }
@@ -52,9 +53,38 @@ class ActivityDetail extends Component {
     myFavoriteActivitiesArr = myFavoriteActivitiesArr.filter((id) => {
      return this.props.match.params.identifier !== id })
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr}).then(() => {
       this.setState({
         myFavoriteActivitiesArr: myFavoriteActivitiesArr 
+      })
+    })
+  }
+
+  // add that activity to user's bucketlist
+  updateUserBucketlistAddHandler = (event) => {
+    event.preventDefault()
+
+    let myBucketlistArr = this.state.myBucketlistArr
+    myBucketlistArr.push(this.props.match.params.identifier)
+
+    axios.put('/activities/' + this.props.match.params.identifier, {myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr}).then(() => {
+      this.setState({
+        myBucketlistArr: myBucketlistArr 
+      })
+    })
+  }
+
+  // remove that activity from user's bucketlist
+  updateUserBucketlistRemoveHandler = (event) => {
+    event.preventDefault()
+
+    let myBucketlistArr = this.state.myBucketlistArr
+    myBucketlistArr = myBucketlistArr.filter((id) => {
+      return this.props.match.params.identifier !== id })
+
+    axios.put('/activities/' + this.props.match.params.identifier, {myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr}).then(() => {
+      this.setState({
+        myBucketlistArr: myBucketlistArr 
       })
     })
   }
@@ -63,9 +93,6 @@ class ActivityDetail extends Component {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
-
-    console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
-    console.log("actual myFav-State:" + this.state.myFavoriteActivitiesArr)
 
     return (
       <div>
@@ -83,9 +110,15 @@ class ActivityDetail extends Component {
                 <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
                 <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button> 
                 : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p> 
-                : null}</div>
-
-              <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button> : null}</p>
+                : null}
+              </div>
+              
+              <div>{this.props.loggedInUser ? 
+                <p>{this.state.myBucketlistArr.includes(this.state.activity._id) ? 
+                <Button variant="danger" onClick={this.updateUserBucketlistRemoveHandler}><FontAwesomeIcon icon={faClipboard} size={"2x"} style={{ color: "#FFF" }} /> Remove from my bucket list</Button> 
+                : <Button variant="success" onClick={this.updateUserBucketlistAddHandler}><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button>}</p>
+                : null}
+              </div>
             </Col>
           </Row>
           <Row>
