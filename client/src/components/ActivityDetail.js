@@ -16,9 +16,9 @@ class ActivityDetail extends Component {
 
   state = {
     activity: null,
-    loading: true,
-    myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
-    myInterests: ""
+    loading: true
+    /* myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
+    myInterests: "" */
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class ActivityDetail extends Component {
   }
 
 // TODO: try componentDidUpdate to trigger PUT-Request
-  componentDidUpdate() {
+/*   componentDidUpdate() {
     if (this.state.myFavoriteActivitiesArr !== this.props.loggedInUser.myFavoriteActivities)
     console.log("update arr:" + this.state.myFavoriteActivitiesArr)
     console.log("userArr:" + this.props.loggedInUser.myFavoriteActivities)
@@ -40,7 +40,7 @@ class ActivityDetail extends Component {
         myInterests: "Swimming"
       })
     })
-  }
+  } */
 
 
 
@@ -49,8 +49,8 @@ class ActivityDetail extends Component {
       return <div>Loading…</div>
     }
 
-    console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
-    console.log("actual myFav-State:" + this.state.myFavoriteActivitiesArr)
+   /*  console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
+    console.log("actual myFav-State:" + this.state.myFavoriteActivitiesArr) */
 
     return (
       <div>
@@ -58,7 +58,7 @@ class ActivityDetail extends Component {
           <Row>
             <Col xs={12} sm={6}><h1>{this.state.activity.title}Test</h1>
               <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" /></Col>
-            <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags}</strong></p>
+            <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags.map(tags => <li key={tags}>{tags}</li>)}</strong></p>
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
