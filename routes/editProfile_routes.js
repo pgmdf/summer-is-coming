@@ -27,6 +27,24 @@ router.put('/api/image', uploader.single("imageUrl"), (req, res, next) => {
     })
 })
 
+// save all the data from input fields
+router.put('/api/editprofile', (req, res, next) => {
+console.log("here is date",req.body)
+  User.findByIdAndUpdate(req.user._id,
+    {
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      myFavoriteActivities: req.body.myFavoriteActivities,
+      myInterests: req.body.myInterests,
+
+    })
+    .then(() => { 
+      res.json({ message: 'Edit successfully!' })
+    }).catch(error => {
+      console.log('This is the error:',error)
+    })
+})
 
 // router.put('/api/image', (req, res, next) => {
 
