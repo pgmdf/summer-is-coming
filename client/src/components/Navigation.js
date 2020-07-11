@@ -38,22 +38,25 @@ class Navigation extends React.Component {
                         <Nav className="mr-auto">
                             {this.props.user? "" : <Nav.Link href ="/signup"> Signup </Nav.Link>}
                             {/* <Nav.Link href="/signup">Signup</Nav.Link> */}
-                            <Nav.Link href="/login">Login</Nav.Link>
-                            <NavDropdown title="Profile" id="collasible-nav-dropdown">
-
-                            <NavDropdown.Item href="/userprofile">My Profile</NavDropdown.Item>
-                            <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
+                            {this.props.user? "" : <Nav.Link href ="/login"> Login </Nav.Link>}
+                           
+                            {/* <Nav.Link href="/login">Login</Nav.Link> */}
+                          
 
                             {/* <Link to='/'>
                                 <button onClick={() => logoutUser(props)}>Logout</button>
                             </Link> */}
 
-                            <NavDropdown.Item href="/">Logout</NavDropdown.Item>
-                            </NavDropdown>
-
                             <NavDropdown title="Activities" id="collasible-nav-dropdown">
                                 <NavDropdown.Item href="/activities">See all activities</NavDropdown.Item>
                                 <NavDropdown.Item href="/activities/add">Add an activity</NavDropdown.Item>
+                            </NavDropdown>
+                           
+                            <NavDropdown title="Profile" id="collasible-nav-dropdown">
+
+                            <NavDropdown.Item href="/userprofile">My Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                             </NavDropdown>
 
                             <Nav.Link href="/dummy">Styles Dummy</Nav.Link>
