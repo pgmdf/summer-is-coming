@@ -9,7 +9,7 @@ import { faCoffee, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
 // import moment from 'moment';
 
-// TODO: find a way to access username via objectId and to convert timestamp to readable date
+// TODO: find a way to convert timestamp to readable date
 // TODO: tags, comments and users that joined an activity should be stored in an own component  to better list them
 // TODO: fix timestamp output with moment
 class ActivityDetail extends Component {
@@ -30,10 +30,11 @@ class ActivityDetail extends Component {
     })
   }
 
+  // add that activity to user's array
   updateUserFavoritesAddHandler = (event) => {
     event.preventDefault()
 
-    let myFavoriteActivitiesArr = this.props.loggedInUser.myFavoriteActivities
+    let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr.push(this.props.match.params.identifier)
 
     axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr}).then(() => {
@@ -43,11 +44,11 @@ class ActivityDetail extends Component {
     })
   }
 
-  // TODO: logic to remove specified element from array
+  // remove that activity from user's array
   updateUserFavoritesRemoveHandler = (event) => {
     event.preventDefault()
 
-    let myFavoriteActivitiesArr = this.props.loggedInUser.myFavoriteActivities
+    let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr = myFavoriteActivitiesArr.filter((id) => {
      return this.props.match.params.identifier !== id })
 
@@ -77,9 +78,12 @@ class ActivityDetail extends Component {
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
 
-              <p>{this.props.loggedInUser.myFavoriteActivities.includes(this.state.activity._id) ? <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
-                <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button> : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p>
-
+              <div>{this.props.loggedInUser ? 
+                <p>{this.state.myFavoriteActivitiesArr.includes(this.state.activity._id) ? 
+                <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
+                <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button> 
+                : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p> 
+                : null}</div>
 
               <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button> : null}</p>
             </Col>
