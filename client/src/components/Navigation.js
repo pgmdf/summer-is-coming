@@ -32,16 +32,17 @@ class Navigation extends React.Component {
                                 <NavDropdown.Item href="/activities/add">Add an activity</NavDropdown.Item>
                             </NavDropdown>
                            
-                            <NavDropdown title="Profile" id="collasible-nav-dropdown">
+                           
+                            {this.props.user? <NavDropdown title="Profile" id="collasible-nav-dropdown">
 
                             <NavDropdown.Item href="/userprofile">My Profile</NavDropdown.Item>
                             <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
                             {/* Logout */}
-                            <button onClick={this.logout}>
+                            <button id="logout"onClick={this.logout}>
 
                             <NavDropdown.Item href="/">Logout</NavDropdown.Item>
                             </button>
-                            </NavDropdown>
+                            </NavDropdown> : ""}
 
                             <Nav.Link href="/dummy">Styles Dummy</Nav.Link>
                         </Nav>

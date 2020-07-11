@@ -1,71 +1,122 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './../App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import { Form, Button } from 'react-bootstrap';
+import React, { Component } from "react";
+import axios from "axios";
+import "./../App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import { Form, Button } from "react-bootstrap";
+let spinnerHeight = "0px"
+let loadingText = ""
 
 class ActivityAdd extends Component {
+  state = {
+    title: "",
+    description: "",
+    tags: [],
+    rating: 0,
+    activityPicture: "",
+  };
 
-    state = {
-        title: "",
-        description: "",
-        tags: [],
-        rating: 0
-    }
+  formSubmitHandler = (e) => {
+    e.preventDefault();
+    axios.post("/activities/add", this.state).then((response) => {
+      this.setState({
+          activity: response.data
+      })
+      if (this.props.addActivityCallback) {
+        this.props.addActivityCallback(response.data);
+      }
+    });
+  };
 
-    formSubmitHandler = (event) => {
-        event.preventDefault()
+  changeHandler = (event) => {
+    let currentInputValue = event.target.value;
+    let inputName = event.target.name;
+    this.setState({
+      [inputName]: currentInputValue,
+    });
+  };
 
-        axios.post('/activities/add', this.state).then((response) => {
-            this.setState({
-                activity: response.data
-            })
-            if (this.props.addActivityCallback) {
-                this.props.addActivityCallback(response.data)
-            }
-        })
-    }
+  //uo
+  handleFileUpload = (e) => {
+      spinnerHeight = "80px";
+      loadingText = "Loading..."
+    const uploadData = new FormData();
+    uploadData.append("imageUrl", e.target.files[0]);
+    axios.post("/activities/addImage", uploadData).then((resp) => {
+        loadingText = "Uploaded succesfully!"
+      this.setState({
+        activityPicture: resp.data.pictureUrl,
+      });
+     
 
+     
+    }); 
+  
+  
+    spinnerHeight = "0px"
+  };
 
-    changeHandler = (event) => {
-        let currentInputValue = event.target.value
-        let inputName = event.target.name
+  render() {
+ 
+    return (
+      <div>
+        <h1>Add your favourite activity</h1>
+        <Form onSubmit={this.formSubmitHandler}>
+          <Form.Group controlId="title">
+            <Form.Label>Name of the activity</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter the title"
+              name="title"
+              value={this.state.title}
+              onChange={this.changeHandler}
+            />
+          </Form.Group>
+          <Form.Group controlId="tags">
+            <Form.Label>tags</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter tags i.e. food, water, challenge"
+              name="tags"
+              value={this.state.tags}
+              onChange={this.changeHandler}
+            />
+          </Form.Group>
+          <Form.Group controlId="description">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              placeholder="Enter desription"
+              name="description"
+              value={this.state.description}
+              onChange={this.changeHandler}
+            />
+          </Form.Group>
+          <Form.Group controlId="rating">
+            <Form.Label>Rating</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Enter your rating from 1 (min.) to 6 (max.)"
+              name="rating"
+              value={this.state.rating}
+              onChange={this.changeHandler}
+            />
+          </Form.Group>
+          <input
+            type="file"
+            onChange={this.handleFileUpload}
+            name="activityPicture"
+          ></input>
+        <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg"></img>
+<div>{loadingText} </div>
+          <Button variant="primary" type="submit">
+            Submit activity
+          </Button>
 
-        this.setState({
-            [inputName]: currentInputValue
-        })
-    }
-
-    render() {
-
-        return (
-            <div>
-                <h1>Add your favourite activity</h1>
-                <Form onSubmit={this.formSubmitHandler}>
-                    <Form.Group controlId="title">
-                        <Form.Label>Name of the activity</Form.Label>
-                        <Form.Control type="text" placeholder="Enter the title" name="title" value={this.state.title} onChange={this.changeHandler} />
-                    </Form.Group>
-                    <Form.Group controlId="tags">
-                        <Form.Label>tags</Form.Label>
-                        <Form.Control type="text" placeholder="Enter tags i.e. food, water, challenge" name="tags" value={this.state.tags} onChange={this.changeHandler} />
-                    </Form.Group>
-                    <Form.Group controlId="description">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea" rows="3" placeholder="Enter desription" name="description" value={this.state.description} onChange={this.changeHandler} />
-                    </Form.Group>
-                    <Form.Group controlId="rating">
-                        <Form.Label>Rating</Form.Label>
-                        <Form.Control type="number" placeholder="Enter your rating from 1 (min.) to 6 (max.)" name="rating" value={this.state.rating} onChange={this.changeHandler} />
-                    </Form.Group>
-
-                    <Button variant="primary" type="submit">
-                        Submit activity
-                        </Button>
-                </Form>
-            </div>
-        );
-    }
+        </Form>
+      </div>
+    );
+  }
 }
 
 export default ActivityAdd;
