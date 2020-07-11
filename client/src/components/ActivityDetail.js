@@ -17,7 +17,7 @@ class ActivityDetail extends Component {
   state = {
     activity: null,
     loading: true,
-    /* myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities, */
+    myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
     myInterestsArr: this.props.loggedInUser.myInterests
   }
 
@@ -36,30 +36,17 @@ class ActivityDetail extends Component {
 
     axios.put('/activities/' + this.props.match.params.identifier).then(() => {
       this.setState({
-        myInterestsArr: this.props.loggedInUser.myInterests.push(this.props.match.params.identifier)
-      })
-  })}
-
-// TODO: try componentDidUpdate to trigger PUT-Request
-/*   componentDidUpdate() {
-    if (this.state.myFavoriteActivitiesArr !== this.props.loggedInUser.myFavoriteActivities)
-    console.log("update arr:" + this.state.myFavoriteActivitiesArr)
-    console.log("userArr:" + this.props.loggedInUser.myFavoriteActivities)
-    axios.put('/activities/' + this.props.match.params.identifier).then(() => {
-      this.setState({
-        myInterests: "Swimming"
+        myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities.push(this.props.match.params.identifier)
       })
     })
-  } */
-
-
+  }
 
   render() {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
 
-console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
+    console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
     console.log("actual myFav-State:" + this.state.myFavoriteActivitiesArr)
 
     return (
@@ -72,9 +59,9 @@ console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInU
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser ? <Button onClick={this.updateUserSettingsHandler}>
+              <p>{this.props.loggedInUser.myFavoriteActivities.includes(this.state.activity._id) ? <Button onClick={this.updateUserSettingsHandler}>
 
-                <FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favourite</Button> : null}</p>
+                <FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> REMOVE as favourite</Button> : null}</p>
               <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button> : null}</p>
             </Col>
           </Row>

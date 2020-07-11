@@ -60,11 +60,9 @@ router.put('/activities/:identifier', (req, res, next) => {
 
   User.findByIdAndUpdate(req.user._id,
     {
-      myFavoriteActivities: req.params.favorite,
-      $addToSet: {myInterests: req.params.identifier}
+      $addToSet: {myFavoriteActivities: req.params.identifier}
     })
     .then((response) => {
-      console.log("fav acti:" + myFavoriteActivities)
       res.json(response);
     })
 })
