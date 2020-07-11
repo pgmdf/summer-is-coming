@@ -37,7 +37,7 @@ class Navigation extends React.Component {
                             <NavDropdown.Item href="/userprofile">My Profile</NavDropdown.Item>
                             <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
                             {/* Logout */}
-                            <button onClick={this.logout}>
+                            <button id="logout"onClick={this.logout}>
 
                             <NavDropdown.Item href="/">Logout</NavDropdown.Item>
                             </button>

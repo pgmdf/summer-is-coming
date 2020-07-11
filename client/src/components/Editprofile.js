@@ -73,17 +73,45 @@ class Editprofile extends Component {
 
         <h5><label for="password">Password:</label></h5>
         <input  id="password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)}/>
-
+<br></br>
         {spinner}
     
       <img src={this.state.profilePicUrl} height="100px" width="100px" alt="profile pic"></img>
         <input
           type="file"
           onChange={this.handleFileUpload} /> 
-        <button onClick={this.submitHandler}>Save</button>
 
 
 {/* interests / activities */}
+
+<h5><label for="interests">Choose your favourite interests:</label></h5>
+
+  <select id="edit-interests" name="interests">
+    <option value="Sport">Sport</option>
+    <option value="Reading">Reading</option>
+    <option value="Eating out">Eating out</option>
+
+  </select>
+
+{/* 
+  <div>
+  <input type="checkbox" id="Sport" name="Sport"
+         checked>
+  <label for="Sport">Sport</label>
+</div>
+
+<div>
+  <input type="checkbox" id="horns" name="horns">
+  <label for="horns">Horns</label>
+</div> */}
+
+
+
+  <h5><label for="activities">My activities:</label></h5>
+  <input  id="activities" type="text" name="activities" value={this.state.activities} onChange={e => this.handleChange(e)}/>
+
+<br></br>
+<button onClick={this.submitHandler}>Save</button>
 
 
       </div>
