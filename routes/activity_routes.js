@@ -64,14 +64,14 @@ router.get('/activities/:identifier', (req, res, next) => {
 
 // PUT route => to update a specific project
 router.put('/activities/:identifier', (req, res, next) => {
-
+  
   // TODO: updates should only be performed by creator and admins
-  // $addToSet { myFavoriteActivities: req.params.identifier }
 
   User.findByIdAndUpdate(req.user._id,
     {
-      $addToSet: {myFavoriteActivities: req.params.identifier}
-    })
+      myFavoriteActivities: req.body.myFavoriteActivitiesArr,
+      myBucketlist: req.body.myBucketlistArr
+    }, {new: true})
     .then((response) => {
       res.json(response);
     })
