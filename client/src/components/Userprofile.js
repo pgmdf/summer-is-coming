@@ -25,20 +25,20 @@ class Userprofile extends Component {
   };
 
 
-/* 
-  componentDidMount() {
-    axios.get('/user/' + this.props.userID).then(() => {response.data in state})
-  }
-  backend route für user aus datenbank suchen und widergeben */
+  /* 
+    componentDidMount() {
+      axios.get('/user/' + this.props.userID).then(() => {response.data in state})
+    }
+    backend route für user aus datenbank suchen und widergeben */
 
-/*   componentDidMount() {
-    axios.get('/user/' + this.props.userID).then((response) => {
-      this.setState({
-        login: response.data,
-        loading: false
+  /*   componentDidMount() {
+      axios.get('/user/' + this.props.userID).then((response) => {
+        this.setState({
+          login: response.data,
+          loading: false
+        })
       })
-    })
-  } */
+    } */
 
   render() {
     /*     if (this.state.loading) {
@@ -63,6 +63,10 @@ class Userprofile extends Component {
                 Name: {this.state.username} <br />
                Member since: {this.state.created}
                 {/* find out how to show the date in pretty with .timeStamp */}
+
+                {/* NUR darstellen, wenn es das Profile von einem selbst ist:
+                <h5>E-Mail: {this.props.userInSession.email}</h5> */}
+
               </div>
             </div>
           </Card.Header>
@@ -86,8 +90,8 @@ class Userprofile extends Component {
                 </ul>
               </Card.Text>
             </div>
-            
-{/*             <div>
+
+            {/*             <div>
               <Card.Title>My Bucket List</Card.Title>
               <Card.Text>
                 <ul>

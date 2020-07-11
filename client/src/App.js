@@ -40,7 +40,7 @@ class App extends Component {
 
   render() {
     return (
-
+      
       <div>
         {this.state.redirectActivities ? <Redirect to="/activities"></Redirect> : null}
         <Navigation user={this.state.loggedInUser} updateUser={this.updateTheUser} ></Navigation>

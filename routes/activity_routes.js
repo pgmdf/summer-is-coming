@@ -2,8 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-
-
+const uploader = require('../configs/cloudinary');
 const Activity = require('../models/Activity_model');
 const User = require('../models/User_model'); 
 
@@ -25,13 +24,13 @@ router.post('/activities/add', (req, res, next) => {
   // sets all tags to lower case
   let newTags = req.body.tags.toLowerCase()
 
-
+console.log("filepath: "+req.file)
   // TODO: add timeStamp
   Activity.create({
     title: req.body.title,
     tags: newTags.split(' ').join('').split(','),
     description: req.body.description,
-    pictureUrl: req.file ? req.file.secure_url : undefined,
+    pictureUrl: req.body.activityPicture ? req.body.activityPicture : "https://cdn.pixabay.com/photo/2014/04/02/11/00/runner-305189_960_720.png",
     location: req.body.location,
     rating: req.body.rating,
     createdBy: req.user._id,
@@ -44,6 +43,17 @@ router.post('/activities/add', (req, res, next) => {
 });
 
 
+
+router.post('/activities/addImage', uploader.single("imageUrl"), (req, res, next) => {
+
+
+
+      res.json({pictureUrl: req.file.path} )
+    
+});
+
+
+
 // GET /activities/19283719273587123jhf
 router.get('/activities/:identifier', (req, res, next) => {
   Activity.findById(req.params.identifier).populate('createdBy')
@@ -54,18 +64,31 @@ router.get('/activities/:identifier', (req, res, next) => {
 
 // PUT route => to update a specific project
 router.put('/activities/:identifier', (req, res, next) => {
-
+  
   // TODO: updates should only be performed by creator and admins
-  // $addToSet { myFavoriteActivities: req.params.identifier }
 
   User.findByIdAndUpdate(req.user._id,
     {
-      $addToSet: {myFavoriteActivities: req.params.identifier}
-    })
+      myFavoriteActivities: req.body.myFavoriteActivitiesArr,
+      myBucketlist: req.body.myBucketlistArr
+    }, {new: true})
     .then((response) => {
       res.json(response);
     })
 })
+
+
+//upload activity picture if needed
+// router.put('/activity/image', uploader.single("imageUrl"), (req, res, next) => {
+
+//   User.findByIdAndUpdate(req.user._id,
+//     {
+//       profilePicUrl: req.file.path,
+//     })
+//     .then(() => { 
+//       res.json({ image_url: req.file.path })
+//     })
+// })
 
 // DELETE route => to delete a specific activity
 router.delete('/activities/:identifier', (req, res, next) => {
