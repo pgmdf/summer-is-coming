@@ -2,12 +2,33 @@ import React from 'react';
 // import logo from './logo.svg';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+// import { logout } from '../../api'
+
 
 class Navigation extends React.Component {
-    state = ""
+    state ={
+        login: this.props.userInSession
+    }
+
+    // const logoutUser = (props) =>{
+    //     logout()
+    //     .then(() => {
+    //       props.updateUser(null);  // sets the global user object to 'null'
+    //     })
+    //   }
+
+//     componentDidUpdate = (prevprops)  => {
+//    if (this.props.userInSession !== prevprops.userInSession) {
+//        this.setState({
+//            login: this.props.userInSession
+//        })
+//    }
+//     }
+
 
     render() {
+
         return (
             <div className="App">
                 <Navbar bg="light" expand="lg">
@@ -15,12 +36,27 @@ class Navigation extends React.Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <Nav.Link href="/signup">Signup</Nav.Link>
-                            <Nav.Link href="/login">Login</Nav.Link>
-                            <Nav.Link href="/userprofile">my Profile</Nav.Link>
+                            {this.props.user? "" : <Nav.Link href ="/signup"> Signup </Nav.Link>}
+                            {/* <Nav.Link href="/signup">Signup</Nav.Link> */}
+                            {this.props.user? "" : <Nav.Link href ="/login"> Login </Nav.Link>}
+                           
+                            {/* <Nav.Link href="/login">Login</Nav.Link> */}
+                          
+
+                            {/* <Link to='/'>
+                                <button onClick={() => logoutUser(props)}>Logout</button>
+                            </Link> */}
+
                             <NavDropdown title="Activities" id="collasible-nav-dropdown">
                                 <NavDropdown.Item href="/activities">See all activities</NavDropdown.Item>
                                 <NavDropdown.Item href="/activities/add">Add an activity</NavDropdown.Item>
+                            </NavDropdown>
+                           
+                            <NavDropdown title="Profile" id="collasible-nav-dropdown">
+
+                            <NavDropdown.Item href="/userprofile">My Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                             </NavDropdown>
 
                             <Nav.Link href="/dummy">Styles Dummy</Nav.Link>

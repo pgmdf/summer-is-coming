@@ -3,16 +3,14 @@ import './../App.css';
 import Slider from './Slider';
 
 class Home extends Component {
-    constructor(props){
-        super(props);
-      }
+  
     render(){
-        // console.log("props",this.props.userInSession.userDoc.username)
+        // console.log("props",this.props.userInSession.username)
         return( 
             <div>
                 <Slider />
-                <h1>{this.props.userInSession.userDoc ? 
-                "Hello "+this.props.userInSession.userDoc.username : "go away Stranger" }</h1>
+                <h1>{this.props.userInSession ? 
+                "Hello "+this.props.userInSession.username : "go away Stranger" }</h1>
             </div>
         )
     }

@@ -58,8 +58,8 @@ authRoutes.post('/signup', (req, res, next) => {
           from: '"Welcome to Summer-is-Coming" <myawesome@project.com>',
           to: email,
           subject: 'Please verify your e-mail',
-          text: `Welcome. Please verify your e-mail with this link: http://localhost:5555/api/verify-email-link/${token}`,
-          html: `Welcome. Please verify your e-mail with this link: <a href="http://localhost:5555/api/verify-email-link/${token}">hier!</a>`,
+          text: `Welcome to Summer-is-Coming. Thanks for signing up. To complete your registration, please confirm your account with this link: http://localhost:5555/api/verify-email-link/${token}`,
+          html: `Welcome to Summer-is-Coming. Thanks for signing up. To complete your registration, please confirm your account with this link: <a href="http://localhost:5555/api/verify-email-link/${token}">hier!</a>`,
         }).then(()=>{
         const salt     = bcrypt.genSaltSync(10);
         const hashPass = bcrypt.hashSync(password, salt);
@@ -103,7 +103,7 @@ authRoutes.get('/verify-email-link/:token', (req, res) => {
     req.user.save().then(() => {
       // more professional : res.redirect and set a flash message before
 
-      res.redirect('http://localhost:3000/');
+      res.redirect('http://localhost:3000/userprofile');
     });
   }
 });

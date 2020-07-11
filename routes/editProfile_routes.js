@@ -8,23 +8,36 @@ const User = require('../models/User_model')
 const uploader = require('../configs/cloudinary');
 
 // this route only stores into cloudinary
-router.post('/api/image', uploader.single("imageUrl"), (req, res, next) => {
-console.log(req.params.id)
-  // send over the cloudinary URL to React
-  res.json({ image_url: req.file.path })
-})
+// router.put('/api/image', uploader.single("imageUrl"), (req, res, next) => {
+//   console.log(req.user._id)
+//   // send over the cloudinary URL to React
+//   res.json({ image_url: req.file.path })
+// })
 
 
-router.put('/api/image', (req, res, next) => {
+//posts new profile pic in User
+router.put('/api/image', uploader.single("imageUrl"), (req, res, next) => {
 
-  User.findByIdAndUpdate(req.params.id,
+  User.findByIdAndUpdate(req.user._id,
     {
-      profielPicUrl: req.body.image_url,
+      profilePicUrl: req.file.path,
     })
-    .then(() => {
-      res.json({ message: `New profile pic for ${req.params.id} is updated successfully.` });
+    .then(() => { 
+      res.json({ image_url: req.file.path })
     })
 })
+
+
+// router.put('/api/image', (req, res, next) => {
+
+//   User.findByIdAndUpdate(req.params.id,
+//     {
+//       profielPicUrl: req.body.image_url,
+//     })
+//     .then(() => {
+//       res.json({ message: `New profile pic for ${req.params.id} is updated successfully.` });
+//     })
+// })
 
 
 
