@@ -3,9 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 
-// TODO: require models activity and user
+
 const Activity = require('../models/Activity_model');
-// const User = require('../models/User_model'); 
+const User = require('../models/User_model'); 
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
@@ -56,13 +56,14 @@ router.get('/activities/:identifier', (req, res, next) => {
 router.put('/activities/:identifier', (req, res, next) => {
 
   // TODO: updates should only be performed by creator and admins
+  // $addToSet { myFavoriteActivities: req.params.identifier }
 
-  User.findByIdAndUpdate(req.params.id,
+  User.findByIdAndUpdate(req.user._id,
     {
-      myFavoriteActivities: req.params.favorite
+      $addToSet: {myFavoriteActivities: req.params.identifier}
     })
-    .then(() => {
-      res.json({ message: `Activity with ${req.params.id} is updated successfully.` });
+    .then((response) => {
+      res.json(response);
     })
 })
 

@@ -17,7 +17,8 @@ class ActivityDetail extends Component {
   state = {
     activity: null,
     loading: true,
-    myFavoriteActivities: false
+    myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
+    myInterestsArr: this.props.loggedInUser.myInterests
   }
 
   componentDidMount() {
@@ -29,10 +30,15 @@ class ActivityDetail extends Component {
     })
   }
 
-  handleClick() {
-    this.setState(state => ({
-      myFavoriteActivities: true
-    }));
+
+  updateUserSettingsHandler = (event) => {
+    event.preventDefault()
+
+    axios.put('/activities/' + this.props.match.params.identifier).then(() => {
+      this.setState({
+        myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities.push(this.props.match.params.identifier)
+      })
+    })
   }
 
   render() {
@@ -40,7 +46,8 @@ class ActivityDetail extends Component {
       return <div>Loading…</div>
     }
 
-    console.log("user_id:" + this.props.loggedInUser.username)
+    console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
+    console.log("actual myFav-State:" + this.state.myFavoriteActivitiesArr)
 
     return (
       <div>
@@ -48,12 +55,14 @@ class ActivityDetail extends Component {
           <Row>
             <Col xs={12} sm={6}><h1>{this.state.activity.title}Test</h1>
               <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" /></Col>
-            <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags}</strong></p>
+            <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags.map(tags => <li key={tags}>{tags}</li>)}</strong></p>
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser ? <Button onClick={this.handleClick}><FontAwesomeIcon icon={farStar} size={"2x"} style={{color: "#FFF"}} /> Mark as favourite</Button> : null }</p>
-              <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{color: "#FFF"}} /> Add to my bucket list</Button> : null }</p>
+              <p>{this.props.loggedInUser.myFavoriteActivities.includes(this.state.activity._id) ? <Button onClick={this.updateUserSettingsHandler}>
+
+                <FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> REMOVE as favourite</Button> : null}</p>
+              <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button> : null}</p>
             </Col>
           </Row>
           <Row>
