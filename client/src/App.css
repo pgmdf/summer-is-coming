@@ -46,5 +46,6 @@
   max-width: 450px;
 }
 
-
- 
+button {
+  all: unset;
+}
