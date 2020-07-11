@@ -16,9 +16,9 @@ class ActivityDetail extends Component {
 
   state = {
     activity: null,
-    loading: true
-    /* myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
-    myInterests: "" */
+    loading: true,
+    /* myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities, */
+    myInterestsArr: this.props.loggedInUser.myInterests
   }
 
   componentDidMount() {
@@ -29,6 +29,16 @@ class ActivityDetail extends Component {
       })
     })
   }
+
+
+  updateUserSettingsHandler = (event) => {
+    event.preventDefault()
+
+    axios.put('/activities/' + this.props.match.params.identifier).then(() => {
+      this.setState({
+        myInterestsArr: this.props.loggedInUser.myInterests.push(this.props.match.params.identifier)
+      })
+  })}
 
 // TODO: try componentDidUpdate to trigger PUT-Request
 /*   componentDidUpdate() {
@@ -49,8 +59,8 @@ class ActivityDetail extends Component {
       return <div>Loading…</div>
     }
 
-   /*  console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
-    console.log("actual myFav-State:" + this.state.myFavoriteActivitiesArr) */
+console.log("user_id:" + this.props.loggedInUser.username + this.props.loggedInUser._id)
+    console.log("actual myFav-State:" + this.state.myFavoriteActivitiesArr)
 
     return (
       <div>
@@ -62,11 +72,7 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser ? <Button onClick={() => {
-                this.setState({
-                  myFavoriteActivitiesArr: "I should be added to User/'s Favorites"
-                })
-              }}>
+              <p>{this.props.loggedInUser ? <Button onClick={this.updateUserSettingsHandler}>
 
                 <FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favourite</Button> : null}</p>
               <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button> : null}</p>
