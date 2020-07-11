@@ -33,10 +33,16 @@ const app = express();
 const MongoStore    = require('connect-mongo')(session);
 app.use(session({
   secret: "doesn't matter in our case", // but it's required
+  cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours cookie-time
   resave: false,
   saveUninitialized: false, // don't create cookie for non-logged-in user
   // MongoStore makes sure the user stays logged in also when the server restarts
-  store: new MongoStore({ mongooseConnection: mongoose.connection }) 
+  store: new MongoStore({ 
+    mongooseConnection: mongoose.connection,
+    resave: true,
+    saveUninitialized: false,
+    ttl: 24 * 60 * 60 // 24 hours 
+})
 }));
 
 // USE passport.initialize() and passport.session() HERE:
