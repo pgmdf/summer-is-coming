@@ -34,6 +34,7 @@ class Navigation extends React.Component {
                            
                             <NavDropdown title="Profile" id="collasible-nav-dropdown">
 
+                            {/* <NavDropdown.Item href={`/user/${this.props.user._id}`}>My Profile</NavDropdown.Item> */}
                             <NavDropdown.Item href="/userprofile">My Profile</NavDropdown.Item>
                             <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item>
                             {/* Logout */}
