@@ -5,7 +5,7 @@ import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
 // import moment from 'moment';
 
@@ -30,13 +30,30 @@ class ActivityDetail extends Component {
     })
   }
 
-
-  updateUserSettingsHandler = (event) => {
+  updateUserFavoritesAddHandler = (event) => {
     event.preventDefault()
 
-    axios.put('/activities/' + this.props.match.params.identifier).then(() => {
+    let myFavoriteActivitiesArr = this.props.loggedInUser.myFavoriteActivities
+    myFavoriteActivitiesArr.push(this.props.match.params.identifier)
+
+    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr}).then(() => {
       this.setState({
-        myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities.push(this.props.match.params.identifier)
+        myFavoriteActivitiesArr: myFavoriteActivitiesArr 
+      })
+    })
+  }
+
+  // TODO: logic to remove specified element from array
+  updateUserFavoritesRemoveHandler = (event) => {
+    event.preventDefault()
+
+    let myFavoriteActivitiesArr = this.props.loggedInUser.myFavoriteActivities
+    myFavoriteActivitiesArr = myFavoriteActivitiesArr.filter((id) => {
+     return this.props.match.params.identifier !== id })
+
+    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr}).then(() => {
+      this.setState({
+        myFavoriteActivitiesArr: myFavoriteActivitiesArr 
       })
     })
   }
@@ -59,9 +76,11 @@ class ActivityDetail extends Component {
               <p>Location: {this.state.activity.location}<br />
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
-              <p>{this.props.loggedInUser.myFavoriteActivities.includes(this.state.activity._id) ? <Button onClick={this.updateUserSettingsHandler}>
 
-                <FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> REMOVE as favourite</Button> : null}</p>
+              <p>{this.props.loggedInUser.myFavoriteActivities.includes(this.state.activity._id) ? <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
+                <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button> : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p>
+
+
               <p>{this.props.loggedInUser ? <Button><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button> : null}</p>
             </Col>
           </Row>
