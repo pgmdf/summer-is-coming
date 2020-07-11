@@ -33,7 +33,7 @@ const app = express();
 const MongoStore    = require('connect-mongo')(session);
 app.use(session({
   secret: "doesn't matter in our case", // but it's required
-  cookie: { maxAge: 2 * 60 * 60 * 1000 }, // 2 hours cookie-time
+  cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 24 hours cookie-time
   resave: false,
   saveUninitialized: false, // don't create cookie for non-logged-in user
   // MongoStore makes sure the user stays logged in also when the server restarts
@@ -41,7 +41,7 @@ app.use(session({
     mongooseConnection: mongoose.connection,
     resave: true,
     saveUninitialized: false,
-    ttl: 2 * 60 * 60 // 2 hours 
+    ttl: 24 * 60 * 60 // 24 hours 
 })
 }));
 
