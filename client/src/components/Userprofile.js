@@ -1,49 +1,50 @@
 import React, { Component, Link, imgUrl } from "react";
 import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Card, Image, Nav } from 'react-bootstrap';
+import { Card, Image, Nav, Row, Col } from 'react-bootstrap';
 import axios from "axios";
 
 
 
 class Userprofile extends Component {
   state = {
+    activity: null,
     loading: true,
-    login: this.props.userInSession,
     username: this.props.userInSession.username,
     profilePicUrl: this.props.userInSession.profilePicUrl,
-    myInterests: this.props.userInSession.myInterests,
-    myFavoriteActivities: this.props.userInSession.myFavoriteActivities,
-    created: this.props.id,
-    myBucketlist: this.props.userInSession.myBucketlist
-  };
-
-  // you can use for every input field
-  handleChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    myFavoriteActivitiesArr: this.props.userInSession.myFavoriteActivities,
+    myInterestsArr: this.props.userInSession.myInterests,
+    myBucketlistArr: this.props.userInSession.myBucketlist,
+    created: this.props.userInSession.created
   };
 
 
-  /* 
+  /* For later: as soon as change /userprofile route in App and navigation 
+    also change auth routes from userprofile into user/:userID 
+
+    // ruff try //
     componentDidMount() {
       axios.get('/user/' + this.props.userID).then(() => {response.data in state})
     }
     backend route für user aus datenbank suchen und widergeben */
 
-  /*   componentDidMount() {
-      axios.get('/user/' + this.props.userID).then((response) => {
-        this.setState({
-          login: response.data,
-          loading: false
-        })
-      })
-    } */
+  /*  /* is it correct like that?
+      also change auth routes from userprofile into user/:userID 
+  
+        componentDidMount() {
+          axios.get('/user/:userID/' + this.props.userInSession._id).then((response) => {
+            this.setState({
+              user: response.data,
+              loading: false
+            })
+          })
+        } 
+        // END // */
 
   render() {
-    /*     if (this.state.loading) {
-          return <div>Loading…</div>
-        } */
+    /*         if (this.state.loading) {
+              return <div>Loading…</div>
+            } */
     return (
       <div>
         {this.props.userID !== this.props.userInSession._id ? "" : <Nav.Link href="/editprofile"> edit my profile </Nav.Link>}
@@ -54,17 +55,20 @@ class Userprofile extends Component {
         <Card border="dark">
           <Card.Header>
 
-            <div id="profileimage">  <Image src="https://ksb-friesland.de/wp-content/uploads/2017/05/profile-default.jpg" width="171px" height="180px" alt="profile-pic" thumbnail /> </div>
-            {/*           correct image URL: Replace!!! src={this.state.image_url} */}
-
+            <div id="profileimage">  <Image src={this.state.profilePicUrl} width="171px" height="180px" alt="profile-pic" thumbnail />
+            </div>
             <div>
               <Card.Title> {this.state.username}'s Profile </Card.Title>
               <div>
                 Name: {this.state.username} <br />
-               Member since: {this.state.created}
+                Member since: {this.state.created} <br />
                 {/* find out how to show the date in pretty with .timeStamp */}
+                My Interests: <ul>
+                  {this.state.myInterestsArr.map(i => <li key={i.myInterestsArr}> {} </li>)}
+                </ul>
 
-                {/* NUR darstellen, wenn es das Profile von einem selbst ist:
+
+                {/* show ONLY if it's ur own profile (like "edit profile")
                 <h5>E-Mail: {this.props.userInSession.email}</h5> */}
 
               </div>
@@ -73,32 +77,27 @@ class Userprofile extends Component {
 
           <Card.Body>
             <div>
-              <Card.Title>My Interests</Card.Title>
+              <Card.Title>My Favorite Activities</Card.Title>
               <Card.Text>
                 <ul>
-                  {this.state.myInterests.map(i => <li key={i.this.state.myInterests}></li>)}
+                  {this.state.myFavoriteActivitiesArr.map(fav => <li key={fav.myFavoriteActivitiesArr}> {} </li>)}
+                  {/*                   {this.state.myFavoriteActivitiesArr.length > 0 ?
+                    this.state.myFavoriteActivitiesArr.map(fav =>
+                      <li key={key}> {fav.title}
+                      </li>) : No Favorites yet ...} */}
+                  {/* {this.props.userInSession.myFavoriteActivities.title} */}
                 </ul>
-
               </Card.Text>
             </div>
 
             <div>
-              <Card.Title>My Favorite Activities</Card.Title>
-              <Card.Text>
-                <ul>
-                  {this.state.myFavoriteActivities.map(a => <li key={a.this.state.myFavoriteActivities}></li>)}
-                </ul>
-              </Card.Text>
-            </div>
-
-            {/*             <div>
               <Card.Title>My Bucket List</Card.Title>
               <Card.Text>
                 <ul>
-                  {this.state.myBucketlist.map(bucket => <li key={bucket.this.state.myBucketlist}></li>)}
+                  {this.state.myBucketlistArr.map(bucket => <li key={bucket.myBucketlistArr}> {} </li>)}
                 </ul>
               </Card.Text>
-            </div> */}
+            </div>
 
           </Card.Body>
         </Card>

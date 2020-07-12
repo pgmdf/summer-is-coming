@@ -40,7 +40,7 @@ class App extends Component {
 
   render() {
     return (
-      
+
       <div>
         {this.state.redirectActivities ? <Redirect to="/activities"></Redirect> : null}
         <Navigation user={this.state.loggedInUser} updateUser={this.updateTheUser} ></Navigation>
@@ -54,7 +54,8 @@ class App extends Component {
             <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
             <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
             <Route exact path="/userprofile" render={() => <Userprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
-{/*             <Route exact path="/user/:userID" render={(props) => {
+            {/*  For later: change /userprofile into this to grab user id
+            <Route exact path="/user/:userID" render={(props) => {
               if (this.state.loggedInUser) {
                 return  <Userprofile userID={props.match.params.userID} userInSession={this.state.loggedInUser} />
               } else {
