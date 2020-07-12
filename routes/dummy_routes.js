@@ -9,4 +9,5 @@ router.get('/dummy', (req, res, next) => {
   res.render('/dummy');
 });
 
+
 module.exports = router;
