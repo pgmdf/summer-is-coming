@@ -1,0 +1,17 @@
+module.exports = ["Sport ",
+"Watersport",
+"Reading",
+"Games",
+"Quiz",
+"Books",
+"Outdoors",
+"Swimming",
+"Eating",
+"Nightlife",
+"Concerts",
+"Arts",
+"Culture",
+"History",
+"Architecture",
+"Museums"]
+
