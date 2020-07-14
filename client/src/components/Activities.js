@@ -48,6 +48,9 @@ class Activities extends Component {
 
     return (
       <div>
+
+      {/* Filter */}
+
           <Row>
             <Col>
               {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser &&  <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
