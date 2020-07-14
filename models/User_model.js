@@ -9,7 +9,7 @@ const userSchema = new Schema({
   profilePicUrl: { type: String, default: "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg"},
   myFavoriteActivities: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
   myBucketlist: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
-  myInterests: [{ type: Array,
+  myInterests: [{ type: String,
     enum: [
       'Sport',
       'Reading',
