@@ -17,9 +17,9 @@ class ActivityDetail extends Component {
   state = {
     activity: null,
     loading: true,
-    myFavoriteActivitiesArr: this.props.loggedInUser.myFavoriteActivities,
-    myInterestsArr: this.props.loggedInUser.myInterests, 
-    myBucketlistArr: this.props.loggedInUser.myBucketlist
+    myFavoriteActivitiesArr: this.props.loggedInUser ? this.props.loggedInUser.myFavoriteActivities : "",
+    myInterestsArr: this.props.loggedInUser ? this.props.loggedInUser.myInterests : "", 
+    myBucketlistArr: this.props.loggedInUser ? this.props.loggedInUser.myBucketlist : ""
   }
 
   componentDidMount() {
