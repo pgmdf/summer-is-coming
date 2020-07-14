@@ -1,6 +1,14 @@
 /* just to proof that the connection works */
 body {
-    background-color: lightblue;
+    background-color: floralwhite;
+    background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/background-pattern.png?raw=true");
+    background-position: 0 0;
+    background-repeat: repeat-x -y;
+    color: #53595B;
+}
+
+.link {
+    color: #17838A;
 }
 
 .img-max-width {
