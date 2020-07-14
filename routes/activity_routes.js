@@ -62,7 +62,7 @@ router.get('/activities/:identifier', (req, res, next) => {
     })
 })
 
-// PUT route => to update a specific project
+// PUT route => to update a specific user
 router.put('/activities/:identifier', (req, res, next) => {
   
   // TODO: updates should only be performed by creator and admins
@@ -77,6 +77,25 @@ router.put('/activities/:identifier', (req, res, next) => {
     })
 })
 
+
+// GET activities comment
+router.get('/activities/:identifier/comment', (req, res, next) => {
+  Activity.findById(req.params.identifier).populate('createdBy')
+    .then(response => {
+      res.json(response);
+    })
+})
+
+// PUT activities comment => to update a specific activity
+router.put('/activities/:identifier/comment', (req, res, next) => {
+  Activity.findByIdAndUpdate(req.params._id,
+    {
+      $addToSet: { comments: req.body.comments}
+    }, {new: true})
+    .then((response) => {
+      res.json(response);
+    })
+})
 
 //upload activity picture if needed
 // router.put('/activity/image', uploader.single("imageUrl"), (req, res, next) => {

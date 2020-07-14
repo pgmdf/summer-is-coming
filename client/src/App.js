@@ -6,6 +6,7 @@ import Signup from './components/auth/Signup';
 import ActivityDetail from './components/ActivityDetail';
 import ActivityAdd from './components/ActivityAdd';
 import Activities from './components/Activities';
+import AddComment from './components/AddComment';
 import Userprofile from './components/Userprofile';
 import Login from './components/auth/Login';
 import Navigation from './components/Navigation';
@@ -51,6 +52,7 @@ class App extends Component {
             <Route exact path="/activities" render={() => <Activities updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
             <Route exact path="/activities/:identifier" render={() => <ActivityDetail updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
+            <Route exact path="/activities/:identifier/comment" render={() => <AddComment updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
             <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
             <Route exact path="/userprofile" render={() => <Userprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
