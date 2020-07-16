@@ -55,16 +55,15 @@ class App extends Component {
             <Route exact path="/activities/:identifier/comment" render={() => <AddComment updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
             <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
-            <Route exact path="/userprofile" render={() => <Userprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
-            {/*  For later: change /userprofile into this to grab user id
+            {/* <Route exact path="/userprofile" render={() => <Userprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} /> */}
             <Route exact path="/user/:userID" render={(props) => {
               if (this.state.loggedInUser) {
-                return  <Userprofile userID={props.match.params.userID} userInSession={this.state.loggedInUser} />
+                return <Userprofile userID={props.match.params.userID} userInSession={this.state.loggedInUser} />
               } else {
                 return <Redirect to="/login"></Redirect>
               }
             }
-            } /> */}
+            } />
             <Route path="/confirm-email" component={ConfirmEmail} />
             <Route exact path="/editprofile" render={() => <Editprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
             <Route path="/dummy" component={Dummy} />

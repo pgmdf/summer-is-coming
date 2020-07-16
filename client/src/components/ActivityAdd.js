@@ -3,8 +3,11 @@ import axios from "axios";
 import "./../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Form, Button } from "react-bootstrap";
+import interests from '../configs/interests';
+
 let spinnerHeight = "0px"
-let loadingText = ""
+let loadingText = "";
+
 
 class ActivityAdd extends Component {
   state = {
@@ -35,6 +38,22 @@ class ActivityAdd extends Component {
     });
   };
 
+  handleCheckbox = (event) => {
+    const checked = event.target.checked
+    const tagName = event.target.name
+
+    let newArr;
+    if (checked) {
+      newArr = this.state.tags.concat(tagName)
+    } else {
+      newArr = this.state.tags.filter(i => i !== tagName)
+    }
+
+    this.setState({
+      tags: newArr
+    })
+  }
+
   //uo
   handleFileUpload = (e) => {
     spinnerHeight = "80px";
@@ -46,6 +65,7 @@ class ActivityAdd extends Component {
       this.setState({
         activityPicture: resp.data.pictureUrl,
       });
+
     });
     spinnerHeight = "0px"
   };
@@ -67,14 +87,13 @@ class ActivityAdd extends Component {
             />
           </Form.Group>
           <Form.Group controlId="tags">
-            <Form.Label>tags</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter tags i.e. food, water, challenge"
-              name="tags"
-              value={this.state.tags}
-              onChange={this.changeHandler}
-            />
+
+            {interests.map(i => (
+              <Form.Check type="checkbox" label={i} name={i} checked={this.state.tags.includes(i)} onChange={this.handleCheckbox} />
+            ))
+            }
+
+
           </Form.Group>
           <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
@@ -103,7 +122,7 @@ class ActivityAdd extends Component {
             onChange={this.handleFileUpload}
             name="activityPicture"
           ></input>
-          <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg"></img>
+          <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg" alt="animated gif showing loading process"></img>
           <div>{loadingText} </div>
           <Button variant="primary" type="submit">
             Submit activity

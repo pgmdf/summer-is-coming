@@ -21,12 +21,9 @@ router.get('/activities', (req, res, next) => {
 // POST route => to create a new activity
 router.post('/activities/add', (req, res, next) => {
 
-  // sets all tags to lower case
-  let newTags = req.body.tags.toLowerCase()
-
   Activity.create({
     title: req.body.title,
-    tags: newTags.split(' ').join('').split(','),
+    tags: req.body.tags,
     description: req.body.description,
     pictureUrl: req.body.activityPicture ? req.body.activityPicture : "https://cdn.pixabay.com/photo/2014/04/02/11/00/runner-305189_960_720.png",
     location: req.body.location,
@@ -47,7 +44,6 @@ router.post('/activities/add', (req, res, next) => {
 router.post('/activities/addImage', uploader.single("imageUrl"), (req, res, next) => {
 
   res.json({ pictureUrl: req.file.path })
-
 });
 
 
