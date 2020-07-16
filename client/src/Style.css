@@ -14,3 +14,8 @@ body {
 .img-max-width {
     max-width: 100%;
 }
+
+#profileimage img {
+    width: 171px;
+    height: 180px;
+}
