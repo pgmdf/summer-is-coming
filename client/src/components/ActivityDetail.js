@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -131,7 +131,7 @@ class ActivityDetail extends Component {
                   </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet.</p>}</Card.Body>
+                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet. Be the first to <Link to="/activities/`${this.props.match.params.identifier}`/comment">write a comment!</Link></p>}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
                 <Card>
