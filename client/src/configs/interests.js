@@ -1,4 +1,4 @@
-export default ["Sport ",
+export default ["Sport",
 "Watersport",
 "Reading",
 "Games",
