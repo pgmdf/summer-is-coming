@@ -11,7 +11,7 @@ class ActivityAdd extends Component {
     title: "",
     description: "",
     tags: [],
-    rating: 0,
+    // TODO: finish #rating in beta-version rating: 0,
     activityPicture: "",
   };
 
@@ -19,7 +19,7 @@ class ActivityAdd extends Component {
     e.preventDefault();
     axios.post("/activities/add", this.state).then((response) => {
       this.setState({
-          activity: response.data
+        activity: response.data
       })
       if (this.props.addActivityCallback) {
         this.props.addActivityCallback(response.data);
@@ -37,26 +37,21 @@ class ActivityAdd extends Component {
 
   //uo
   handleFileUpload = (e) => {
-      spinnerHeight = "80px";
-      loadingText = "Loading..."
+    spinnerHeight = "80px";
+    loadingText = "Loading..."
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
     axios.post("/activities/addImage", uploadData).then((resp) => {
-        loadingText = "Uploaded succesfully!"
+      loadingText = "Uploaded succesfully!"
       this.setState({
         activityPicture: resp.data.pictureUrl,
       });
-     
-
-     
-    }); 
-  
-  
+    });
     spinnerHeight = "0px"
   };
 
   render() {
- 
+
     return (
       <div>
         <h1>Add your favourite activity</h1>
@@ -92,6 +87,7 @@ class ActivityAdd extends Component {
               onChange={this.changeHandler}
             />
           </Form.Group>
+          {/* //TODO: #rating finish in beta-version
           <Form.Group controlId="rating">
             <Form.Label>Rating</Form.Label>
             <Form.Control
@@ -101,14 +97,14 @@ class ActivityAdd extends Component {
               value={this.state.rating}
               onChange={this.changeHandler}
             />
-          </Form.Group>
+          </Form.Group> */}
           <input
             type="file"
             onChange={this.handleFileUpload}
             name="activityPicture"
           ></input>
-        <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg"></img>
-<div>{loadingText} </div>
+          <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg"></img>
+          <div>{loadingText} </div>
           <Button variant="primary" type="submit">
             Submit activity
           </Button>

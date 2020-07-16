@@ -7,18 +7,16 @@ import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
-// import moment from 'moment';
 
 // TODO: find a way to convert timestamp to readable date
-// TODO: tags, comments and users that joined an activity should be stored in an own component  to better list them
-// TODO: fix timestamp output with moment
+
 class ActivityDetail extends Component {
 
   state = {
     activity: null,
     loading: true,
     myFavoriteActivitiesArr: this.props.loggedInUser ? this.props.loggedInUser.myFavoriteActivities : "",
-    myInterestsArr: this.props.loggedInUser ? this.props.loggedInUser.myInterests : "", 
+    myInterestsArr: this.props.loggedInUser ? this.props.loggedInUser.myInterests : "",
     myBucketlistArr: this.props.loggedInUser ? this.props.loggedInUser.myBucketlist : ""
   }
 
@@ -38,7 +36,7 @@ class ActivityDetail extends Component {
     let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr.push(this.props.match.params.identifier)
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
       this.setState({
         myFavoriteActivitiesArr: myFavoriteActivitiesArr
       })
@@ -51,11 +49,12 @@ class ActivityDetail extends Component {
 
     let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr = myFavoriteActivitiesArr.filter((id) => {
-     return this.props.match.params.identifier !== id })
+      return this.props.match.params.identifier !== id
+    })
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
       this.setState({
-        myFavoriteActivitiesArr: myFavoriteActivitiesArr 
+        myFavoriteActivitiesArr: myFavoriteActivitiesArr
       })
     })
   }
@@ -67,9 +66,9 @@ class ActivityDetail extends Component {
     let myBucketlistArr = this.state.myBucketlistArr
     myBucketlistArr.push(this.props.match.params.identifier)
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
       this.setState({
-        myBucketlistArr: myBucketlistArr 
+        myBucketlistArr: myBucketlistArr
       })
     })
   }
@@ -80,11 +79,12 @@ class ActivityDetail extends Component {
 
     let myBucketlistArr = this.state.myBucketlistArr
     myBucketlistArr = myBucketlistArr.filter((id) => {
-      return this.props.match.params.identifier !== id })
+      return this.props.match.params.identifier !== id
+    })
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
       this.setState({
-        myBucketlistArr: myBucketlistArr 
+        myBucketlistArr: myBucketlistArr
       })
     })
   }
@@ -105,18 +105,18 @@ class ActivityDetail extends Component {
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
 
-              <div>{this.props.loggedInUser ? 
-                <p>{this.state.myFavoriteActivitiesArr.includes(this.state.activity._id) ? 
-                <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
-                <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button> 
-                : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p> 
+              <div>{this.props.loggedInUser ?
+                <p>{this.state.myFavoriteActivitiesArr.includes(this.state.activity._id) ?
+                  <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
+                    <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button>
+                  : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p>
                 : null}
               </div>
-              
-              <div>{this.props.loggedInUser ? 
-                <p>{this.state.myBucketlistArr.includes(this.state.activity._id) ? 
-                <Button variant="danger" onClick={this.updateUserBucketlistRemoveHandler}><FontAwesomeIcon icon={faClipboard} size={"2x"} style={{ color: "#FFF" }} /> Remove from my bucket list</Button> 
-                : <Button variant="success" onClick={this.updateUserBucketlistAddHandler}><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button>}</p>
+
+              <div>{this.props.loggedInUser ?
+                <p>{this.state.myBucketlistArr.includes(this.state.activity._id) ?
+                  <Button variant="danger" onClick={this.updateUserBucketlistRemoveHandler}><FontAwesomeIcon icon={faClipboard} size={"2x"} style={{ color: "#FFF" }} /> Remove from my bucket list</Button>
+                  : <Button variant="success" onClick={this.updateUserBucketlistAddHandler}><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button>}</p>
                 : null}
               </div>
             </Col>
@@ -131,9 +131,10 @@ class ActivityDetail extends Component {
                   </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet. Be the first to <Link to={'/activities/'+`${this.props.match.params.identifier}`+'/comment'}>write a comment!</Link></p>}</Card.Body>
+                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet. Be the first to <Link to={'/activities/' + `${this.props.match.params.identifier}` + '/comment'}>write a comment!</Link></p>}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
+                {/* TODO: finish #completedby in beta-version
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="1">
@@ -143,7 +144,7 @@ class ActivityDetail extends Component {
                   <Accordion.Collapse eventKey="1">
                     <Card.Body>{this.state.activity.completedBy}</Card.Body>
                   </Accordion.Collapse>
-                </Card>
+                </Card> */}
               </Accordion>
             </Col>
           </Row>

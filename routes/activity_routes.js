@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const uploader = require('../configs/cloudinary');
 const Activity = require('../models/Activity_model');
-const User = require('../models/User_model'); 
+const User = require('../models/User_model');
 
 // GET /activities
 router.get('/activities', (req, res, next) => {
@@ -24,19 +24,19 @@ router.post('/activities/add', (req, res, next) => {
   // sets all tags to lower case
   let newTags = req.body.tags.toLowerCase()
 
-console.log("filepath: "+req.file)
-  // TODO: add timeStamp
   Activity.create({
     title: req.body.title,
     tags: newTags.split(' ').join('').split(','),
     description: req.body.description,
     pictureUrl: req.body.activityPicture ? req.body.activityPicture : "https://cdn.pixabay.com/photo/2014/04/02/11/00/runner-305189_960_720.png",
     location: req.body.location,
-    rating: req.body.rating,
+    /* TODO: #rating finish in beta-version 
+    rating: req.body.rating, */
     createdBy: req.user._id,
     comments: req.body.comments,
     completedBy: req.body.completedBy,
-    $currentDate: { timeStamp: true }})
+    $currentDate: { timeStamp: true }
+  })
     .then(newActivity => {
       res.json(newActivity);
     })
@@ -46,10 +46,8 @@ console.log("filepath: "+req.file)
 
 router.post('/activities/addImage', uploader.single("imageUrl"), (req, res, next) => {
 
+  res.json({ pictureUrl: req.file.path })
 
-
-      res.json({pictureUrl: req.file.path} )
-    
 });
 
 
@@ -64,14 +62,12 @@ router.get('/activities/:identifier', (req, res, next) => {
 
 // PUT route => to update a specific user
 router.put('/activities/:identifier', (req, res, next) => {
-  
-  // TODO: updates should only be performed by creator and admins
 
   User.findByIdAndUpdate(req.user._id,
     {
       myFavoriteActivities: req.body.myFavoriteActivitiesArr,
       myBucketlist: req.body.myBucketlistArr
-    }, {new: true})
+    }, { new: true })
     .then((response) => {
       res.json(response);
     })
@@ -90,8 +86,8 @@ router.get('/activities/:identifier/comment', (req, res, next) => {
 router.put('/activities/:identifier/comment', (req, res, next) => {
   Activity.findByIdAndUpdate(req.params.identifier,
     {
-      $push: { comments: req.body.comments}
-    }, {new: true})
+      $push: { comments: req.body.comments }
+    }, { new: true })
     .then((response) => {
       res.json(response);
     })
