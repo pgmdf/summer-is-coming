@@ -88,12 +88,15 @@ router.get('/activities/:identifier/comment', (req, res, next) => {
 
 // PUT activities comment => to update a specific activity
 router.put('/activities/:identifier/comment', (req, res, next) => {
-  Activity.findByIdAndUpdate(req.params._id,
+  Activity.findByIdAndUpdate(req.params.identifier,
     {
-      $addToSet: { comments: req.body.comments}
+      $push: { comments: req.body.comments}
     }, {new: true})
     .then((response) => {
       res.json(response);
+    })
+    .catch(err => {
+      res.json(err);
     })
 })
 

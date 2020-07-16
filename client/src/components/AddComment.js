@@ -24,12 +24,9 @@ class AddComment extends Component {
 
   formSubmitHandler = (e) => {
     e.preventDefault();
-    axios.put('/activities/:identifier/comment', this.state).then((response) => {
-      this.setState({
-          activity: response.data
+    axios.put('/activities/' + this.props.match.params.identifier + '/comment', this.state).then((response) => {
+      this.props.history.push('/activities/' + this.props.match.params.identifier);
       })
-
-    });
   };
 
   changeHandler = (event) => {
