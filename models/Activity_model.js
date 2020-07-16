@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const interests = require('../configs/interests');
 
 const activitySchema = new Schema({
   title: { type: String, required: true },
-  tags: { type: Array, required: true},
+  // tags: { type: Array, required: true},
+  tags: [{ type: String, enum: interests, required:true }],
   description: String, 
   pictureUrl: [ { type: String } ], 
   location: String, 
