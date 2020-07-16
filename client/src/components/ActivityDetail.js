@@ -5,7 +5,7 @@ import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
 
 // TODO: find a way to convert timestamp to readable date
