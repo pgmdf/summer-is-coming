@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ActivityAdd from './ActivityAdd';
+import interests from '../configs/interests';
+
 
 class Activities extends Component {
 
@@ -48,8 +50,22 @@ class Activities extends Component {
 
     return (
       <div>
+    
+<h1>All Activities </h1>
+  {/* Filter */}
+  <div class="filter-body">
+<form >
+  <label for="interests">Interests</label>
+  <select id="interests" name="interests">
+    
+      {interests.map(i => (
+             <option  value={i}>{i}</option> 
+          ))
+      }
+  </select>
+</form>
+</div>
 
-      {/* Filter */}
 
           <Row>
             <Col>
