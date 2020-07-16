@@ -103,8 +103,9 @@ class ActivityDetail extends Component {
               <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" /></Col>
             <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags.map(tags => <li key={tags}>{tags}</li>)}</strong></p>
               <p>Location: {this.state.activity.location}<br />
+              {/* //TODO: finish #rating in beta-version 
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
-              <p>Description: {this.state.activity.description}</p>
+              <p> */}Description: {this.state.activity.description}</p>
 
               <div>{this.props.loggedInUser ?
                 <p>{this.state.myFavoriteActivitiesArr.includes(this.state.activity._id) ?
