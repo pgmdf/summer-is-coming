@@ -20,6 +20,18 @@ router.get('/user', (req, res, next) => {
 });
 
 
+
+// FOR USERPROFILES
+// GET /user/:userID 
+router.get('/user/:userID', (req, res, next) => {
+  User.findById(req.params.userID)
+    .then(response => {
+      res.json(response);
+    })
+})
+
+
+
 // POST /activities
 // POST route => to create a new activity
 router.post('/user', (req, res, next) => {

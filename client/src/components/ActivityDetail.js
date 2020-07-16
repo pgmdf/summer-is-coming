@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,8 +17,9 @@ class ActivityDetail extends Component {
   state = {
     activity: null,
     loading: true,
+    user: null,
     myFavoriteActivitiesArr: this.props.loggedInUser ? this.props.loggedInUser.myFavoriteActivities : "",
-    myInterestsArr: this.props.loggedInUser ? this.props.loggedInUser.myInterests : "", 
+    myInterestsArr: this.props.loggedInUser ? this.props.loggedInUser.myInterests : "",
     myBucketlistArr: this.props.loggedInUser ? this.props.loggedInUser.myBucketlist : ""
   }
 
@@ -38,7 +39,7 @@ class ActivityDetail extends Component {
     let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr.push(this.props.match.params.identifier)
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
       this.setState({
         myFavoriteActivitiesArr: myFavoriteActivitiesArr
       })
@@ -51,11 +52,12 @@ class ActivityDetail extends Component {
 
     let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr = myFavoriteActivitiesArr.filter((id) => {
-     return this.props.match.params.identifier !== id })
+      return this.props.match.params.identifier !== id
+    })
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
       this.setState({
-        myFavoriteActivitiesArr: myFavoriteActivitiesArr 
+        myFavoriteActivitiesArr: myFavoriteActivitiesArr
       })
     })
   }
@@ -67,9 +69,9 @@ class ActivityDetail extends Component {
     let myBucketlistArr = this.state.myBucketlistArr
     myBucketlistArr.push(this.props.match.params.identifier)
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
       this.setState({
-        myBucketlistArr: myBucketlistArr 
+        myBucketlistArr: myBucketlistArr
       })
     })
   }
@@ -80,11 +82,12 @@ class ActivityDetail extends Component {
 
     let myBucketlistArr = this.state.myBucketlistArr
     myBucketlistArr = myBucketlistArr.filter((id) => {
-      return this.props.match.params.identifier !== id })
+      return this.props.match.params.identifier !== id
+    })
 
-    axios.put('/activities/' + this.props.match.params.identifier, {myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr}).then(() => {
+    axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
       this.setState({
-        myBucketlistArr: myBucketlistArr 
+        myBucketlistArr: myBucketlistArr
       })
     })
   }
@@ -105,18 +108,18 @@ class ActivityDetail extends Component {
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
               <p>Description: {this.state.activity.description}</p>
 
-              <div>{this.props.loggedInUser ? 
-                <p>{this.state.myFavoriteActivitiesArr.includes(this.state.activity._id) ? 
-                <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
-                <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button> 
-                : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p> 
+              <div>{this.props.loggedInUser ?
+                <p>{this.state.myFavoriteActivitiesArr.includes(this.state.activity._id) ?
+                  <Button variant="danger" onClick={this.updateUserFavoritesRemoveHandler}>
+                    <FontAwesomeIcon icon={faStar} size={"2x"} style={{ color: "#FFF" }} /> Remove from favorites</Button>
+                  : <Button variant="success" onClick={this.updateUserFavoritesAddHandler}><FontAwesomeIcon icon={farStar} size={"2x"} style={{ color: "#FFF" }} /> Mark as favorite</Button>}</p>
                 : null}
               </div>
-              
-              <div>{this.props.loggedInUser ? 
-                <p>{this.state.myBucketlistArr.includes(this.state.activity._id) ? 
-                <Button variant="danger" onClick={this.updateUserBucketlistRemoveHandler}><FontAwesomeIcon icon={faClipboard} size={"2x"} style={{ color: "#FFF" }} /> Remove from my bucket list</Button> 
-                : <Button variant="success" onClick={this.updateUserBucketlistAddHandler}><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button>}</p>
+
+              <div>{this.props.loggedInUser ?
+                <p>{this.state.myBucketlistArr.includes(this.state.activity._id) ?
+                  <Button variant="danger" onClick={this.updateUserBucketlistRemoveHandler}><FontAwesomeIcon icon={faClipboard} size={"2x"} style={{ color: "#FFF" }} /> Remove from my bucket list</Button>
+                  : <Button variant="success" onClick={this.updateUserBucketlistAddHandler}><FontAwesomeIcon icon={farClipboard} size={"2x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button>}</p>
                 : null}
               </div>
             </Col>
@@ -149,7 +152,7 @@ class ActivityDetail extends Component {
           </Row>
           <Row>
             <Col>
-              <p>Many thanks to {this.state.activity.createdBy.username}, who added that activity on {this.state.activity.timeStamp} to our portfolio!</p>
+              <p>Many thanks to <Link to={'/user/'+this.state.activity.createdBy._id}> {this.state.activity.createdBy.username} </Link>, who added this activity on {this.state.activity.timeStamp} to our portfolio!</p>
             </Col>
           </Row>
         </Container>
@@ -159,4 +162,4 @@ class ActivityDetail extends Component {
 
 }
 
-export default withRouter(ActivityDetail);
+export default withRouter (ActivityDetail);
