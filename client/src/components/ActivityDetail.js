@@ -152,6 +152,11 @@ class ActivityDetail extends Component {
               <p>Many thanks to {this.state.activity.createdBy.username}, who added that activity on {this.state.activity.timeStamp} to our portfolio!</p>
             </Col>
           </Row>
+          <Row>
+            <Col>
+              <Link to="/activities">Go back to all activities</Link>
+            </Col>
+          </Row>
         </Container>
       </div>
     )
