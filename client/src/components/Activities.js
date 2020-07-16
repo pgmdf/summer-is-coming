@@ -53,7 +53,7 @@ class Activities extends Component {
     
 <h1>All Activities </h1>
   {/* Filter */}
-  <div class="filter-body">
+  <div className="filter-body">
 <form >
   <label for="interests">Interests</label>
   <select id="interests" name="interests">

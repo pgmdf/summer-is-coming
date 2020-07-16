@@ -125,7 +125,7 @@ class ActivityAdd extends Component {
             onChange={this.handleFileUpload}
             name="activityPicture"
           ></input>
-          <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg"></img>
+          <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg" alt="animated gif showing loading process"></img>
           <div>{loadingText} </div>
           <Button variant="primary" type="submit">
             Submit activity

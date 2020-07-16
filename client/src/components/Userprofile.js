@@ -1,7 +1,7 @@
-import React, { Component, Link, imgUrl } from "react";
+import React, { Component } from "react";
 import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Card, Image, Nav, Row, Col } from 'react-bootstrap';
+import { Card, Image, Nav } from 'react-bootstrap';
 import axios from "axios";
 
 
