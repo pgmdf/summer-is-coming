@@ -17,6 +17,7 @@ class ActivityDetail extends Component {
   state = {
     activity: null,
     loading: true,
+    user: null,
     myFavoriteActivitiesArr: this.props.loggedInUser ? this.props.loggedInUser.myFavoriteActivities : "",
     myInterestsArr: this.props.loggedInUser ? this.props.loggedInUser.myInterests : "",
     myBucketlistArr: this.props.loggedInUser ? this.props.loggedInUser.myBucketlist : ""
@@ -151,9 +152,7 @@ class ActivityDetail extends Component {
           </Row>
           <Row>
             <Col>
-              <Link to={'/user/'+this.state.activity.createdBy._id}> {this.state.activity.createdBy.username} </Link>
-              {/* {JSON.stringify(this.state.activity.createdBy, null, 2)} */}
-              <p>Many thanks to {this.state.activity.createdBy.username}, who added that activity on {this.state.activity.timeStamp} to our portfolio!</p>
+              <p>Many thanks to <Link to={'/user/'+this.state.activity.createdBy._id}> {this.state.activity.createdBy.username} </Link>, who added this activity on {this.state.activity.timeStamp} to our portfolio!</p>
             </Col>
           </Row>
         </Container>

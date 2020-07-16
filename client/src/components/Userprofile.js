@@ -10,44 +10,29 @@ class Userprofile extends Component {
   state = {
     activity: null,
     loading: true,
-    username: this.props.userInSession.username,
-    profilePicUrl: this.props.userInSession.profilePicUrl,
-    myFavoriteActivitiesArr: this.props.userInSession.myFavoriteActivities,
-    myInterestsArr: this.props.userInSession.myInterests,
-    myBucketlistArr: this.props.userInSession.myBucketlist,
-    created: this.props.userInSession.created
+    user: null,
   };
 
 
-  /* For later: as soon as change /userprofile route in App and navigation 
-    also change auth routes from userprofile into user/:userID 
-
-    // ruff try //
-    componentDidMount() {
-      axios.get('/user/' + this.props.userID).then(() => {response.data in state})
-    }
-    backend route für user aus datenbank suchen und widergeben */
-
-  /*  /* is it correct like that?
-      also change auth routes from userprofile into user/:userID 
-  
-        componentDidMount() {
-          axios.get('/user/:userID/' + this.props.userInSession._id).then((response) => {
-            this.setState({
-              user: response.data,
-              loading: false
-            })
-          })
-        } 
-        // END // */
+  componentDidMount() {
+    axios.get('/user/' + this.props.userID).then((response) => {
+      this.setState({
+        user: response.data,
+        loading: false
+      })
+    })
+  }
 
   render() {
-    /*         if (this.state.loading) {
-              return <div>Loading…</div>
-            } */
+    if (this.state.loading) {
+      return <div>Loading…</div>
+    }
     return (
       <div>
         {this.props.userID !== this.props.userInSession._id ? "" : <Nav.Link href="/editprofile"> edit my profile </Nav.Link>}
+
+        {/*     Shows the Name of the current user
+        {this.state.loading ? "" : this.state.user.username} */}
 
         {/* // ERROR MESSAGE IF USER IS NOT LOGGED IN // */}
         {/* {this.state.errorMessage ? <h1>{this.state.errorMessage}</h1> : null} */}
@@ -55,16 +40,17 @@ class Userprofile extends Component {
         <Card border="dark">
           <Card.Header>
 
-            <div id="profileimage">  <Image src={this.state.profilePicUrl} width="171px" height="180px" alt="profile-pic" thumbnail />
+            <div id="profileimage">  <Image src={this.state.user.profilePicUrl} alt="profile-pic" thumbnail />
             </div>
             <div>
-              <Card.Title> {this.state.username}'s Profile </Card.Title>
+              <Card.Title> {this.state.user.username}'s Profile </Card.Title>
               <div>
-                Name: {this.state.username} <br />
-                Member since: {this.state.created} <br />
+                Name: {this.state.user.username} living in: <br />
+                Member since: {this.state.user.created} <br />
                 {/* find out how to show the date in pretty with .timeStamp */}
                 My Interests: <ul>
-                  {this.state.myInterestsArr.map(i => <li key={i.myInterestsArr}> {} </li>)}
+                  {this.state.user.myInterests.length > 0 ? this.state.user.myInterests.map((i, key) => <li key={key}>{i}</li>) : <p>Sorry, I'm not interested :(</p>}
+                  {/* {JSON.stringify(this.state.user.myFavoriteActivities, null, 2)} */}
                 </ul>
 
 
@@ -80,12 +66,7 @@ class Userprofile extends Component {
               <Card.Title>My Favorite Activities</Card.Title>
               <Card.Text>
                 <ul>
-                  {this.state.myFavoriteActivitiesArr.map(fav => <li key={fav.myFavoriteActivitiesArr}> {} </li>)}
-                  {/*                   {this.state.myFavoriteActivitiesArr.length > 0 ?
-                    this.state.myFavoriteActivitiesArr.map(fav =>
-                      <li key={key}> {fav.title}
-                      </li>) : No Favorites yet ...} */}
-                  {/* {this.props.userInSession.myFavoriteActivities.title} */}
+                  {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) => <li key={key}>{fav}</li>) : <p>I don't have any favs yet.</p>}
                 </ul>
               </Card.Text>
             </div>
@@ -94,7 +75,8 @@ class Userprofile extends Component {
               <Card.Title>My Bucket List</Card.Title>
               <Card.Text>
                 <ul>
-                  {this.state.myBucketlistArr.map(bucket => <li key={bucket.myBucketlistArr}> {} </li>)}
+                  {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) => <li key={key}>{b}</li>) : <p>I got nothing to do.</p>}
+                  {this.state.user.myBucketlist.map(bucket => <li key={bucket.myBucketlistArr}> {} </li>)}
                 </ul>
               </Card.Text>
             </div>

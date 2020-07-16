@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import interests from '../configs/interests';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom';
+import { Image } from 'react-bootstrap';
 
 class Editprofile extends Component {
 
@@ -13,7 +14,8 @@ class Editprofile extends Component {
     myFavoriteActivities: this.props.userInSession.myFavoriteActivities,
     myInterests: this.props.userInSession.myInterests || [],
     loading: false,
-    redirect: false
+    redirect: false,
+    user: null
   }
 
 
@@ -74,6 +76,16 @@ class Editprofile extends Component {
 
   }
 
+  componentDidMount() {
+    axios.get('/user/' + this.props.userID).then((response) => {
+      this.setState({
+        user: response.data,
+        loading: false
+      })
+    })
+  }
+
+
   render() {
     // cloudinary pic spinner  
     let spinner = "";
@@ -86,7 +98,7 @@ class Editprofile extends Component {
     return (
 
       <div>
-        {this.state.redirect ? <Redirect to="/userprofile"></Redirect>: ""}
+        {this.state.redirect ? <Redirect to="/user/userID}"></Redirect> : ""}
         <h3>Edit my profile</h3>
         <h5><label for="username">Username:</label></h5>
         <input id="username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
@@ -99,10 +111,11 @@ class Editprofile extends Component {
         <br></br>
         {spinner}
 
-        <img src={this.state.profilePicUrl} height="100px" width="100px" alt="profile pic"></img>
+        <div id="profileimage"><Image src={this.state.profilePicUrl} alt="profile pic" /></div>
         <input
           type="file"
           onChange={this.handleFileUpload} />
+          <div>Best Size 171x180 Pixel (max ... MB)</div>
 
 
         {/* interests / activities */}
@@ -133,11 +146,13 @@ class Editprofile extends Component {
 
 
 
-        < h5 > <label for="activities">My activities:</label></h5>
+        <h5> <label for="activities">My activities:</label></h5>
         <input id="activities" type="text" name="activities" value={this.state.activities} onChange={e => this.handleChange(e)} />
 
         <br></br>
         <button onClick={this.submitHandler}>Save</button>
+        {/* CANCEL Button if u dont want to change anything -> Page is not loading yet after clicking
+        <button><Link to="/user/:userID">Cancel</Link> </button> */}
 
 
       </div>
