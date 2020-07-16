@@ -20,7 +20,8 @@ router.get('/user', (req, res, next) => {
 });
 
 
-// FOR USERPROFILE
+
+// FOR USERPROFILES
 // GET /user/:userID 
 router.get('/user/:userID', (req, res, next) => {
   User.findById(req.params.userID)

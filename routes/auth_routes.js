@@ -103,7 +103,7 @@ authRoutes.get('/verify-email-link/:token', (req, res) => {
     req.user.save().then(() => {
       // more professional : res.redirect and set a flash message before
 
-      res.redirect('http://localhost:3000/user/:userID');
+      res.redirect('http://localhost:3000/activities');
     });
   }
 });

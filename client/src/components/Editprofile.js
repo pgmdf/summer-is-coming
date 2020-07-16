@@ -98,7 +98,7 @@ class Editprofile extends Component {
     return (
 
       <div>
-        {this.state.redirect ? <Redirect to="/user/userID}"></Redirect> : ""}
+        {this.state.redirect ? <Redirect to={`/user/${this.props.userInSession._id}`}></Redirect> : ""}
         <h3>Edit my profile</h3>
         <h5><label for="username">Username:</label></h5>
         <input id="username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
@@ -152,7 +152,8 @@ class Editprofile extends Component {
         <br></br>
         <button onClick={this.submitHandler}>Save</button>
         {/* CANCEL Button if u dont want to change anything -> Page is not loading yet after clicking
-        <button><Link to="/user/:userID">Cancel</Link> </button> */}
+        <button><Link to="/user/:userID">Cancel</Link> </button> 
+        or <Redirect to="/user/userID}"></Redirect> */}
 
 
       </div>

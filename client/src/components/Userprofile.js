@@ -39,7 +39,6 @@ class Userprofile extends Component {
 
         <Card border="dark">
           <Card.Header>
-
             <div id="profileimage">  <Image src={this.state.user.profilePicUrl} alt="profile-pic" thumbnail />
             </div>
             <div>
