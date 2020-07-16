@@ -14,7 +14,7 @@ class ActivityAdd extends Component {
     title: "",
     description: "",
     tags: [],
-    rating: 0,
+    // TODO: finish #rating in beta-version rating: 0,
     activityPicture: "",
   };
 
@@ -66,11 +66,7 @@ class ActivityAdd extends Component {
         activityPicture: resp.data.pictureUrl,
       });
 
-
-
     });
-
-
     spinnerHeight = "0px"
   };
 
@@ -110,6 +106,7 @@ class ActivityAdd extends Component {
               onChange={this.changeHandler}
             />
           </Form.Group>
+          {/* //TODO: #rating finish in beta-version
           <Form.Group controlId="rating">
             <Form.Label>Rating</Form.Label>
             <Form.Control
@@ -119,7 +116,7 @@ class ActivityAdd extends Component {
               value={this.state.rating}
               onChange={this.changeHandler}
             />
-          </Form.Group>
+          </Form.Group> */}
           <input
             type="file"
             onChange={this.handleFileUpload}
