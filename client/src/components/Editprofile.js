@@ -118,7 +118,7 @@ class Editprofile extends Component {
           <div>Best Size 171x180 Pixel (max ... MB)</div>
 
 
-        {/* interests / activities */}
+        {/* interests*/}
 
         <h5><label for="interests">Choose your favourite interests:</label></h5>
 
@@ -130,31 +130,14 @@ class Editprofile extends Component {
             </li>
           ))
           }
-        </ul>
+         </ul>
 
-        {/* 
-  <div>
-  <input type="checkbox" id="Sport" name="Sport"
-         checked>
-  <label for="Sport">Sport</label>
-</div>
+        
 
-<div>
-  <input type="checkbox" id="horns" name="horns">
-  <label for="horns">Horns</label>
-</div> */}
-
-
-
-        <h5> <label for="activities">My activities:</label></h5>
-        <input id="activities" type="text" name="activities" value={this.state.activities} onChange={e => this.handleChange(e)} />
-
-        <br></br>
         <button onClick={this.submitHandler}>Save</button>
         {/* CANCEL Button if u dont want to change anything -> Page is not loading yet after clicking
         <button><Link to="/user/:userID">Cancel</Link> </button> 
         or <Redirect to="/user/userID}"></Redirect> */}
-
 
       </div>
 
