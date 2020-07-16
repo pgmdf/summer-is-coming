@@ -13,7 +13,20 @@ class Activities extends Component {
 
   state = {
     activitiesArr: [],
-    loading: true    
+    loading: true,
+    value: null,
+  }
+
+
+
+
+  handleChange = (event) => {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    alert('Your favorite interest is: ' + this.state.value);
+    event.preventDefault();
   }
 
   componentDidMount() {
@@ -40,6 +53,27 @@ class Activities extends Component {
     })
   }
 
+  // changeHandler for fitering interests
+  // changeHandler = (event) => {
+  //   const tagChosen = event.target.value;
+  //   const tagName = event.target.name
+
+  //   let newArr;
+  //   if (tagChosen) {
+  //     newArr = this.state.activitiesArr.concat(tagName)
+  //   } else {
+  //     newArr = this.state.activitiesArr.filter(i => i !== tagName)
+  //   }
+
+
+  //   this.setState({
+  //     activitiesArr: newArr
+  //   })
+
+  // };
+
+
+
 
   render() {
     if (this.state.loading) {
@@ -48,44 +82,53 @@ class Activities extends Component {
 
     let imgUrl = "http://10kbrew.com/wp-content/uploads/2019/02/giphy.gif"
 
+    let filteredArray = this.state.activitiesArr
+    if (this.state.value) {
+      filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
+    }
+
     return (
       <div>
-    
-<h1>All Activities </h1>
-  {/* Filter */}
-  <div class="filter-body">
-<form >
-  <label for="interests">Interests</label>
-  <select id="interests" name="interests">
-    
-      {interests.map(i => (
-             <option  value={i}>{i}</option> 
-          ))
-      }
-  </select>
-</form>
-</div>
+
+        <h1>All Activities </h1>
+        {/* Filter */}
+
+        <h4>Filter down to your interests:</h4>
+        <div class="filter-body">
+          <form>
+            <label for="interests">Interests
+            <select value={this.state.value} onChange={this.handleChange} id="interests" name="interests">
+
+                {interests.map(i => (
+                  <option value={i}>{i} </option>
+                ))
+                }
+              </select>
+            </label>
+          </form>
+        </div>
 
 
-          <Row>
-            <Col>
-              {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser &&  <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
+        <Row>
+          <Col>
+            {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser && <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
 
-              {this.state.activitiesArr.length > 0 ?
-                this.state.activitiesArr.map(activity =>
-                  <Link to={"/activities/" + activity._id} key={activity._id}>
-                    <Row className="mb-4">
-                      <Col xs={3} className="to-the-right"><img src={activity.pictureUrl} alt={activity.name} className="img-fluid img-max-width" /></Col>
-                      <Col xs={9}>
-                        <h2>{activity.title}</h2>
-                      </Col>
-                    </Row>
-                    <hr></hr>
-                  </Link>
-                ) :
-                <img src={imgUrl} alt="Draft activity like Homer"></img>
-              }</Col>
-          </Row>
+            {filteredArray.length > 0 ?
+              filteredArray.map(activity =>
+                <Link to={"/activities/" + activity._id} key={activity._id}>
+                  <Row className="mb-4">
+                    <Col xs={3} className="to-the-right"><img src={activity.pictureUrl} alt={activity.name} className="img-fluid img-max-width" /></Col>
+                    <Col xs={9}>
+                      <h2>{activity.title}</h2>
+                      <h3>{activity.tags}</h3>
+                    </Col>
+                  </Row>
+                  <hr></hr>
+                </Link>
+              ) :
+              <img src={imgUrl} alt="Draft activity like Homer"></img>
+            }</Col>
+        </Row>
       </div>
     )
   }
