@@ -24,10 +24,6 @@ class Activities extends Component {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(event) {
-    alert('Your favorite interest is: ' + this.state.value);
-    event.preventDefault();
-  }
 
   componentDidMount() {
     axios.get('/activities').then((response) => {
@@ -53,25 +49,6 @@ class Activities extends Component {
     })
   }
 
-  // changeHandler for fitering interests
-  // changeHandler = (event) => {
-  //   const tagChosen = event.target.value;
-  //   const tagName = event.target.name
-
-  //   let newArr;
-  //   if (tagChosen) {
-  //     newArr = this.state.activitiesArr.concat(tagName)
-  //   } else {
-  //     newArr = this.state.activitiesArr.filter(i => i !== tagName)
-  //   }
-
-
-  //   this.setState({
-  //     activitiesArr: newArr
-  //   })
-
-  // };
-
 
 
 
@@ -89,7 +66,6 @@ class Activities extends Component {
 
     return (
       <div>
-
         <h1>All Activities </h1>
         {/* Filter */}
 

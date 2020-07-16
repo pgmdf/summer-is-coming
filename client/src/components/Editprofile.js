@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import interests from '../configs/interests';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
 
 class Editprofile extends Component {

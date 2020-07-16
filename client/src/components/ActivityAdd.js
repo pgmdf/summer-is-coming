@@ -14,7 +14,7 @@ class ActivityAdd extends Component {
     title: "",
     description: "",
     tags: [],
-    rating: 0,
+    // TODO: finish #rating in beta-version rating: 0,
     activityPicture: "",
   };
 
@@ -66,11 +66,7 @@ class ActivityAdd extends Component {
         activityPicture: resp.data.pictureUrl,
       });
 
-
-
     });
-
-
     spinnerHeight = "0px"
   };
 
@@ -110,6 +106,7 @@ class ActivityAdd extends Component {
               onChange={this.changeHandler}
             />
           </Form.Group>
+          {/* //TODO: #rating finish in beta-version
           <Form.Group controlId="rating">
             <Form.Label>Rating</Form.Label>
             <Form.Control
@@ -119,13 +116,13 @@ class ActivityAdd extends Component {
               value={this.state.rating}
               onChange={this.changeHandler}
             />
-          </Form.Group>
+          </Form.Group> */}
           <input
             type="file"
             onChange={this.handleFileUpload}
             name="activityPicture"
           ></input>
-          <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg"></img>
+          <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg" alt="animated gif showing loading process"></img>
           <div>{loadingText} </div>
           <Button variant="primary" type="submit">
             Submit activity
