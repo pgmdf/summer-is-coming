@@ -1,4 +1,4 @@
-module.exports = ["Sport ",
+module.exports = ["Sport",
 "Watersport",
 "Reading",
 "Games",

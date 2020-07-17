@@ -5,13 +5,11 @@ import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee, faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
-// import moment from 'moment';
 
 // TODO: find a way to convert timestamp to readable date
-// TODO: tags, comments and users that joined an activity should be stored in an own component  to better list them
-// TODO: fix timestamp output with moment
+
 class ActivityDetail extends Component {
 
   state = {
@@ -105,8 +103,9 @@ class ActivityDetail extends Component {
               <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" /></Col>
             <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags.map(tags => <li key={tags}>{tags}</li>)}</strong></p>
               <p>Location: {this.state.activity.location}<br />
+              {/* //TODO: finish #rating in beta-version 
               Rating: {this.state.activity.rating} <FontAwesomeIcon icon={faCoffee} /></p>
-              <p>Description: {this.state.activity.description}</p>
+              <p> */}Description: {this.state.activity.description}</p>
 
               <div>{this.props.loggedInUser ?
                 <p>{this.state.myFavoriteActivitiesArr.includes(this.state.activity._id) ?
@@ -134,9 +133,12 @@ class ActivityDetail extends Component {
                   </Accordion.Toggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>{this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet.</p>}</Card.Body>
+                    <Card.Body>
+                    <Link to={'/activities/' + `${this.props.match.params.identifier}` + '/comment'}>Write a comment!</Link>
+                    {this.state.activity.comments.length > 0 ? this.state.activity.comments.map((comment, key) => <li key={key}>{comment}</li>) : <p>No comments yet. Be the first to <Link to={'/activities/' + `${this.props.match.params.identifier}` + '/comment'}>write a comment!</Link></p>}</Card.Body>
                   </Accordion.Collapse>
                 </Card>
+                {/* TODO: finish #completedby in beta-version
                 <Card>
                   <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="1">
@@ -146,13 +148,18 @@ class ActivityDetail extends Component {
                   <Accordion.Collapse eventKey="1">
                     <Card.Body>{this.state.activity.completedBy}</Card.Body>
                   </Accordion.Collapse>
-                </Card>
+                </Card> */}
               </Accordion>
             </Col>
           </Row>
           <Row>
             <Col>
               <p>Many thanks to <Link to={'/user/'+this.state.activity.createdBy._id}> {this.state.activity.createdBy.username} </Link>, who added this activity on {this.state.activity.timeStamp} to our portfolio!</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Link to="/activities">Go back to all activities</Link>
             </Col>
           </Row>
         </Container>

@@ -21,15 +21,14 @@ router.get('/activities', (req, res, next) => {
 // POST route => to create a new activity
 router.post('/activities/add', (req, res, next) => {
 
-  console.log("filepath: " + req.file)
-  // TODO: add timeStamp
   Activity.create({
     title: req.body.title,
     tags: req.body.tags,
     description: req.body.description,
     pictureUrl: req.body.activityPicture ? req.body.activityPicture : "https://cdn.pixabay.com/photo/2014/04/02/11/00/runner-305189_960_720.png",
     location: req.body.location,
-    rating: req.body.rating,
+    /* TODO: #rating finish in beta-version 
+    rating: req.body.rating, */
     createdBy: req.user._id,
     comments: req.body.comments,
     completedBy: req.body.completedBy,
@@ -44,10 +43,7 @@ router.post('/activities/add', (req, res, next) => {
 
 router.post('/activities/addImage', uploader.single("imageUrl"), (req, res, next) => {
 
-
-
   res.json({ pictureUrl: req.file.path })
-
 });
 
 
@@ -60,10 +56,8 @@ router.get('/activities/:identifier', (req, res, next) => {
     })
 })
 
-// PUT route => to update a specific project
+// PUT route => to update a specific user
 router.put('/activities/:identifier', (req, res, next) => {
-
-  // TODO: updates should only be performed by creator and admins
 
   User.findByIdAndUpdate(req.user._id,
     {
@@ -75,6 +69,28 @@ router.put('/activities/:identifier', (req, res, next) => {
     })
 })
 
+
+// GET activities comment
+router.get('/activities/:identifier/comment', (req, res, next) => {
+  Activity.findById(req.params.identifier).populate('createdBy')
+    .then(response => {
+      res.json(response);
+    })
+})
+
+// PUT activities comment => to update a specific activity
+router.put('/activities/:identifier/comment', (req, res, next) => {
+  Activity.findByIdAndUpdate(req.params.identifier,
+    {
+      $push: { comments: req.body.comments }
+    }, { new: true })
+    .then((response) => {
+      res.json(response);
+    })
+    .catch(err => {
+      res.json(err);
+    })
+})
 
 //upload activity picture if needed
 // router.put('/activity/image', uploader.single("imageUrl"), (req, res, next) => {
