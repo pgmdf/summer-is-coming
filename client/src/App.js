@@ -44,7 +44,7 @@ class App extends Component {
 
       <div>
         {this.state.redirectActivities ? <Redirect to="/activities"></Redirect> : null}
-        <Navigation user={this.state.loggedInUser} updateUser={this.updateTheUser} ></Navigation>
+        <Navigation user={this.state.loggedInUser} updateUser={this.updateTheUser}></Navigation>
         <Container>
           <Switch>
             <Route exact path="/" render={() => <Home userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />

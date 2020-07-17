@@ -1,13 +1,223 @@
-/* just to proof that the connection works */
+/* delete after */
+
+#E5FFF3 {
+    background-color: #E5FFF3;
+    width: 40px;
+    height: 40px;
+}
+
+#17838A {
+    background-color: #17838A;
+    width: 40px;
+    height: 40px;
+}
+
+#C4C4C4 {
+    background-color: #C4C4C4;
+    width: 40px;
+    height: 40px;
+}
+
+#53595B {
+    background-color: #53595B;
+    width: 40px;
+    height: 40px;
+}
+
+/* END */
+
+/* TODO */
+/* change URL background image */
 body {
-    background-color: lightblue;
+    background-color: floralwhite;
+    background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/background-pattern.png?raw=true");
+    background-position: 0 0;
+    background-repeat: repeat-x -y;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12pt;
+    color: #53595B;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-top: 70px;
+}
+
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.75;
+    position: fixed;
+    top: 0;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+
+#justify-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.no-outline:focus {
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: #17838A;
+}
+
+h1 {
+    font-size: 22pt;
+}
+
+h2 {
+    font-size: 18pt;
+}
+
+h3 {
+    font-size: 15pt;
+}
+
+a,
+a:visited {
+    color: #17838A;
+    text-decoration: none !important;
+}
+
+a:hover,
+a:active {
+    color: #E5FFF3;
+    text-decoration: none !important;
+}
+
+.fixed-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.btn {
+    width: 300px;
+    height: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1.5px solid #53595B;
+    border-radius: 10px;
+    font-size: 15pt;
+    line-height: 16px;
+    display: flex;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    color: #17838A;
+}
+
+li {
+    display: inline;
+}
+
+
+.btn:hover {
+    background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/button-background-black.png?raw=true");
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1.5px solid #53595B;
+    border-radius: 10px;
+}
+
+.btn-primary:disabled {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1.5px solid #53595B;
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+input {
+    width: 300px;
+    height: 35px;
+    font-size: 15pt;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #17838A;
+    background: #FFFFFF;
+    opacity: 0.75;
+    box-shadow: inset 1px 1px 2px #17838A;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+input:active,
+input:focus {
+    border-color: #E5FFF3;
+    outline: none;
 }
 
 .img-max-width {
     max-width: 100%;
 }
 
+.box-grey {
+    background: #53595B;
+    border: 1.5px solid #E5FFF3;
+    border-radius: 10px;
+    opacity: 0.9;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.45);
+}
+
+.box-grey > h3 {
+    color: #E5FFF3;
+}
+
+.box-white {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1.5px solid #53595B;
+    border-radius: 10px;
+    opacity: 0.9;
+    align-items: center;
+    text-align: center;
+    color: #53595B;
+    text-shadow: 1px 1px 2px #FFFFFF;
+}
+
+.box-grey > h3 {
+    color: #17838A;
+}
+
+/* for all screens */
+.profile,
+.activity,
+.box-grey
+.box-white {
+    max-width: 60%;
+}
+
+/* responsive, form smaller screens */
+@media (max-width: 600px) {
+    body {
+        width: 300px;
+    }
+}
+
+
 #profileimage img {
     width: 171px;
     height: 180px;
+}
+
+#profile-info {
+    text-align: left;
+    margin-left: 20px;
 }
