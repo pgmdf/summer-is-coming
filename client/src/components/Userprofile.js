@@ -44,7 +44,8 @@ class Userprofile extends Component {
             <div>
               <Card.Title> {this.state.user.username}'s Profile </Card.Title>
               <div>
-                Name: {this.state.user.username} living in: <br />
+                Name: {this.state.user.username} <br />
+                Living in: <br />
                 Member since: {this.state.user.created} <br />
                 {/* find out how to show the date in pretty with .timeStamp */}
                 My Interests: <ul>
