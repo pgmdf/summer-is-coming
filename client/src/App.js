@@ -14,6 +14,7 @@ import Dummy from './components/Dummy';
 import Home from './components/Home';
 import Editprofile from './components/Editprofile';
 import ConfirmEmail from './components/auth/ConfirmEmail';
+import ActivityInterestMatch from './components/ActivityInterestMatch';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
@@ -51,6 +52,7 @@ class App extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/activities" render={() => <Activities updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
+            <Route exact path="/activities/interests" render={() => <ActivityInterestMatch updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path="/activities/:identifier" render={() => <ActivityDetail updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path="/activities/:identifier/comment" render={() => <AddComment updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
