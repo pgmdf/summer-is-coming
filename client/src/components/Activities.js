@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ActivityAdd from './ActivityAdd';
+import ActivityInterestMatch from './ActivityInterestMatch'
 import interests from '../configs/interests';
 
 
@@ -66,7 +67,11 @@ class Activities extends Component {
 
     return (
       <div>
-        <h1>All Activities </h1>
+
+      {(this.props.loggedInUser) ? <ActivityInterestMatch loggedInUser={this.props.loggedInUser} /> : ""}
+{/* <ActivityInterestMatch></ActivityInterestMatch> */}
+
+        <h1>Explore all activities </h1>
         {/* Filter */}
 
         <h4>Filter down to your interests:</h4>
