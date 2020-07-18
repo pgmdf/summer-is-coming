@@ -34,7 +34,7 @@ class Home extends Component {
                     <Slider sliderData={this.state.sortedActivities}/> : ""                
                 }
                 <h1>{this.props.userInSession ? 
-                "Hello "+this.props.userInSession.username : <a href="/signup">Sign up for free here & get the latest activities!</a>}</h1>
+                "Hello "+this.props.userInSession.username : <a href="/signup">Sign up for free here & see the latest activities!</a>}</h1>
             </div>
         )
 
