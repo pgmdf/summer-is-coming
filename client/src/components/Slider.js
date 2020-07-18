@@ -2,6 +2,7 @@ import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
+import './../App.css';
 
 
 function Slider(props) {
@@ -15,11 +16,11 @@ function Slider(props) {
                 {/* console.log('eachActivity:', activity) */}
                 return (
 
-                    <Carousel.Item>
+                    <Carousel.Item height={300}>
                     <Link to={"/activities/" + activity._id} key={activity._id}>
 
-                    <img
-                    className="d-block w-100"
+                    <img height={300} 
+                    className="d-block"
                     src={activity.pictureUrl[0]}
                     alt={activity.title}
                     />
