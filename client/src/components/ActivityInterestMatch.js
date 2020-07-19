@@ -52,12 +52,13 @@ componentDidMount() {
             <div>
                 <h1>Hello {this.state.userName}</h1>
                 <h2>Suggested activities according to your interests</h2>
+        
         <Container>
         <Row>
 
         {interestsActivitiesArr.map(interest => {
             return (
-                <div  className="Col col-4">
+                <div  className=".col-xs-6 .col-sm-4" id="card">
                 <Link to={"/activities/" + interest._id} key={interest._id}>
 
                 <div className="activity-card">

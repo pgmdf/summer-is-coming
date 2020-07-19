@@ -40,7 +40,7 @@ class Login extends Component {
           <Row>
             <Col>
 
-              {this.state.redirect ? <Redirect to="/" /> : null}
+              {this.state.redirect ? <Redirect to="/activities" /> : null}
 
               {/* new bootstrap form */}
               <h3>Welcome Back</h3>
