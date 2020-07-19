@@ -68,6 +68,7 @@ componentDidMount() {
                 <h5>{interest.title}</h5>
 
                 <p>{interest.description}</p>
+                <p>{interest.location}</p>
                 </div>
                 </div>
                 </Link>

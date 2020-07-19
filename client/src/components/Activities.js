@@ -102,6 +102,7 @@ class Activities extends Component {
                     <Col xs={9}>
                       <h2>{activity.title}</h2>
                       <h3>{activity.tags}</h3>
+                      <h3>{activity.location}</h3>
                     </Col>
                   </Row>
                   <hr></hr>
