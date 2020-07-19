@@ -15,6 +15,7 @@ class ActivityAdd extends Component {
     description: "",
     tags: [],
     // TODO: finish #rating in beta-version rating: 0,
+    location: "",
     activityPicture: "",
   };
 
@@ -99,13 +100,25 @@ class ActivityAdd extends Component {
             <Form.Label>Description</Form.Label>
             <Form.Control
               as="textarea"
-              rows="3"
-              placeholder="Enter desription"
+              rows="2"
+              placeholder="Enter description"
               name="description"
               value={this.state.description}
               onChange={this.changeHandler}
             />
           </Form.Group>
+
+          <Form.Group controlId="location">
+            <Form.Label>Location</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter the location"
+              name="location"
+              value={this.state.location}
+              onChange={this.changeHandler}
+            />
+          </Form.Group>
+
           {/* //TODO: #rating finish in beta-version
           <Form.Group controlId="rating">
             <Form.Label>Rating</Form.Label>

@@ -20,6 +20,7 @@
     "express-session": "^1.17.1",
     "hbs": "^4.0.1",
     "ironhack_generator": "^1.2.0",
+    "lodash": "^4.17.19",
     "mongo-connect": "0.0.6",
     "mongodb": "^3.5.9",
     "mongoose": "^5.2.10",

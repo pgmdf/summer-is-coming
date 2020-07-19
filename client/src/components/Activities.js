@@ -69,7 +69,11 @@ class Activities extends Component {
       <div>
 
       {(this.props.loggedInUser) ? <ActivityInterestMatch loggedInUser={this.props.loggedInUser} /> : ""}
-{/* <ActivityInterestMatch></ActivityInterestMatch> */}
+
+<a href="activities/discovery">
+<h1>Try something new today</h1>
+<p>Find an activity which doesn't fit your interests</p>
+</a>
 
         <h1>Explore all activities </h1>
         {/* Filter */}
@@ -102,6 +106,7 @@ class Activities extends Component {
                     <Col xs={9}>
                       <h2>{activity.title}</h2>
                       <h3>{activity.tags}</h3>
+                      <h3>{activity.location}</h3>
                     </Col>
                   </Row>
                   <hr></hr>
