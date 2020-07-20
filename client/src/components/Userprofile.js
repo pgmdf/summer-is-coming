@@ -3,6 +3,7 @@ import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card, Image, Nav } from 'react-bootstrap';
 import axios from "axios";
+import _ from "lodash";
 
 
 
@@ -11,6 +12,8 @@ class Userprofile extends Component {
     activity: null,
     loading: true,
     user: null,
+    allActivities: [],
+    bucketListTitles: [],
   };
 
 
@@ -20,13 +23,38 @@ class Userprofile extends Component {
         user: response.data,
         loading: false
       })
+    });
+    axios.get('/activities').then((response) => {
+      this.setState({
+        allActivities: response.data,
+      })
+    }).then(() => {
+      
+      let myBucketlist = this.state.user.myBucketlist;
+      let allActivities = this.state.allActivities
+      let allActivitiesArr = allActivities.map(x => x._id)
+
+for (let i = 0; i<myBucketlist.length; i++) {
+let entryNumber = allActivitiesArr.indexOf(myBucketlist[i]);
+let title = allActivities[entryNumber].title;
+this.state.bucketListTitles.push(title)
+
+}
+
     })
+
   }
 
   render() {
     if (this.state.loading) {
       return <div>Loading…</div>
     }
+    let allActivities = this.state.allActivities
+    let allActivitiesArr = allActivities.map(x => x._id)
+
+    this.state.user.myBucketlist.map((li) => 
+    console.log(allActivities[allActivitiesArr.indexOf(li)]) // why is .title undefined but without the dot it is deifned?
+    ) 
     return (
       <div>
         {this.props.userID !== this.props.userInSession._id ? "" : <Nav.Link href="/editprofile"> edit my profile </Nav.Link>}
@@ -75,8 +103,13 @@ class Userprofile extends Component {
               <Card.Title>My Bucket List</Card.Title>
               <Card.Text>
                 <ul>
-                  {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) => <li key={key}>{b}</li>) : <p>I got nothing to do.</p>}
-                  {this.state.user.myBucketlist.map(bucket => <li key={bucket.myBucketlistArr}> {} </li>)}
+                {this.state.user.myBucketlist.length > 0 ? 
+
+                  this.state.user.myBucketlist.map((li, key) => <li key={key}>{li.title}</li>)
+                
+                  
+                 : <p>I've already done everything in my life.</p>}
+                {/* this.state.user.myFavoriteActivities.map((fav, key) => <li key={key}>{fav}</li>) : <p>I don't have any favs yet.</p>} */}
                 </ul>
               </Card.Text>
             </div>
