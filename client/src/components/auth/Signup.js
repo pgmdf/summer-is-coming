@@ -65,11 +65,20 @@ class Signup extends Component {
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" name="password" value={this.state.password} onChange={e=> this.handleChange(e)} placeholder="Password" />
   </Form.Group>
+  <p id="password-txt">Make sure it's at least 8 characters including a number and a lowercase letter.</p>
   <Button variant="primary" type="submit">
-    Sign Up
+    Sign up
   </Button>
 <br/>
-  <a href="http://localhost:5555/api/google">Sign up with Google</a> 
+
+
+  <a href="http://localhost:5555/api/google">
+  <button id="google-btn" className="btn noHover">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1004px-Google_%22G%22_Logo.svg.png" height="18"></img> 
+  <span id="google-signup-txt">
+  Sign up with Google</span>
+  </button>
+  </a> 
 
 </Form>
 
