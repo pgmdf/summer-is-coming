@@ -14,7 +14,6 @@ const passport      = require('passport');
 require('./configs/passport');
 
 
-
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {

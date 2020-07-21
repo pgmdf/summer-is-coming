@@ -64,7 +64,7 @@ class AddComment extends Component {
             />
           </Form.Group>
           <Button variant="primary" type="submit">
-            Submit activity
+            Submit comment
           </Button>
 
         </Form>
