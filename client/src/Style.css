@@ -327,3 +327,7 @@ input:focus {
     text-align: left;
     margin-left: 20px;
 }
+
+.no-bullets {
+    list-style: none;
+}
