@@ -28,6 +28,17 @@ class Dummy extends React.Component {
                             <h1>Title 1</h1>
                             <h2>Title 2</h2>
                             <h3>Title 3</h3>
+                            <h4>Title 4</h4>
+                            <div className="bold-head">bold-head and inline</div>
+                            <ul className="inline">
+                                <li className="border-bottom">Liststyle</li>
+                                <li>Liststyle</li>
+                                <li className="text-bright">Ich bin Text mit text-bright</li>
+                            </ul>
+                            <div className="flex-row" width="80%">
+                                <div>Divs in display flex </div>
+                                <div className="back-grey max-width">Style grey Background and max width</div>
+                            </div>
                             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
                         </Col>
                     </Row>

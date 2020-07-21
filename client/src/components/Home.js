@@ -44,6 +44,7 @@ class Home extends Component {
                 <div className="container h-100">
                     <div className="d-flex h-100 text-center align-items-center">
                     <div className="w-100 text-white">
+                        <div><Image src="https://github.com/pgmdf/summer-is-coming/blob/master/client/public/z-logo-final.png?raw=true"/></div>
                         <h1 className="display-3">The real world is calling</h1>
                         <p className="lead mb-0">Join our community to try something new, or do more of what you love
 </p>
