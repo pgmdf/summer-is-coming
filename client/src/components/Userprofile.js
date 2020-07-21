@@ -16,7 +16,7 @@ class Userprofile extends Component {
 
 
   componentDidMount() {
-    axios.get('/user/' + this.props.userID).then((response) => {
+    axios.get('/api/user/' + this.props.userID).then((response) => {
       this.setState({
         user: response.data,
         loading: false

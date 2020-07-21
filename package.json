@@ -20,6 +20,7 @@
     "express": "^4.16.3",
     "express-session": "^1.17.1",
     "hbs": "^4.0.1",
+    "image-size": "^0.8.3",
     "ironhack_generator": "^1.2.0",
     "lodash": "^4.17.19",
     "mongo-connect": "0.0.6",

@@ -16,7 +16,7 @@ state = {
 
 // This is my activities data from the database
 componentDidMount() {
-    axios.get('/activities').then((response) => {
+    axios.get('/api/activities').then((response) => {
         console.log('Activity data', response.data)
       this.setState({
         activitiesArr: response.data,
