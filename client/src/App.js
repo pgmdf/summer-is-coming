@@ -47,14 +47,12 @@ class App extends Component {
       <div>
         {this.state.redirectActivities ? <Redirect to="/activities"></Redirect> : null}
         <Navigation user={this.state.loggedInUser} updateUser={this.updateTheUser}></Navigation>
+        <Container>
           <Switch>
             <Route exact path="/" render={() => <Home userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
-            <Container>
-
             {/* <Route exact path="/signup" component={Signup} /> */}
             <Route exact path="/activities" render={() => <Activities updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path="/activities/discovery" render={() => <ActivityDiscovery updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
-
             <Route exact path="/activities/add" render={() => <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd>} />
             <Route exact path="/activities/interests" render={() => <ActivityInterestMatch updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path="/activities/:identifier" render={() => <ActivityDetail updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
@@ -73,9 +71,9 @@ class App extends Component {
             <Route path="/confirm-email" component={ConfirmEmail} />
             <Route exact path="/editprofile" render={() => <Editprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
             <Route path="/dummy" component={Dummy} />
-            </Container>
           </Switch>
-    
+          </Container>
+
       </div>
     )
   }
