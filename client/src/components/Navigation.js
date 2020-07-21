@@ -28,8 +28,10 @@ class Navigation extends React.Component {
                         <Nav className="mr-auto">
                             {this.props.user? "" : <Nav.Link href ="/signup"> Signup </Nav.Link>}
                             {this.props.user? "" : <Nav.Link href ="/login"> Login </Nav.Link>}
-  
-                            {this.props.user ? <Nav.Link href="/activities">Explore activities</Nav.Link> : <Nav.Link href="/signup">Explore activities</Nav.Link>}
+{/*   
+                            {this.props.user ? <Nav.Link href="/activities">Explore activities</Nav.Link> : <Nav.Link href="/signup">Explore activities</Nav.Link>} */}
+
+                            <Nav.Link href="/activities">Explore activities</Nav.Link>
 
                             {/* <Nav.Link href="/activities/discovery">Discover activities</Nav.Link> */}
                            
