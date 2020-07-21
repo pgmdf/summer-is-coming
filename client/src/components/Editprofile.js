@@ -88,7 +88,7 @@ if (e.target.files[0].size > 500000) {
   }}
 
   componentDidMount() {
-    axios.get('/user/' + this.props.userID).then((response) => {
+    axios.get('/api/user/' + this.props.userID).then((response) => {
       this.setState({
         user: response.data,
       })
