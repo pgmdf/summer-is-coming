@@ -12,10 +12,10 @@ const User = require('../models/User_model');
 
 // SMTP
 let transporter = nodemailer.createTransport({
-  service: 'Gmail',
+  service: 'SendGrid',
   auth: {
-    user: 'tester123.peterpan@gmail.com',
-    pass: '89675rutitgzrvuz',
+    user: 'apikey',
+    pass: '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',
   },
 });
 
@@ -55,7 +55,7 @@ authRoutes.post('/signup', (req, res, next) => {
     }
     transporter
       .sendMail({
-        from: '"Welcome to Summer-is-Coming" <myawesome@project.com>',
+        from: '"Welcome to Summer-is-Coming" <summeriscoming@zippymail.info>',
         to: email,
         subject: 'Please verify your e-mail',
         text: `Welcome to Summer-is-Coming. Thanks for signing up. To complete your registration, please confirm your account with this link: ${process.env.BACKEND_URL}/api/verify-email-link/${token}`,
