@@ -3,6 +3,9 @@ import axios from 'axios';
 import interests from '../configs/interests';
 import { Redirect } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
+import {sizeOf} from 'image-size'
+// var sizeOf = require('image-size');
+
 
 class Editprofile extends Component {
 
@@ -13,9 +16,9 @@ class Editprofile extends Component {
     profilePicUrl: this.props.userInSession.profilePicUrl,
     myFavoriteActivities: this.props.userInSession.myFavoriteActivities,
     myInterests: this.props.userInSession.myInterests || [],
-    loading: false,
     redirect: false,
-    user: null
+    user: null,
+    uploadErrorMsg: "",
   }
 
 
@@ -59,42 +62,42 @@ class Editprofile extends Component {
   //cloudinary setup
 
   handleFileUpload = (e) => {
-    this.setState({
-      loading: true,
-    })
+   
+    console.log(e.target.files[0].size)
+if (e.target.files[0].size > 500000) {
+  this.setState({
+    uploadErrorMsg: "Image too big. Please use smaller size."
+  })
+ }
 
+  else {
+    this.setState({
+      profilePicUrl: "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif",
+     uploadErrorMsg: "",
+    })
+  
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
     axios.put('/api/image', uploadData).then((resp) => {
 
       this.setState({
-        loading: false,
         profilePicUrl: resp.data.image_url
       })
-      console.log("profilePicUrl" + resp.data.image_url)
     })
 
-  }
+  }}
 
   componentDidMount() {
     axios.get('/user/' + this.props.userID).then((response) => {
       this.setState({
         user: response.data,
-        loading: false
       })
     })
   }
 
 
   render() {
-    // cloudinary pic spinner  
-    let spinner = "";
-    if (this.state.loading === true) {
-      this.setState.profilePicUrl = "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif";
-
-    } else { };
-    // console.log(this.props.userInSession.profilePicUrl)
-
+ 
     return (
 
       <div>
@@ -109,13 +112,13 @@ class Editprofile extends Component {
         <h5><label for="password">Password:</label></h5>
         <input id="password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
         <br></br>
-        {spinner}
+
 
         <div id="profileimage"><Image src={this.state.profilePicUrl} alt="profile pic" /></div>
         <input
           type="file"
           onChange={this.handleFileUpload} />
-          <div>Best Size 171x180 Pixel (max ... MB)</div>
+          <div>{this.state.uploadErrorMsg}</div>
 
 
         {/* interests*/}

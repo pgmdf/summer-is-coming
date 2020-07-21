@@ -52,8 +52,8 @@ componentDidMount() {
 
         return (
             <div>
-                <h1>Activities Discovery</h1>
-                <h2>Try something new today!</h2>
+                <h1>Extraordinary things to do</h1>
+                <h2>Try something new today</h2>
                 {/* <HorizontalCards inputArray={discoveryArr}/> */}
                 <Container>
                 <Row>

@@ -63,7 +63,7 @@ max-width: 100%;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
   background-color: #fff;
   position: relative;
-  height: 380px;
+  height: 350px;
   margin-bottom:10px;
   border-radius: 10px;
   margin-right:0px;
@@ -173,4 +173,15 @@ padding:15px;
 
 .noHover{
   pointer-events: none;
+}
+
+#discovery-page {
+  margin:50px 0px;
+  background-color: white;
+  /* background-image: url("https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_960_720.jpg"); */
+  border-radius: 10px;
+
+  padding: 15px;
+  text-align: center;
+
 }
