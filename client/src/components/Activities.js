@@ -68,23 +68,22 @@ class Activities extends Component {
     return (
       <div>
 
-      {(this.props.loggedInUser) ? <ActivityInterestMatch loggedInUser={this.props.loggedInUser} /> : ""}
+        {(this.props.loggedInUser) ? <ActivityInterestMatch loggedInUser={this.props.loggedInUser} /> : ""}
 
 
-{(this.props.loggedInUser) ? <div id="discovery-page">
-<a href="activities/discovery">
-<h1>Try something new today</h1>
-<p>Click here to see extraordinary things to do, not fitting your interests</p>
+        {(this.props.loggedInUser) ? <div id="discovery-page">
+          <a href="activities/discovery">
+            <h1>Try something new today</h1>
+            <p>Click here to see extraordinary things to do, not fitting your interests</p>
+          </a>
+        </div> : ""
+        }
 
-</a>
-</div> : ""
-}
 
-
-        <h1>Explore all activities </h1>
+        <h2>Explore all activities </h2>
         {/* Filter */}
 
-        <h4>Filter down to your interests:</h4>
+        <h2>Filter down to your interests:</h2>
         <div class="filter-body">
           <form>
             <label for="interests">Interests
@@ -102,7 +101,7 @@ class Activities extends Component {
 
         <Row>
           <Col>
-            {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser && <Button className="button is-warning mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
+            {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser && <Button className="button mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
 
             {filteredArray.length > 0 ?
               filteredArray.map(activity =>
