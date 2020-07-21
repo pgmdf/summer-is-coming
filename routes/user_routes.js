@@ -5,31 +5,36 @@ const router = express.Router();
 
 // TODO: require models activity and user
 const Activity = require('../models/Activity_model');
-const User = require('../models/User_model'); 
+const User = require('../models/User_model');
 
 // GET /activities
 router.get('/user', (req, res, next) => {
   res.send('I am the user route')
 
   // TODO: delete, if activities aren't listed
-/*   Activity.find().populate('tasks')
-    .then(allTheProjects => {
-      res.json(allTheProjects);
-    }) */
+  /*   Activity.find().populate('tasks')
+      .then(allTheProjects => {
+        res.json(allTheProjects);
+      }) */
 
 });
 
 
-
+//////////////////////////////////////
 // FOR USERPROFILES
 // GET /user/:userID 
 router.get('/user/:userID', (req, res, next) => {
   User.findById(req.params.userID)
+    .populate('myBucketlist')
+    .populate('myFavoriteActivities')
     .then(response => {
+      console.log(response)
       res.json(response);
+    }).catch(err => {
+      res.json(err);
     })
 })
-
+/////////////////////////////////////////////
 
 
 // POST /activities
@@ -54,7 +59,7 @@ router.post('/user', (req, res, next) => {
 // GET /activities/19283719273587123jhf
 // GET route => to get a specific activity/detailed view
 router.get('/user/:identifier/profile', (req, res, next) => {
-res.send(`I am id ${req.params.identifier} of an user and showing actual profile page`)
+  res.send(`I am id ${req.params.identifier} of an user and showing actual profile page`)
 
   /* Activity.findById(req.params.identifier)
     .then(response => {
@@ -65,7 +70,7 @@ res.send(`I am id ${req.params.identifier} of an user and showing actual profile
 // PUT route => to update a specific user profile
 router.put('/user/:identifier/update', (req, res, next) => {
 
-// TODO: updates should only be performed by creator and admins
+  // TODO: updates should only be performed by creator and admins
 
   User.findByIdAndUpdate(req.params.id,
     {

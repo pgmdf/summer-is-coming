@@ -118,7 +118,6 @@ padding:15px;
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: 0;
     -ms-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
@@ -127,7 +126,6 @@ padding:15px;
   
   header .container {
     position: relative;
-    z-index: 2;
   }
   
   header .overlay {
@@ -138,7 +136,6 @@ padding:15px;
     width: 100%;
     /* background-color: black;
     opacity: 0.5; */
-    z-index: 1;
   }
   
   @media (pointer: coarse) and (hover: none) {
