@@ -3,6 +3,7 @@ import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card, Image, Nav } from 'react-bootstrap';
 import axios from "axios";
+import Activities from "./Activities";
 
 
 
@@ -18,6 +19,7 @@ class Userprofile extends Component {
     axios.get('/user/' + this.props.userID).then((response) => {
       this.setState({
         user: response.data,
+        activity: response.data,
         loading: false
       })
     })
@@ -37,19 +39,20 @@ class Userprofile extends Component {
         {/* // ERROR MESSAGE IF USER IS NOT LOGGED IN // */}
         {/* {this.state.errorMessage ? <h1>{this.state.errorMessage}</h1> : null} */}
 
-        <Card border="dark">
-          <Card.Header>
+        <Card border="dark" className="box-white">
+          <Card.Header className="back-grey full-width flex-row text-left">
             <div id="profileimage">  <Image src={this.state.user.profilePicUrl} alt="profile-pic" thumbnail />
             </div>
-            <div>
-              <Card.Title> {this.state.user.username}'s Profile </Card.Title>
+            <div className="margin10">
+              <Card.Title> <h3 className="text-bright">{this.state.user.username}'s Profile</h3> </Card.Title>
               <div>
-                Name: {this.state.user.username} <br />
-                Living in: <br />
-                Member since: {this.state.user.created} <br />
+                <div className="bold-head text-bright">Name:</div> {this.state.user.username} <br />
+                {/* Living in: <br /> */}
+                <div className="bold-head text-bright">Member since:</div> {this.state.user.created} <br />
                 {/* find out how to show the date in pretty with .timeStamp */}
-                My Interests: <ul>
-                  {this.state.user.myInterests.length > 0 ? this.state.user.myInterests.map((i, key) => <li key={key}>{i}</li>) : <p>Sorry, I'm not interested :(</p>}
+                <div className="bold-head text-bright">My Interests:</div> 
+                <ul className="inline">
+                  {this.state.user.myInterests.length > 0 ? this.state.user.myInterests.map((i, key) => <li key={key}>{i} / </li>) : <p>Sorry, I'm not interested :(</p>}
                   {/* {JSON.stringify(this.state.user.myFavoriteActivities, null, 2)} */}
                 </ul>
 
@@ -61,21 +64,21 @@ class Userprofile extends Component {
             </div>
           </Card.Header>
 
-          <Card.Body>
+          <Card.Body className="margin0 padding0 center">
             <div>
-              <Card.Title>My Favorite Activities</Card.Title>
+              <Card.Title><h3>My Favorite Activities</h3></Card.Title>
               <Card.Text>
                 <ul>
-                  {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) => <li key={key}>{fav}</li>) : <p>I don't have any favs yet.</p>}
+                  {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) => <div className=""><li key={key} className="border-bottom">{fav}</li></div>) : <p>I don't have any favs yet.</p>}
                 </ul>
               </Card.Text>
             </div>
 
             <div>
-              <Card.Title>My Bucket List</Card.Title>
+              <Card.Title><h3>My Bucket List</h3></Card.Title>
               <Card.Text>
                 <ul>
-                  {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) => <li key={key}>{b}</li>) : <p>I got nothing to do.</p>}
+                  {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) => <li key={key} className="border-bottom">{b} </li>) : <p>I got nothing to do.</p>}
                   {this.state.user.myBucketlist.map(bucket => <li key={bucket.myBucketlistArr}> {} </li>)}
                 </ul>
               </Card.Text>
