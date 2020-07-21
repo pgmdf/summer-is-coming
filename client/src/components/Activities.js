@@ -27,7 +27,7 @@ class Activities extends Component {
 
 
   componentDidMount() {
-    axios.get('/activities').then((response) => {
+    axios.get('/api/activities').then((response) => {
       this.setState({
         activitiesArr: response.data,
         loading: false

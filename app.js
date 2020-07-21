@@ -83,10 +83,10 @@ app.use('/', index);
 const authRoutes = require('./routes/auth_routes');
 app.use('/api', authRoutes);
 
-app.use('/', require('./routes/activity_routes'));
-app.use('/', require('./routes/user_routes'));
-app.use('/', require('./routes/editProfile_routes'));
-app.use('/', require('./routes/dummy_routes'));
+app.use('/api', require('./routes/activity_routes'));
+app.use('/api', require('./routes/user_routes'));
+app.use('/api', require('./routes/editProfile_routes'));
+app.use('/api', require('./routes/dummy_routes'));
 
 app.use((req, res, next) => {
   // If no routes match, send them the React HTML.

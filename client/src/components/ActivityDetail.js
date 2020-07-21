@@ -22,7 +22,7 @@ class ActivityDetail extends Component {
   }
 
   componentDidMount() {
-    axios.get('/activities/' + this.props.match.params.identifier).then((response) => {
+    axios.get('/api/activities/' + this.props.match.params.identifier).then((response) => {
       this.setState({
         activity: response.data,
         loading: false

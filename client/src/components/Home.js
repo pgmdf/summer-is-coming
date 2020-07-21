@@ -14,7 +14,7 @@ class Home extends Component {
     
     
     componentDidMount() {
-    axios.get('/activities').then((response) => {
+    axios.get('api/activities').then((response) => {
 
         let sortedActivities = response.data.sort((a,b) => { if (a.timeStamp < b.timeStamp) { return 1 } else { return -1 } }).slice(0,5)
 
