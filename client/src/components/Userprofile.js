@@ -1,15 +1,15 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card, Image, Nav } from 'react-bootstrap';
 import axios from "axios";
-import Activities from "./Activities";
+/* import moment */
 
 
 
 class Userprofile extends Component {
   state = {
-    activity: null,
     loading: true,
     user: null,
   };
@@ -19,7 +19,6 @@ class Userprofile extends Component {
     axios.get('/api/user/' + this.props.userID).then((response) => {
       this.setState({
         user: response.data,
-        activity: response.data,
         loading: false
       })
     })
@@ -48,11 +47,11 @@ class Userprofile extends Component {
               <div>
                 <div className="bold-head text-bright">Name:</div> {this.state.user.username} <br />
                 {/* Living in: <br /> */}
-                <div className="bold-head text-bright">Member since:</div> {this.state.user.created} <br />
+                <div className="bold-head text-bright">Member since:</div> {this.state.user.created.split('T')[0]} <br />
                 {/* find out how to show the date in pretty with .timeStamp */}
-                <div className="bold-head text-bright">My Interests:</div> 
-                <ul className="inline">
-                  {this.state.user.myInterests.length > 0 ? this.state.user.myInterests.map((i, key) => <li key={key}>{i} / </li>) : <p>Sorry, I'm not interested :(</p>}
+                <div className="bold-head text-bright">My Interests:</div>
+                <ul>
+                  {this.state.user.myInterests.length > 0 ? this.state.user.myInterests.map((i, key) => <li key={key} className="inline">{i} / </li>) : "Sorry, I'm not interested :("}
                   {/* {JSON.stringify(this.state.user.myFavoriteActivities, null, 2)} */}
                 </ul>
 
@@ -68,19 +67,24 @@ class Userprofile extends Component {
             <div>
               <Card.Title><h3>My Favorite Activities</h3></Card.Title>
               <Card.Text>
-                <ul>
-                  {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) => <div className=""><li key={key} className="border-bottom">{fav}</li></div>) : <p>I don't have any favs yet.</p>}
-                </ul>
+                <div>
+                  {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) =>
+                    <Link to={"/activities/" + fav._id} key={fav._id} className="border-bottom"><Image src={fav.pictureUrl} height="35px" />
+                      {fav.title}
+                    </Link>) : "I don't have any favs yet."}
+                </div>
               </Card.Text>
             </div>
 
             <div>
               <Card.Title><h3>My Bucket List</h3></Card.Title>
               <Card.Text>
-                <ul>
-                  {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) => <li key={key} className="border-bottom">{b} </li>) : <p>I got nothing to do.</p>}
-                  {this.state.user.myBucketlist.map(bucket => <li key={bucket.myBucketlistArr}> {} </li>)}
-                </ul>
+                <div>
+                  {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) =>
+                    <Link to={"/activities/" + b._id} key={key._id} className="border-bottom"><Image src={b.pictureUrl} height="35px" />
+                      {b.title}
+                    </Link>) : "I've got nothing to do."}
+                </div>
               </Card.Text>
             </div>
 
