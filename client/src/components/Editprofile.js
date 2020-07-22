@@ -3,7 +3,7 @@ import axios from 'axios';
 import interests from '../configs/interests';
 import { Redirect } from 'react-router-dom';
 import { Image } from 'react-bootstrap';
-import {sizeOf} from 'image-size'
+//import {sizeOf} from 'image-size'
 // var sizeOf = require('image-size');
 
 
