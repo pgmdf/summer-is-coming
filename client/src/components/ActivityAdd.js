@@ -62,7 +62,7 @@ class ActivityAdd extends Component {
   handleFileUpload = (e) => {
     if (e.target.files[0].size > 500000) {
       this.setState({
-        uploadErrorMsg: "File too large!"
+        uploadErrorMsg: "File too large"
       })
      } else {
       this.setState({
@@ -78,7 +78,6 @@ class ActivityAdd extends Component {
       });
 
     });
-    spinnerHeight = "0px"
   
 }}
 
