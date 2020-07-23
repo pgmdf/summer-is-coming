@@ -62,8 +62,7 @@ class Editprofile extends Component {
   //cloudinary setup
 
   handleFileUpload = (e) => {
-   
-    console.log(e.target.files[0].size)
+   console.log(e.target.files[0].size)
 if (e.target.files[0].size > 500000) {
   this.setState({
     uploadErrorMsg: "Image too big. Please use smaller size."
@@ -85,7 +84,8 @@ if (e.target.files[0].size > 500000) {
       })
     })
 
-  }}
+  }
+}
 
   componentDidMount() {
     axios.get('/api/user/' + this.props.userID).then((response) => {

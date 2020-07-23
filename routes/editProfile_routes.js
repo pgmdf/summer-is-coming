@@ -16,7 +16,7 @@ const uploader = require('../configs/cloudinary');
 
 
 //posts new profile pic in User
-router.put('/api/image', uploader.single("imageUrl"), (req, res, next) => {
+router.put('/image', uploader.single("imageUrl"), (req, res, next) => {
 
   User.findByIdAndUpdate(req.user._id,
     {
@@ -28,7 +28,7 @@ router.put('/api/image', uploader.single("imageUrl"), (req, res, next) => {
 })
 
 // save all the data from input fields
-router.put('/api/editprofile', (req, res, next) => {
+router.put('/editprofile', (req, res, next) => {
 console.log("here is date",req.body)
   User.findByIdAndUpdate(req.user._id,
     {

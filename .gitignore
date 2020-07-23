@@ -8,3 +8,6 @@ npm-debug.log
 .env
 
 client/build/index.html
+
+# production
+/build

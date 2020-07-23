@@ -42,8 +42,8 @@ router.post('/activities/add', (req, res, next) => {
 
 
 router.post('/activities/addImage', uploader.single("imageUrl"), (req, res, next) => {
-
   res.json({ pictureUrl: req.file.path })
+
 });
 
 
