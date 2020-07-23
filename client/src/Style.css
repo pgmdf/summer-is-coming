@@ -160,6 +160,7 @@ a:active {
     height: 35px;
     background: rgba(255, 255, 255, 0.2);
     border: 1.5px solid #53595B;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
     border-radius: 10px;
     font-size: 15pt;
     line-height: 16px;
@@ -180,6 +181,10 @@ ul {
 
 .border-bottom {
     border-bottom: 1px solid #E5FFF3;
+}
+
+.box-shadow {
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
 }
 
 
@@ -236,6 +241,7 @@ input:focus {
     border: 1.5px solid #53595B;
     border-radius: 15px;
     opacity: 0.9;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
     align-items: center;
     text-align: center;
     color: #ffffff;
@@ -250,6 +256,7 @@ input:focus {
     background: rgba(255, 255, 255, 0.2);
     border: 1.5px solid #53595B;
     border-radius: 15px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
     opacity: 0.95;
     align-items: center;
     text-align: center;
@@ -288,12 +295,16 @@ input:focus {
     margin: 10px;
 }
 
+.center {
+    align-self: center;
+}
+
 /* for all screens */
 .profile,
 .activity,
 .box-grey,
 .box-white {
-    width: 75%;
+    width: 85%;
 }
 
 /* responsive, for smaller screens */
@@ -317,10 +328,15 @@ input:focus {
     }
 }
 
+/* #profileimage {
+    height: 200px;
+    background-color: #ffffff;
+} */
 
-#profileimage img {
+#profileimage img{
     width: 171px;
     height: 180px;
+    border: 3px solid #ffffff;
 }
 
 #profile-info {
@@ -330,4 +346,8 @@ input:focus {
 
 .no-bullets {
     list-style: none;
+}
+
+.no-border {
+    border: none;
 }

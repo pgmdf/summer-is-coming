@@ -34,7 +34,9 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
-    "react-bootstrap": "^1.0.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.2.2",
+    "react-bootstrap-image-cropper": "^0.3.0",
     "react-google-login": "^5.1.20",
     "serve-favicon": "^2.5.0"
   },
