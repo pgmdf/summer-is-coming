@@ -14,7 +14,7 @@ class AddComment extends Component {
   }
 
   componentDidMount() {
-    axios.get('/activities/' + this.props.match.params.identifier + '/comment').then((response) => {
+    axios.get('/api/activities/' + this.props.match.params.identifier + '/comment').then((response) => {
       this.setState({
         activity: response.data,
         loading: false
@@ -24,7 +24,7 @@ class AddComment extends Component {
 
   formSubmitHandler = (e) => {
     e.preventDefault();
-    axios.put('/activities/' + this.props.match.params.identifier + '/comment', this.state).then((response) => {
+    axios.put('/api/activities/' + this.props.match.params.identifier + '/comment', this.state).then((response) => {
       this.props.history.push('/activities/' + this.props.match.params.identifier);
       })
   };

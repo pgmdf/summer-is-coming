@@ -62,30 +62,30 @@ class Editprofile extends Component {
   //cloudinary setup
 
   handleFileUpload = (e) => {
-   console.log(e.target.files[0].size)
-if (e.target.files[0].size > 500000) {
-  this.setState({
-    uploadErrorMsg: "Image too big. Please use smaller size."
-  })
- }
-
-  else {
-    this.setState({
-      profilePicUrl: "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif",
-     uploadErrorMsg: "",
-    })
-  
-    const uploadData = new FormData();
-    uploadData.append("imageUrl", e.target.files[0]);
-    axios.put('/api/image', uploadData).then((resp) => {
-
+    console.log(e.target.files[0].size)
+    if (e.target.files[0].size > 500000) {
       this.setState({
-        profilePicUrl: resp.data.image_url
+        uploadErrorMsg: "Image too big. Please use smaller size."
       })
-    })
+    }
 
+    else {
+      this.setState({
+        profilePicUrl: "https://cdn.lowgif.com/full/ff8280aafe27319d-ajax-loading-gif-transparent-background-2-gif-images.gif",
+        uploadErrorMsg: "",
+      })
+
+      const uploadData = new FormData();
+      uploadData.append("imageUrl", e.target.files[0]);
+      axios.put('/api/image', uploadData).then((resp) => {
+
+        this.setState({
+          profilePicUrl: resp.data.image_url
+        })
+      })
+
+    }
   }
-}
 
   componentDidMount() {
     axios.get('/api/user/' + this.props.userID).then((response) => {
@@ -97,7 +97,7 @@ if (e.target.files[0].size > 500000) {
 
 
   render() {
- 
+
     return (
 
       <div>
@@ -109,16 +109,16 @@ if (e.target.files[0].size > 500000) {
         <h5><label for="email">E-Mail:</label></h5>
         <input id="email" type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
 
-        <h5><label for="password">Password:</label></h5>
+{/*         <h5><label for="password">Password:</label></h5>
         <input id="password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-        <br></br>
+        <br></br> */}
 
 
         <div id="profileimage"><Image src={this.state.profilePicUrl} alt="profile pic" /></div>
         <input
           type="file"
           onChange={this.handleFileUpload} />
-          <div>{this.state.uploadErrorMsg}</div>
+        <div>{this.state.uploadErrorMsg}</div>
 
 
         {/* interests*/}
@@ -133,9 +133,9 @@ if (e.target.files[0].size > 500000) {
             </li>
           ))
           }
-         </ul>
+        </ul>
 
-        
+
 
         <button onClick={this.submitHandler}>Save</button>
         {/* CANCEL Button if u dont want to change anything -> Page is not loading yet after clicking

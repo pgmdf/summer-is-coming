@@ -37,7 +37,7 @@ class ActivityDetail extends Component {
     let myFavoriteActivitiesArr = this.state.myFavoriteActivitiesArr
     myFavoriteActivitiesArr.push(this.props.match.params.identifier)
 
-    axios.put('/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
+    axios.put('/api/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
       this.setState({
         myFavoriteActivitiesArr: myFavoriteActivitiesArr
       })
@@ -53,7 +53,7 @@ class ActivityDetail extends Component {
       return this.props.match.params.identifier !== id
     })
 
-    axios.put('/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
+    axios.put('/api/activities/' + this.props.match.params.identifier, { myFavoriteActivitiesArr, myBucketlistArr: this.state.myBucketlistArr }).then(() => {
       this.setState({
         myFavoriteActivitiesArr: myFavoriteActivitiesArr
       })
@@ -67,7 +67,7 @@ class ActivityDetail extends Component {
     let myBucketlistArr = this.state.myBucketlistArr
     myBucketlistArr.push(this.props.match.params.identifier)
 
-    axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
+    axios.put('/api/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
       this.setState({
         myBucketlistArr: myBucketlistArr
       })
@@ -83,7 +83,7 @@ class ActivityDetail extends Component {
       return this.props.match.params.identifier !== id
     })
 
-    axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
+    axios.put('/api/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
       this.setState({
         myBucketlistArr: myBucketlistArr
       })
