@@ -150,7 +150,7 @@ class ActivityDetail extends Component {
           </Row>
           <Row>
             <Col>
-              <p>Many thanks to <Link to={'/user/'+this.state.activity.createdBy._id}> {this.state.activity.createdBy.username} </Link>, who added this activity on {this.state.activity.timeStamp} to our portfolio!</p>
+              <p>Many thanks to <Link to={'/user/'+this.state.activity.createdBy._id}> {this.state.activity.createdBy.username} </Link>, who added this activity on {this.state.activity.timeStamp.split('T')[0]} to our portfolio!</p>
             </Col>
           </Row>
           <Row>
