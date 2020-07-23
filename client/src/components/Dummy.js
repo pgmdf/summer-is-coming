@@ -127,7 +127,7 @@ class Dummy extends React.Component {
                         <Card.Header>
                             <div className="flex-row">
                                 <div id="profileimage">
-                                    <Image src="https://images-na.ssl-images-amazon.com/images/I/51KR6NipshL._AC_SX355_.jpg" alt="profile-pic" thumbnail />
+                                    <Image src="https://images-na.ssl-images-amazon.com/images/I/51KR6NipshL._AC_SX355_.jpg" alt="profile-pic" thumbnail fluid/>
                                 </div>
                                 <div id="profile-info">
                                     <Card.Title> Chuck's Profile </Card.Title>

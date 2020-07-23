@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Card, Image, Nav } from 'react-bootstrap';
+import { Card, Image, Nav, Button, Col } from 'react-bootstrap';
 import axios from "axios";
-/* import moment */
+/*import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar, faClipboard as farClipboard } from '@fortawesome/free-regular-svg-icons';
+ import moment */
 
 
 
@@ -12,7 +15,8 @@ class Userprofile extends Component {
   state = {
     loading: true,
     user: null,
-  };
+    /*     myBucketlistArr: this.props.loggedInUser ? this.props.loggedInUser.myBucketlist : "" */
+  }
 
 
   componentDidMount() {
@@ -24,6 +28,37 @@ class Userprofile extends Component {
     })
   }
 
+  /*   
+    // add that activity to user's bucketlist
+    updateUserBucketlistAddHandler = (event) => {
+      event.preventDefault()
+  
+      let myBucketlistArr = this.state.myBucketlistArr
+      myBucketlistArr.push(this.props.match.params.identifier)
+  
+      axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
+        this.setState({
+          myBucketlistArr: myBucketlistArr
+        })
+      })
+    }
+  
+    // remove that activity from user's bucketlist
+    updateUserBucketlistRemoveHandler = (event) => {
+      event.preventDefault()
+  
+      let myBucketlistArr = this.state.myBucketlistArr
+      myBucketlistArr = myBucketlistArr.filter((id) => {
+        return this.props.match.params.identifier !== id
+      })
+  
+      axios.put('/activities/' + this.props.match.params.identifier, { myBucketlistArr, myFavoriteActivitiesArr: this.state.myFavoriteActivitiesArr }).then(() => {
+        this.setState({
+          myBucketlistArr: myBucketlistArr
+        })
+      })
+    }
+   */
   render() {
     if (this.state.loading) {
       return <div>Loading…</div>
@@ -40,7 +75,8 @@ class Userprofile extends Component {
 
         <Card border="dark" className="box-white">
           <Card.Header className="back-grey full-width flex-row text-left">
-            <div id="profileimage">  <Image src={this.state.user.profilePicUrl} alt="profile-pic" thumbnail />
+            <div id="profileimage">
+              <Image src={this.state.user.profilePicUrl} alt="profile-pic" thumbnail fluid />
             </div>
             <div className="margin10">
               <Card.Title> <h3 className="text-bright">{this.state.user.username}'s Profile</h3> </Card.Title>
@@ -65,33 +101,64 @@ class Userprofile extends Component {
 
           <Card.Body className="margin0 padding0 center">
             <div>
-              <Card.Title><h3>My Favorite Activities</h3></Card.Title>
-              <Card.Text>
-                <div>
-                  {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) =>
-                    <Link to={"/activities/" + fav._id} key={fav._id} className="border-bottom"><Image src={fav.pictureUrl} height="35px" />
-                      {fav.title}
-                    </Link>) : "I don't have any favs yet."}
-                </div>
-              </Card.Text>
-            </div>
 
-            <div>
-              <Card.Title><h3>My Bucket List</h3></Card.Title>
-              <Card.Text>
-                <div>
-                  {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) =>
-                    <Link to={"/activities/" + b._id} key={key._id} className="border-bottom"><Image src={b.pictureUrl} height="35px" />
-                      {b.title}
-                    </Link>) : "I've got nothing to do."}
-                </div>
-              </Card.Text>
             </div>
 
           </Card.Body>
         </Card>
+
+        <br />
+        <Card border="dark" className="box-white flex-row text-left">
+
+          <div className="margin10 full-width">
+            <Card.Title className="text-center"><h3>My Favorite Activities</h3></Card.Title>
+            <div classname="flex-row">
+              {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) =>
+                <Link to={"/activities/" + fav._id} key={fav._id} className="border-bottom">
+                  <div className="flex-row">
+                    <div id="profileimage">
+                      <Image src={fav.pictureUrl} alt={fav.title} rounded fluid className="no-border" />
+                    </div>
+                    <div className="margin10">
+                      {fav.title}
+                    </div>
+                  </div><br />
+                </Link>) : <div className="text-center margin0">I've no Favorite Activities yet.</div>}
+            </div>
+          </div>
+        </Card>
         <br />
 
+        <Card border="dark" className="box-white flex-row text-left">
+
+          <div className="margin10 full-width">
+            <Card.Title className="text-center"><h3>My Bucket List</h3></Card.Title>
+            <div classname="flex-row">
+              {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) =>
+                <Link to={"/activities/" + b._id} key={key._id} className="border-bottom">
+                  <div className="flex-row">
+                    <div id="profileimage">
+                      <Image src={b.pictureUrl} alt={b.title} rounded fluid className="no-border" />
+                    </div>
+                    <div className="margin10">
+                      {b.title}
+                      {/* Favs und bucket list icons HERE to add and remove direct */}
+                      {/*                       <div>{this.props.loggedInUser ?
+                        <p>{this.state.myBucketlistArr.includes(this.state.activity._id) ?
+                          <Button onClick={this.updateUserBucketlistRemoveHandler}><FontAwesomeIcon icon={faClipboard} size={"1x"} style={{ color: "#FFF" }} /> Remove from my bucket list</Button>
+                          : <Button onClick={this.updateUserBucketlistAddHandler}><FontAwesomeIcon icon={farClipboard} size={"1x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button>}</p>
+                        : null}
+                      </div> */}
+
+                    </div>
+                  </div><br />
+                </Link>) : <div className="text-center margin0">I've got nothing to do.</div>}
+            </div>
+          </div>
+        </Card>
+        <Col>
+          <Link to="/activities">Go to all activities</Link>
+        </Col>
       </div>
     );
   }
