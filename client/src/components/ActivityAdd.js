@@ -17,19 +17,22 @@ class ActivityAdd extends Component {
     // TODO: finish #rating in beta-version rating: 0,
     location: "",
     activityPicture: "",
+    uploadErrorMsg: "", 
   };
 
   formSubmitHandler = (e) => {
     e.preventDefault();
-    axios.post("/activities/add", this.state).then((response) => {
+
+   
+    axios.post("/api/activities/add", this.state).then((response) => {
       this.setState({
-        activity: response.data
+        activity: response.data,
       })
       if (this.props.addActivityCallback) {
         this.props.addActivityCallback(response.data);
       }
     });
-  };
+  }
 
   changeHandler = (event) => {
     let currentInputValue = event.target.value;
@@ -57,19 +60,27 @@ class ActivityAdd extends Component {
 
   //uo
   handleFileUpload = (e) => {
-    spinnerHeight = "80px";
-    loadingText = "Loading..."
+    if (e.target.files[0].size > 500000) {
+      this.setState({
+        uploadErrorMsg: "File too large!"
+      })
+     } else {
+      this.setState({
+        uploadErrorMsg: "Uploading..."
+      }) 
+ 
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
-    axios.post("/activities/addImage", uploadData).then((resp) => {
-      loadingText = "Uploaded succesfully!"
+    axios.post("/api/activities/addImage", uploadData).then((resp) => {
       this.setState({
         activityPicture: resp.data.pictureUrl,
+        uploadErrorMsg: "Done!"
       });
 
     });
     spinnerHeight = "0px"
-  };
+  
+}}
 
   render() {
 
@@ -135,6 +146,7 @@ class ActivityAdd extends Component {
             onChange={this.handleFileUpload}
             name="activityPicture"
           ></input>
+          <div>{this.state.uploadErrorMsg}</div>
           <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg" alt="animated gif showing loading process"></img>
           <div>{loadingText} </div>
           <Button variant="primary" type="submit">
