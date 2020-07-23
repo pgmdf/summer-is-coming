@@ -7,14 +7,14 @@ import axios from "axios";
 
 
 class Navigation extends React.Component {
-    state ={
+    state = {
         login: this.props.userInSession
     }
-     logout = () => {
+    logout = () => {
         return axios.post('/api/logout', {})
-          .then(response => response.data)
-      }
-      
+            .then(response => response.data)
+    }
+
 
     render() {
         return (
@@ -26,17 +26,17 @@ class Navigation extends React.Component {
 
 
                         <Nav className="mr-auto">
-                            {this.props.user? "" : <Nav.Link href ="/signup"> Signup </Nav.Link>}
-                            {this.props.user? "" : <Nav.Link href ="/login"> Login </Nav.Link>}
-{/*   
+                            {this.props.user ? "" : <Nav.Link href="/signup"> Signup </Nav.Link>}
+                            {this.props.user ? "" : <Nav.Link href="/login"> Login </Nav.Link>}
+                            {/*   
                             {this.props.user ? <Nav.Link href="/activities">Explore activities</Nav.Link> : <Nav.Link href="/signup">Explore activities</Nav.Link>} */}
 
                             <Nav.Link href="/activities">Explore activities</Nav.Link>
 
                             {/* <Nav.Link href="/activities/discovery">Discover activities</Nav.Link> */}
-                           
+
                             {this.props.user ? <Nav.Link href="/activities/add">Add a new activity</Nav.Link> : <Nav.Link href="/signup">Add a new activity</Nav.Link>}
-                           
+
                             {/* <Nav.Link href="/activities/add">Add a new activity</Nav.Link> */}
 
 
@@ -46,15 +46,15 @@ class Navigation extends React.Component {
                                 <NavDropdown.Item href="/activities/discovery">Discover activities</NavDropdown.Item>
                                 <NavDropdown.Item href="/activities/add">Add an activity</NavDropdown.Item>
                             </NavDropdown> */}
-                            {this.props.user?
-                            <Nav.Link href={`/user/${this.props.user._id}`}>My profile</Nav.Link>                        
-                            : ""}
+                            {this.props.user ?
+                                <Nav.Link href={`/user/${this.props.user._id}`}>My profile</Nav.Link>
+                                : ""}
 
-                            {this.props.user?
-                                <button id="logout"onClick={this.logout}>
-                            <Nav.Link href="/">Logout</Nav.Link> 
-                            </button>
-                            : ""}
+                            {this.props.user ?
+                                <button id="logout" onClick={this.logout}>
+                                    <Nav.Link href="/">Logout</Nav.Link>
+                                </button>
+                                : ""}
 
 
 
@@ -64,7 +64,7 @@ class Navigation extends React.Component {
                             <NavDropdown.Item href={`/user/${this.props.user._id}`}>My Profile</NavDropdown.Item>  */}
                             {/* <NavDropdown.Item href="/userprofile">My Profile</NavDropdown.Item> */}
                             {/* <NavDropdown.Item href="/editprofile">Edit Profile</NavDropdown.Item> */}
-                            
+
                             {/* <button id="logout"onClick={this.logout}>
                             <NavDropdown.Item href="/">Logout</NavDropdown.Item>
                             </button>
