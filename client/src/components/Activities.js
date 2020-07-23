@@ -110,7 +110,8 @@ class Activities extends Component {
                     <Col xs={3} className="to-the-right"><img src={activity.pictureUrl} alt={activity.name} className="img-fluid img-max-width" /></Col>
                     <Col xs={9}>
                       <h2>{activity.title}</h2>
-                      <h3>{activity.tags}</h3>
+                      <h3>Tags:</h3>
+                      <h3>{activity.tags.map(tags => <li key={tags} className="no-bullets">{tags}</li>)}</h3>
                       <h3>{activity.location}</h3>
                     </Col>
                   </Row>
