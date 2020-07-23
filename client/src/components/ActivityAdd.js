@@ -17,14 +17,14 @@ class ActivityAdd extends Component {
     // TODO: finish #rating in beta-version rating: 0,
     location: "",
     activityPicture: "",
-    uploadErrorMsg: "",
+    uploadErrorMsg: "", 
   };
 
   formSubmitHandler = (e) => {
     e.preventDefault();
 
    
-    axios.post("/activities/add", this.state).then((response) => {
+    axios.post("/api/activities/add", this.state).then((response) => {
       this.setState({
         activity: response.data,
       })
@@ -62,24 +62,25 @@ class ActivityAdd extends Component {
   handleFileUpload = (e) => {
     if (e.target.files[0].size > 500000) {
       this.setState({
-        uploadErrorMsg: "Image too big. Please use smaller size."
+        uploadErrorMsg: "File too large!"
       })
      } else {
       this.setState({
         uploadErrorMsg: "Uploading..."
-      })
+      }) 
  
     const uploadData = new FormData();
     uploadData.append("imageUrl", e.target.files[0]);
-    axios.post("/activities/addImage", uploadData).then((resp) => {
+    axios.post("/api/activities/addImage", uploadData).then((resp) => {
       this.setState({
         activityPicture: resp.data.pictureUrl,
-        uploadErrorMsg: "Done!",
+        uploadErrorMsg: "Done!"
       });
 
     });
     spinnerHeight = "0px"
-  }}
+  
+}}
 
   render() {
 
