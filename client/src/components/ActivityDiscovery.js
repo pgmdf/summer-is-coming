@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import './../App.css';
@@ -64,7 +64,7 @@ componentDidMount() {
                 <Link to={"/activities/" + activity._id} >
 
                 <div className="activity-card">
-                <div className="img-div"><img className="activity-img" src={activity.pictureUrl}></img></div>
+                <div className="img-div"><img className="activity-img" src={activity.pictureUrl} alt={activity.name}></img></div>
                 <div className="text-div">
                 <div id="interest-tag"> <p>{activity.tags}</p></div>
 

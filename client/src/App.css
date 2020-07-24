@@ -60,18 +60,15 @@ max-width: 100%;
  }
 
 
- .activity-card {
+.activity-card {
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
   background-color: #fff;
   position: relative;
   height: 350px;
   margin-bottom:10px;
   border-radius: 10px;
-  margin-right:0px;
-  max-width:300px;
-  /* padding: 15px 20px; */
-   
-  }
+  padding: 15px 20px;
+} 
 
  .img-div {
 padding: 0px;
@@ -82,9 +79,6 @@ padding: 0px;
 padding:15px;
  }
 
-#card {
-  padding-right:10px;
-}
 
   #interest-tag {
     background-color:#905949 ;

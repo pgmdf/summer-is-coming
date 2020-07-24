@@ -15,7 +15,7 @@ class Activities extends Component {
   state = {
     activitiesArr: [],
     loading: true,
-    value: null,
+    value: "",
     userInterestsArr: this.props.loggedInUser.myInterests,
   }
 
@@ -78,7 +78,7 @@ class Activities extends Component {
 
     if (this.state.value) {
 
-      if(this.state.value != 'All'){
+      if(this.state.value !== 'All'){
         filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
       } else {
         filteredArray = this.state.activitiesArr
@@ -107,11 +107,11 @@ class Activities extends Component {
         <h2>Filter down to your interests:</h2>
         <div className="filter-body">
           <form>
-            <label for="interests">Interests
+            <label form="interests">Interests
             <select value={this.state.value} onChange={this.handleChange} id="interests" name="interests">
 
                 {this.addInterestAll(interests).map(i => (
-                  <option value={i}>{i} </option>
+                  <option value={i} key={i}>{i} </option>
                 ))
                 }
               </select>
