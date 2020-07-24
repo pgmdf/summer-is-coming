@@ -68,9 +68,7 @@ body {
     top: 0;
 }
 
-.navbar-collapse {
-
-}
+.navbar-collapse {}
 
 /* @media (max-width: 990px) {
     .sticky-nav {
@@ -193,6 +191,7 @@ ul {
     background-color: rgba(0, 0, 0, 0.2);
     border: 1.5px solid #53595B;
     border-radius: 10px;
+    box-shadow: inset 1px 1px 2px #17838A;
 }
 
 .btn-primary:disabled {
@@ -200,6 +199,13 @@ ul {
     border: 1.5px solid #53595B;
     border-radius: 10px;
     pointer-events: none;
+}
+
+.btn:active,
+.btn:focus {
+    border-color: 1px solid #117788;
+    background-color: none;
+    outline: none;
 }
 
 input {
@@ -283,6 +289,11 @@ input:focus {
     flex-direction: row;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .text-left {
     text-align: left;
 }
@@ -304,27 +315,29 @@ input:focus {
 .activity,
 .box-grey,
 .box-white {
-    width: 85%;
+    width: 75%;
 }
 
 /* responsive, for smaller screens */
-@media (max-width: 600px) {
-    body {
-        width: 300px;
-    }
+
+@media (max-width: 1024px) {
     .profile,
     .activity,
     .box-grey,
     .box-white {
         width: 100%;
     }
-}
-
-@media (max-width: 768px) {
     .flex-row {
         display: flex;
-        flex-direction: column;
         flex-wrap: wrap;
+    }
+
+}
+
+@media (max-width: 300px) {
+    .btn {
+        width: 90%;
+        min-height: 35px;
     }
 }
 
@@ -333,7 +346,7 @@ input:focus {
     background-color: #ffffff;
 } */
 
-#profileimage img{
+#profileimage img {
     width: 171px;
     height: 180px;
     border: 3px solid #ffffff;
@@ -350,4 +363,12 @@ input:focus {
 
 .no-border {
     border: none;
+}
+
+.no-shadow {
+    box-shadow: none;
+}
+
+.no-bg {
+    background-color: none;
 }
