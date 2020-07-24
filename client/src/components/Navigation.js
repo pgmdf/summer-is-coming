@@ -2,7 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import './../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Navbar, Nav, NavDropdown, Image } from 'react-bootstrap';
+import { Navbar, Nav, Image } from 'react-bootstrap';
 import axios from "axios";
 
 
