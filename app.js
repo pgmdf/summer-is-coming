@@ -87,6 +87,7 @@ app.use('/api', require('./routes/activity_routes'));
 app.use('/api', require('./routes/user_routes'));
 app.use('/api', require('./routes/editProfile_routes'));
 app.use('/api', require('./routes/dummy_routes'));
+app.use('/api', require('./routes/contact_routes'));
 
 app.use((req, res, next) => {
   // If no routes match, send them the React HTML.

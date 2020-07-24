@@ -9,6 +9,9 @@
     "build": "cd client && npm install && npm run build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.22.0",
@@ -19,6 +22,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
+    "font-awesome": "^4.7.0",
     "hbs": "^4.0.1",
     "image-size": "^0.8.3",
     "ironhack_generator": "^1.2.0",

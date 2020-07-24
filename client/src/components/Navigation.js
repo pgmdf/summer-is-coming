@@ -55,6 +55,7 @@ class Navigation extends React.Component {
                                     <Nav.Link href="/">Logout</Nav.Link>
                                 </button>
                                 : ""}
+                                <Nav.Link href="/contact">Contact</Nav.Link>
 
 
 

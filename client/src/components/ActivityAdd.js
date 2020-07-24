@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Form, Button } from "react-bootstrap";
 import interests from '../configs/interests';
 
+
 let spinnerHeight = "0px"
 let loadingText = "";
 

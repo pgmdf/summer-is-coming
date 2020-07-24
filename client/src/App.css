@@ -193,3 +193,43 @@ padding:15px;
     max-width: 100%;
 }
 }
+
+
+
+
+.hardContactFacts {
+
+}
+
+.singleContactInfo{
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+.singleContactInfo div{
+margin: 20px;
+}
+
+.allContacts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.singleContact {
+  margin: 20px;
+  padding: 10px;
+  max-width: 400px;
+  min-width: 400px;
+  align-items: center;
+justify-content: space-between;
+align-content: center;
+
+}
+.namebox {
+  display: flex;
+  margin-top: 20px;
+align-items: center; 
+}
+.namebox a {
+  margin-left: 10px; 
+}
