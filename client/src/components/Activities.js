@@ -16,6 +16,7 @@ class Activities extends Component {
     activitiesArr: [],
     loading: true,
     value: null,
+    userInterestsArr: this.props.loggedInUser.myInterests,
   }
 
 
@@ -65,13 +66,14 @@ class Activities extends Component {
       filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
     }
 
+
     return (
       <div>
 
         {(this.props.loggedInUser) ? <ActivityInterestMatch loggedInUser={this.props.loggedInUser} /> : ""}
 
 
-        {(this.props.loggedInUser) ? <div id="discovery-page">
+        {(this.props.loggedInUser && this.state.userInterestsArr.length > 0) ? <div id="discovery-page">
           <a href="activities/discovery">
             <h1>Try something new today</h1>
             <p>Click here to see extraordinary things to do, not fitting your interests</p>

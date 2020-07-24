@@ -74,7 +74,7 @@ class Signup extends Component {
 
                 <a href={process.env.REACT_APP_BACKEND_URL + "/api/google"}>
                   <button id="google-btn" className="btn noHover">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1004px-Google_%22G%22_Logo.svg.png" height="18"></img>
+                    <img alt="google-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1004px-Google_%22G%22_Logo.svg.png" height="18"></img>
                     <span id="google-signup-txt">
                       Sign up with Google</span>
                   </button>
