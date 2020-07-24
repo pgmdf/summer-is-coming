@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './../App.css';
+import './../Style.css'
 import interests from '../configs/interests';
 import { Redirect } from 'react-router-dom';
-import { Image } from 'react-bootstrap';
+import { Card, Image, Nav, Button, Col } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+
+
 //import {sizeOf} from 'image-size'
 // var sizeOf = require('image-size');
 
@@ -98,11 +103,19 @@ class Editprofile extends Component {
 
   render() {
 
+console.log('Userdata',this.userInSession)
+
     return (
 
       <div>
         {this.state.redirect ? <Redirect to={`/user/${this.props.userInSession._id}`}></Redirect> : ""}
+
+
+
+        {/* {this.props.userID !== this.props.userInSession._id ? "" : <Nav.Link href={"/user" + this.props.userID}> back to my profile </Nav.Link>} */}
+
         <h3>Edit my profile</h3>
+        
         <h5><label for="username">Username:</label></h5>
         <input id="username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
 

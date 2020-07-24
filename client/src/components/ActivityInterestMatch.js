@@ -57,16 +57,15 @@ export class ActivityInterestMatch extends Component {
         return (
 
             <div>
-                <h1>Hello {this.state.userName}</h1>
-                <h2>Suggested activities according to your interests</h2>
+                <h3 id="activity-hello">Hello {this.state.userName}</h3>
+                <h1>Suggested activities according to your interests</h1>
 
-                <Container>
-                    <Row>
-
+                <Container id="activity-interest-match-card">
+                                <Row>
                         {interestsActivitiesArr.map(interest => {
                             return (
-
-                                <div className=".col-xs-6 .col-sm-4" id="card" >
+                                <Col xs={12} sm={6} md={6} lg={4}>
+                                <div>
                                     <Link to={"/activities/" + interest._id} key={interest._id}>
 
                                         <div className="activity-card">
@@ -83,21 +82,20 @@ export class ActivityInterestMatch extends Component {
 
                                                 <h5>{interest.title}</h5>
 
-                                                <p>{interest.description}</p>
+                                                {/* <p>{interest.description}</p> */}
                                                 <p>{interest.location}</p>
                                             </div>
                                         </div>
                                     </Link>
 
                                 </div>
+                                </Col>
                             )
 
                         })}
-
                     </Row>
                 </Container>
-            </div>
-
+                </div>
         )
     }
 }
