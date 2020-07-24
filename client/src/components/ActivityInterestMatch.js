@@ -50,6 +50,10 @@ export class ActivityInterestMatch extends Component {
             return <div></div>
         }
 
+        console.log('DataInterest',interestsActivitiesArr[0].tags)
+
+
+
         return (
 
             <div>
@@ -68,7 +72,14 @@ export class ActivityInterestMatch extends Component {
                                         <div className="activity-card">
                                             <div className="img-div"><img className="activity-img" src={interest.pictureUrl}></img></div>
                                             <div className="text-div">
-                                                <div id="interest-tag"> <p>{interest.tags}</p></div>
+
+                                            <div> 
+                                                {interest.tags.map(tag => {
+                                                    return (
+                                                        <span id="interest-tag">{tag}</span>
+                                                    )
+                                            })}
+                                                </div> 
 
                                                 <h5>{interest.title}</h5>
 
