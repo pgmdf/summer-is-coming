@@ -20,8 +20,8 @@ class Dummy extends React.Component {
                         <div id="C4C4C4"></div>
                         <div id="53595B"></div>
                     </div>
-                    <a href="">Ich bin ein Testlink</a>
-                    <NavLink to="">Ich auch aber LINK</NavLink>
+                    <a href="/home">Ich bin ein Testlink</a>
+                    <NavLink to="/home">Ich auch aber LINK</NavLink>
 
                     <Row>
                         <Col>
@@ -91,7 +91,7 @@ class Dummy extends React.Component {
 
                 <div>
                     <h2>ACTIVITY NAME</h2>
-                    <Card className="activity" border="dark" className="activity">
+                    <Card className="activity" border="dark">
                         <Card.Img src="https://learn.zoner.com/wp-content/uploads/2018/08/landscape-photography-at-every-hour-part-ii-photographing-landscapes-in-rain-or-shine-683x390.jpg" alt="Card image" />
                         <Card.ImgOverlay>
                             <Card.Title>Location Name?</Card.Title>

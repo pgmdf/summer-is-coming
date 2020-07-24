@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './../App.css';
-import Slider from './Slider';
+//import Slider from './Slider';
 import axios from 'axios';
-import { Jumbotron, Image, Button } from 'react-bootstrap'
+import { Image, Button } from 'react-bootstrap'
 
 
 class Home extends Component {
