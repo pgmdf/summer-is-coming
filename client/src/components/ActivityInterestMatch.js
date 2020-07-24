@@ -62,7 +62,7 @@ export class ActivityInterestMatch extends Component {
                         {interestsActivitiesArr.map(interest => {
                             return (
 
-                                <div className=".col-xs-6 .col-sm-4" id="card">
+                                <div className=".col-xs-6 .col-sm-4" id="card" >
                                     <Link to={"/activities/" + interest._id} key={interest._id}>
 
                                         <div className="activity-card">

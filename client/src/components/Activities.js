@@ -51,7 +51,19 @@ class Activities extends Component {
     })
   }
 
+// Adding "All activities" to the filter
 
+// console.log('interests',interests)
+// interests.push('All')
+// console.log('new interests with all',interests)
+
+// const all = interests.find(interest => interest === 'All')
+
+// console.log('only all',all)
+
+// if (all) {
+// console.log('ALLactivitiesArr',this.state.activitiesArr)
+// }
 
 
   render() {
@@ -66,6 +78,7 @@ class Activities extends Component {
       filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
     }
 
+    
 
     return (
       <div>
@@ -86,7 +99,7 @@ class Activities extends Component {
         {/* Filter */}
 
         <h2>Filter down to your interests:</h2>
-        <div class="filter-body">
+        <div className="filter-body">
           <form>
             <label for="interests">Interests
             <select value={this.state.value} onChange={this.handleChange} id="interests" name="interests">
