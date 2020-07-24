@@ -16,7 +16,7 @@ class Activities extends Component {
     activitiesArr: [],
     loading: true,
     value: null,
-    userInterestsArr: this.props.loggedInUser.myInterests,
+    userInterestsArr: (this.props.loggedInUser === null) ? "" : this.props.loggedInUser.myInterests,
   }
 
 

@@ -1,13 +1,31 @@
-import React, { Component, Carousel } from "react";
-import { Link } from 'react-router-dom';
-import "./../App.css";
+import React, { Component, Carousel } from 'react';
+import axios from 'axios';
+import './../App.css';
+import './../Style.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Card, Image, Nav, Col } from 'react-bootstrap';
-import axios from "axios";
+import { Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import ActivityAdd from './ActivityAdd';
+import ActivityInterestMatch from './ActivityInterestMatch'
+import interests from '../configs/interests';
 
 
 class Slider extends React.Component {
 
+    state = {
+        activitiesArr: [],
+        loading: true,
+  }
+  
+
+  componentDidMount() {
+    axios.get('/api/activities/' + this.props.match.params.identifier).then((response) => {
+      this.setState({
+        activity: response.data,
+        loading: false
+      })
+    })
+  }
 
 
 
@@ -19,8 +37,7 @@ class Slider extends React.Component {
             <div>
                 <Carousel>
                     <Carousel.Item>
-                        <img
-                            className="d-block w-100"
+                        <img className="d-block w-100"
                             src="holder.js/800x400?text=First slide&bg=373940"
                             alt="First slide"
                         />

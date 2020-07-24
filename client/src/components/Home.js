@@ -1,8 +1,8 @@
 import React, { Component, Nav, Link } from 'react';
 import './../App.css';
-import Slider from './Slider';
 import axios from 'axios';
 import { Image, Button } from 'react-bootstrap'
+import Slider from './Slider';
 
 
 class Home extends React.Component {

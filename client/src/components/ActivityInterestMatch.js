@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Container, Row} from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import './../App.css';
 import { Link } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ export class ActivityInterestMatch extends Component {
             return <div></div>
         }
 
-        console.log('DataInterest',interestsActivitiesArr[0].tags)
+        console.log('DataInterest', interestsActivitiesArr[0].tags)
 
 
 
@@ -73,13 +73,13 @@ export class ActivityInterestMatch extends Component {
                                             <div className="img-div"><img className="activity-img" src={interest.pictureUrl} alt={interest.name}></img></div>
                                             <div className="text-div">
 
-                                            <div> 
-                                                {interest.tags.map(tag => {
-                                                    return (
-                                                        <span id="interest-tag">{tag}</span>
-                                                    )
-                                            })}
-                                                </div> 
+                                                <div>
+                                                    {interest.tags.map(tag => {
+                                                        return (
+                                                            <span id="interest-tag">{tag}</span>
+                                                        )
+                                                    })}
+                                                </div>
 
                                                 <h5>{interest.title}</h5>
 
