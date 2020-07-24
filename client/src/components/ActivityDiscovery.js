@@ -49,12 +49,6 @@ componentDidMount() {
     discoveryArr = _.differenceBy(this.state.activitiesArr, interestsActivitiesArr, '_id')
     console.log('discoveryArr', discoveryArr)
 
-    // if (discoveryArr.length > 0) {
-    //     console.log('discoveryArr',discoveryArr)
-    // } else {
-    //     return <div> Hello !</div>
-    // }
-
 
 
         return (
