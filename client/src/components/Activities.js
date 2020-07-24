@@ -34,6 +34,9 @@ class Activities extends Component {
         loading: false
       })
     })
+
+
+
   }
 
   addActivityHandler = (newActivity) => {
@@ -51,6 +54,16 @@ class Activities extends Component {
     })
   }
 
+// Adding "All activities" to the filter
+
+  addInterestAll = (interestArray) => {
+    let outputArray = interestArray
+    if(!interestArray.includes('All')){
+      outputArray.unshift('All')
+    }
+
+    return outputArray
+  }
 
 
 
@@ -62,10 +75,16 @@ class Activities extends Component {
     let imgUrl = "http://10kbrew.com/wp-content/uploads/2019/02/giphy.gif"
 
     let filteredArray = this.state.activitiesArr
-    if (this.state.value) {
-      filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
-    }
 
+    if (this.state.value) {
+
+      if(this.state.value != 'All'){
+        filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
+      } else {
+        filteredArray = this.state.activitiesArr
+      }
+     console.log('filteredArray',filteredArray)
+    }
 
     return (
       <div>
@@ -86,12 +105,12 @@ class Activities extends Component {
         {/* Filter */}
 
         <h2>Filter down to your interests:</h2>
-        <div class="filter-body">
+        <div className="filter-body">
           <form>
             <label for="interests">Interests
             <select value={this.state.value} onChange={this.handleChange} id="interests" name="interests">
 
-                {interests.map(i => (
+                {this.addInterestAll(interests).map(i => (
                   <option value={i}>{i} </option>
                 ))
                 }
