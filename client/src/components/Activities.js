@@ -16,7 +16,7 @@ class Activities extends Component {
     activitiesArr: [],
     loading: true,
     value: "",
-    userInterestsArr: this.props.loggedInUser.myInterests,
+    userInterestsArr: (this.props.loggedInUser === null) ? "" : this.props.loggedInUser.myInterests
   }
 
 
@@ -72,7 +72,7 @@ class Activities extends Component {
       return <div>Loading…</div>
     }
 
-    let imgUrl = "http://10kbrew.com/wp-content/uploads/2019/02/giphy.gif"
+    //let imgUrl = "http://10kbrew.com/wp-content/uploads/2019/02/giphy.gif"
 
     let filteredArray = this.state.activitiesArr
 
