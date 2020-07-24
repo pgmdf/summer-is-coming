@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row} from 'react-bootstrap'
 import './../App.css';
 import { Link } from 'react-router-dom';
 
@@ -70,7 +70,7 @@ export class ActivityInterestMatch extends Component {
                                     <Link to={"/activities/" + interest._id} key={interest._id}>
 
                                         <div className="activity-card">
-                                            <div className="img-div"><img className="activity-img" src={interest.pictureUrl}></img></div>
+                                            <div className="img-div"><img className="activity-img" src={interest.pictureUrl} alt={interest.name}></img></div>
                                             <div className="text-div">
 
                                             <div> 

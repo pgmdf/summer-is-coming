@@ -78,7 +78,7 @@ class Activities extends Component {
 
     if (this.state.value) {
 
-      if(this.state.value != 'All'){
+      if(this.state.value !== 'All'){
         filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
       } else {
         filteredArray = this.state.activitiesArr

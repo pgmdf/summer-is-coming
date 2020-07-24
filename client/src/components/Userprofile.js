@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Card, Image, Nav, Button, Col } from 'react-bootstrap';
+import { Card, Image, Nav, Col } from 'react-bootstrap';
 import axios from "axios";
 /*import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
