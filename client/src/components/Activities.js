@@ -107,7 +107,7 @@ class Activities extends Component {
         <h2>Filter down to your interests:</h2>
         <div className="filter-body">
           <form>
-            <label form="interests">Interests
+            <label form="interests">
             <select value={this.state.value} onChange={this.handleChange} id="interests" name="interests">
 
                 {this.addInterestAll(interests).map(i => (
@@ -121,6 +121,49 @@ class Activities extends Component {
 
 
         <Row>
+
+        <Col>
+        {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser && <Button className="button mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
+        </Col>
+        </Row>
+
+        <Row>
+              {filteredArray.map(activity => {
+              return (
+                  <Col xs={12} sm={6} md={6} lg={4}>
+
+                  <div>
+                      <Link to={"/activities/" + activity._id} key={activity._id}>
+
+                          <div className="activity-card">
+                              <div className="img-div"><img className="activity-img" src={activity.pictureUrl} alt={activity.name}></img></div>
+                              <div className="text-div">
+
+                              <div> 
+                                  {activity.tags.map(tag => {
+                                      return (
+                                          <span id="interest-tag">{tag}</span>
+                                      )
+                              })}
+                                  </div> 
+
+                                  <h5>{activity.title}</h5>
+
+                                  {/* <p>{interest.description}</p> */}
+                                  <p>{activity.location}</p>
+                              </div>
+                          </div>
+                      </Link>
+
+                  </div>
+                  </Col>
+              )
+
+          })}
+      </Row>
+
+
+        {/* <Row>
           <Col>
             {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser && <Button className="button mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
 
@@ -141,7 +184,7 @@ class Activities extends Component {
               ) :
               <img src={imgUrl} alt="Draft activity like Homer"></img>
             }</Col>
-        </Row>
+        </Row> */}
       </div>
     )
   }
