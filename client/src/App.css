@@ -179,6 +179,23 @@ padding:15px;
 
 }
 
+#activity-hello {
+  margin-top: 15px;
+}
+
+#activity-interest-match-card {
+  margin-top:15px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .container {
+    max-width: 100%;
+}
+}
+
+
+
 
 .hardContactFacts {
 
