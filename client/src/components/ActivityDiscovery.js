@@ -67,7 +67,18 @@ componentDidMount() {
                 <div className="activity-card">
                 <div className="img-div"><img className="activity-img" src={activity.pictureUrl} alt={activity.name}></img></div>
                 <div className="text-div">
-                <div id="interest-tag"> <p>{activity.tags}</p></div>
+
+
+                <div>
+                    {activity.tags.map(tag => {
+                            return (
+                                <span id="interest-tag">{tag}</span>
+                            )
+                        })}
+                </div>
+
+
+                {/* <div id="interest-tag"> <p>{activity.tags}</p></div> */}
 
                 <h5>{activity.title}</h5>
 
