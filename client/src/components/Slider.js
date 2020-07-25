@@ -1,43 +1,55 @@
-import React from 'react'
-import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from 'react-router-dom';
+import React, { Component, Carousel } from 'react';
+import axios from 'axios';
 import './../App.css';
+import './../Style.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import ActivityAdd from './ActivityAdd';
+import ActivityInterestMatch from './ActivityInterestMatch'
+import interests from '../configs/interests';
 
 
-function Slider(props) {
+class Slider extends React.Component {
 
-    console.log('props.sliderData:', props.sliderData)
-    return (
-        <div>
-           <Carousel>
+    state = {
+        activity: null,
+        loading: true,
+    }
 
-                {props.sliderData.map(activity => {
-                {/* console.log('eachActivity:', activity) */}
-                return (
 
-                    <Carousel.Item height={300}>
-                    <Link to={"/activities/" + activity._id} key={activity._id}>
+    componentDidMount() {
+        axios.get('/api/activities/' + this.props.match.params.identifier).then((response) => {
+            this.setState({
+                activity: response.data,
+                loading: false
+            })
+        })
+    }
 
-                    <img height={300} 
-                    className="d-block"
-                    src={activity.pictureUrl[0]}
-                    alt={activity.title}
-                    />
-                    <Carousel.Caption>
-                    <h3>{activity.title}</h3>
-                    <p>{activity.description}</p>
-                    </Carousel.Caption>
-                    </Link>
 
-                </Carousel.Item>
-                )
-                })
-                }
 
-            </Carousel> 
-        </div>
-    )
+    render() {
+        if (this.state.loading) {
+            return <div>Loading…</div>
+        }
+
+        return (
+
+            <div>
+
+            Test
+
+            
+            </div>
+        )
+
+
+    }
+
+
 }
 
-export default Slider
+
+
+export default Slider;

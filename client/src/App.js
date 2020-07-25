@@ -20,6 +20,7 @@ import Contact from './components/contact';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import Slider from './components/Slider';
 
 
 
@@ -73,6 +74,7 @@ class App extends Component {
             <Route path="/confirm-email" component={ConfirmEmail} />
             <Route exact path="/editprofile" render={() => <Editprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} />
             <Route path="/dummy" component={Dummy} />
+            <Route exact path="/slider" component={Slider}/>
           </Switch>
           </Container>
 

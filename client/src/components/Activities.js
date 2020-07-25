@@ -54,11 +54,11 @@ class Activities extends Component {
     })
   }
 
-// Adding "All activities" to the filter
+  // Adding "All activities" to the filter
 
   addInterestAll = (interestArray) => {
     let outputArray = interestArray
-    if(!interestArray.includes('All')){
+    if (!interestArray.includes('All')) {
       outputArray.unshift('All')
     }
 
@@ -78,12 +78,12 @@ class Activities extends Component {
 
     if (this.state.value) {
 
-      if(this.state.value !== 'All'){
+      if (this.state.value !== 'All') {
         filteredArray = this.state.activitiesArr.filter(a => a.tags.includes(this.state.value))
       } else {
         filteredArray = this.state.activitiesArr
       }
-     console.log('filteredArray',filteredArray)
+      console.log('filteredArray', filteredArray)
     }
 
     return (
@@ -95,20 +95,20 @@ class Activities extends Component {
         {(this.props.loggedInUser && this.state.userInterestsArr.length > 0) ? <div id="discovery-page">
           <a href="activities/discovery">
             <h1>Try something new today</h1>
-            <p>Click here to see extraordinary things to do, not fitting your interests</p>
+            <p>Click here to get inspired!</p>
           </a>
         </div> : ""
         }
 
 
-        <h2>Explore all activities </h2>
+        <h1>Explore all activities </h1>
         {/* Filter */}
 
-        <h2>Filter down to your interests:</h2>
+        <p>Filter down to your interests:</p>
         <div className="filter-body">
           <form>
             <label form="interests">
-            <select value={this.state.value} onChange={this.handleChange} id="interests" name="interests">
+              <select value={this.state.value} onChange={this.handleChange} id="interests" name="interests">
 
                 {this.addInterestAll(interests).map(i => (
                   <option value={i} key={i}>{i} </option>
@@ -122,45 +122,45 @@ class Activities extends Component {
 
         <Row>
 
-        <Col>
-        {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser && <Button className="button mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
-        </Col>
+          <Col>
+            {(this.state.activityAddForm && this.props.loggedInUser) ? <ActivityAdd addActivityCallback={this.addActivityHandler}></ActivityAdd> : this.props.loggedInUser && <Button className="button mb-3" onClick={this.toggleForm}>Wanna add an activity?</Button>}
+          </Col>
         </Row>
-
+        <br />
         <Row>
-              {filteredArray.map(activity => {
-              return (
-                  <Col xs={12} sm={6} md={6} lg={4}>
+          {filteredArray.map(activity => {
+            return (
+              <Col xs={12} sm={6} md={6} lg={4}>
 
-                  <div>
-                      <Link to={"/activities/" + activity._id} key={activity._id}>
+                <div>
+                  <Link to={"/activities/" + activity._id} key={activity._id}>
 
-                          <div className="activity-card">
-                              <div className="img-div"><img className="activity-img" src={activity.pictureUrl} alt={activity.name}></img></div>
-                              <div className="text-div">
+                    <div className="activity-card">
+                      <div className="img-div"><img className="activity-img" src={activity.pictureUrl} alt={activity.name}></img></div>
+                      <div className="text-div">
 
-                              <div> 
-                                  {activity.tags.map(tag => {
-                                      return (
-                                          <span id="interest-tag">{tag}</span>
-                                      )
-                              })}
-                                  </div> 
+                        <div>
+                          {activity.tags.map(tag => {
+                            return (
+                              <span id="interest-tag">{tag}</span>
+                            )
+                          })}
+                        </div>
 
-                                  <h5>{activity.title}</h5>
+                        <h5>{activity.title}</h5>
 
-                                  {/* <p>{interest.description}</p> */}
-                                  <p>{activity.location}</p>
-                              </div>
-                          </div>
-                      </Link>
+                        {/* <p>{interest.description}</p> */}
+                        <p>{activity.location}</p>
+                      </div>
+                    </div>
+                  </Link>
 
-                  </div>
-                  </Col>
-              )
+                </div>
+              </Col>
+            )
 
           })}
-      </Row>
+        </Row>
 
 
         {/* <Row>

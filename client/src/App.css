@@ -32,13 +32,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-#Signup, #Login {
-  margin-top:20px;
+#Signup,
+#Login {
+  margin-top: 20px;
   border: 1px solid #dadce0;
   border-radius: 8px;
   padding: 50px;
@@ -51,101 +53,58 @@
   all: unset;
 }
 
-.activity-card img{
-max-width: 100%;
+.activity-card img {
+  max-width: 100%;
   display: block;
   height: 200px;
   width: 300px;
   border-radius: 10px;
- }
+  object-fit: cover;
+}
 
 
 .activity-card {
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
   background-color: #fff;
   position: relative;
   height: 350px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   padding: 15px 20px;
-} 
-
- .img-div {
-padding: 0px;
- }
+  overflow: hidden;
+}
 
 
- .text-div {
-padding:15px;
- }
+.img-div {
+  padding: 0px;
+}
 
 
-  #interest-tag {
-    background-color:#905949 ;
+.text-div {
+  padding: 15px;
+}
+
+
+#interest-tag {
+  background-color: #905949;
   color: white;
-    display: inline-block;
-    text-transform: uppercase;
-    margin: 0px;
-    letter-spacing: 1px;
-       line-height: 1.5;
-       padding: 5px;
-       font-size: 10px;
-       height: 25px;
-       margin-bottom:10px;
-       margin-right:5px;
-   }
+  display: inline-block;
+  text-transform: uppercase;
+  margin: 0px;
+  letter-spacing: 1px;
+  line-height: 1;
+  padding: 5px;
+  font-size: 8px;
+  height: 15px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+}
 
-/* home styling */
-   header {
-    position: relative;
-    background-color: black;
-    height: 75vh;
-    min-height: 25rem;
-    width: 100%;
-    overflow: hidden;
-    margin-top: -10px;
-  }
-  
-  header video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-  }
-  
-  header .container {
-    position: relative;
-  }
-  
-  header .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    /* background-color: black;
-    opacity: 0.5; */
-  }
-  
-  @media (pointer: coarse) and (hover: none) {
-    header {
-      background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
-    }
-    header video {
-      display: none;
-    }
-  }
 
 #home-btn {
-  margin-top:50px;
+  margin-top: 50px;
 }
+
 /* home end styling */
 
 #password-txt {
@@ -159,17 +118,17 @@ padding:15px;
 #google-btn {
   background-color: white;
   border-radius: 10px;
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
 }
 
-.noHover{
+.noHover {
   pointer-events: none;
 }
 
 #discovery-page {
-  margin:50px 0px;
+  margin: 50px 0px;
   background-color: white;
   /* background-image: url("https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_960_720.jpg"); */
   border-radius: 10px;
@@ -184,30 +143,29 @@ padding:15px;
 }
 
 #activity-interest-match-card {
-  margin-top:15px;
+  margin-top: 15px;
 }
 
 @media only screen and (max-width: 600px) {
 
   .container {
     max-width: 100%;
-}
-}
-
-
-
-
-.hardContactFacts {
-
+  }
 }
 
-.singleContactInfo{
+
+
+
+.hardContactFacts {}
+
+.singleContactInfo {
   display: flex;
   align-items: center;
   margin: 10px;
 }
-.singleContactInfo div{
-margin: 20px;
+
+.singleContactInfo div {
+  margin: 20px;
 }
 
 .allContacts {
@@ -221,15 +179,17 @@ margin: 20px;
   max-width: 400px;
   min-width: 400px;
   align-items: center;
-justify-content: space-between;
-align-content: center;
+  justify-content: space-between;
+  align-content: center;
 
 }
+
 .namebox {
   display: flex;
   margin-top: 20px;
-align-items: center; 
+  align-items: center;
 }
+
 .namebox a {
-  margin-left: 10px; 
+  margin-left: 10px;
 }

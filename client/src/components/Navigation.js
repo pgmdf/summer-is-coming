@@ -10,6 +10,7 @@ class Navigation extends React.Component {
     state = {
         login: this.props.userInSession
     }
+    
     logout = () => {
         return axios.post('/api/logout', {})
             .then(response => response.data)

@@ -3,9 +3,9 @@ import axios from 'axios';
 import './../App.css';
 import './../Style.css'
 import interests from '../configs/interests';
-import { Redirect } from 'react-router-dom';
-import { Card, Image, Nav, Button, Col } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import { Card, Image, Nav, Button, Col, Form } from 'react-bootstrap';
+
 
 
 //import {sizeOf} from 'image-size'
@@ -24,6 +24,17 @@ class Editprofile extends Component {
     redirect: false,
     user: null,
     uploadErrorMsg: "",
+    loading: true,
+  }
+
+  componentDidMount() {
+    axios.get('/api/user/' + this.props.userID).then((response) => {
+      this.setState({
+        user: response.data,
+        login: response.data,
+        loading: false,
+      })
+    })
   }
 
 
@@ -92,18 +103,13 @@ class Editprofile extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get('/api/user/' + this.props.userID).then((response) => {
-      this.setState({
-        user: response.data,
-      })
-    })
-  }
 
 
   render() {
-
-console.log('Userdata',this.userInSession)
+    if (this.state.loading) {
+      return <div>Loading…</div>
+    }
+    /* console.log('Userdata',this.userInSession) */
 
     return (
 
@@ -111,49 +117,59 @@ console.log('Userdata',this.userInSession)
         {this.state.redirect ? <Redirect to={`/user/${this.props.userInSession._id}`}></Redirect> : ""}
 
 
+        <Card border="dark" className="box-white">
+          <Card.Header className="back-grey full-width flex-row text-left">
+            <div className="flex-row">
+              <div id="profileimage">
+                <Image src={this.state.profilePicUrl} alt="profile pic" thumbnail />
+                <input
+                  type="file"
+                  onChange={this.handleFileUpload} className="no-shadow no-bg" />
+                <div>{this.state.uploadErrorMsg}</div>
+              </div>
+              <div>
+                <div className="margin10">
+                  <Card.Title> <h3 className="text-bright">Edit Profile</h3> </Card.Title>
+                  <div>
+                    <div className="bold-head text-bright">Username (visible):</div> <input id="username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+                    <br />
+                  </div>
+                </div>
+                <div className="bold-head text-bright">Choose your Interests:</div>
+                <Col>
+                  <Form.Group controlId="tags" className="interests">
 
-        {/* {this.props.userID !== this.props.userInSession._id ? "" : <Nav.Link href={"/user" + this.props.userID}> back to my profile </Nav.Link>} */}
+                    {interests.map(i => (
+                      <Form.Check className="form-check-inline" type="checkbox" label={i} name={i} checked={this.state.myInterests.includes(i)} onChange={this.handleCheckbox} />
+                    ))
+                    }
 
-        <h3>Edit my profile</h3>
-        
-        <h5><label for="username">Username:</label></h5>
-        <input id="username" type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+                  </Form.Group>
 
-        <h5><label for="email">E-Mail:</label></h5>
-        <input id="email" type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+{/*                   <div className="form-check">
+                    <ul id="edit-interests" name="interests">
+                      {interests.map(i => (
+                        <li>
+                          <input type="checkbox" className="form-check-input mb-3 inline no-bg form-check-label form-check-inline" id={i} name={i} checked={this.state.myInterests.includes(i)} onChange={this.handleCheckbox} />
+                          <label for={i}>{i}</label>
+                        </li>
+                      ))
+                      }
+                    </ul>
+                  </div> */}
+                </Col>
+                <Button onClick={this.submitHandler}>Save</Button>  <br />
+                <a href={"/user/" + this.props.userInSession._id}> Back to my Profil without saving </a>
 
-{/*         <h5><label for="password">Password:</label></h5>
-        <input id="password" type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-        <br></br> */}
+              </div>
+            </div>
 
+          </Card.Header>
 
-        <div id="profileimage"><Image src={this.state.profilePicUrl} alt="profile pic" /></div>
-        <input
-          type="file"
-          onChange={this.handleFileUpload} />
-        <div>{this.state.uploadErrorMsg}</div>
-
-
-        {/* interests*/}
-
-        <h5><label for="interests">Choose your favourite interests:</label></h5>
-
-        <ul id="edit-interests" name="interests">
-          {interests.map(i => (
-            <li>
-              <input type="checkbox" id={i} name={i} checked={this.state.myInterests.includes(i)} onChange={this.handleCheckbox} />
-              <label for={i}>{i}</label>
-            </li>
-          ))
-          }
-        </ul>
+        </Card>
 
 
 
-        <button onClick={this.submitHandler}>Save</button>
-        {/* CANCEL Button if u dont want to change anything -> Page is not loading yet after clicking
-        <button><Link to="/user/:userID">Cancel</Link> </button> 
-        or <Redirect to="/user/userID}"></Redirect> */}
 
       </div>
 

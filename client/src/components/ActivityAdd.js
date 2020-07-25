@@ -18,13 +18,13 @@ class ActivityAdd extends Component {
     // TODO: finish #rating in beta-version rating: 0,
     location: "",
     activityPicture: "",
-    uploadErrorMsg: "", 
+    uploadErrorMsg: "",
   };
 
   formSubmitHandler = (e) => {
     e.preventDefault();
 
-   
+
     axios.post("/api/activities/add", this.state).then((response) => {
       this.setState({
         activity: response.data,
@@ -65,28 +65,30 @@ class ActivityAdd extends Component {
       this.setState({
         uploadErrorMsg: "File too large"
       })
-     } else {
+    } else {
       this.setState({
         uploadErrorMsg: "Uploading..."
-      }) 
- 
-    const uploadData = new FormData();
-    uploadData.append("imageUrl", e.target.files[0]);
-    axios.post("/api/activities/addImage", uploadData).then((resp) => {
-      this.setState({
-        activityPicture: resp.data.pictureUrl,
-        uploadErrorMsg: "Done!"
+      })
+
+      const uploadData = new FormData();
+      uploadData.append("imageUrl", e.target.files[0]);
+      axios.post("/api/activities/addImage", uploadData).then((resp) => {
+        this.setState({
+          activityPicture: resp.data.pictureUrl,
+          uploadErrorMsg: "Done!"
+        });
+
       });
 
-    });
-  
-}}
+    }
+  }
 
   render() {
 
     return (
-      <div>
+      <div className="box-white">
         <h1>Add your favourite activity</h1>
+        <div>
         <Form onSubmit={this.formSubmitHandler}>
           <Form.Group controlId="title">
             <Form.Label>Name of the activity</Form.Label>
@@ -98,10 +100,10 @@ class ActivityAdd extends Component {
               onChange={this.changeHandler}
             />
           </Form.Group>
-          <Form.Group controlId="tags">
+          <Form.Group controlId="tags" className="interests">
 
             {interests.map(i => (
-              <Form.Check type="checkbox" label={i} name={i} checked={this.state.tags.includes(i)} onChange={this.handleCheckbox} />
+              <Form.Check className="form-check-inline" type="checkbox" label={i} name={i} checked={this.state.tags.includes(i)} onChange={this.handleCheckbox} />
             ))
             }
 
@@ -145,16 +147,21 @@ class ActivityAdd extends Component {
             type="file"
             onChange={this.handleFileUpload}
             name="activityPicture"
-          ></input>
+            className="no-shadow no-bg"></input>
           <div>{this.state.uploadErrorMsg}</div>
           <img height={spinnerHeight} width="90px" src="https://icon-library.com/images/spinner-icon-gif/spinner-icon-gif-10.jpg" alt="animated gif showing loading process"></img>
           <div>{loadingText} </div>
           <Button variant="primary" type="submit">
             Submit activity
           </Button>
+          
 
         </Form>
+        </div>
+        <br/>
       </div>
+
+      
     );
   }
 }
