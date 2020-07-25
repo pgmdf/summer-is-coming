@@ -16,6 +16,7 @@ import Editprofile from './components/Editprofile';
 import ConfirmEmail from './components/auth/ConfirmEmail';
 import ActivityInterestMatch from './components/ActivityInterestMatch';
 import ActivityDiscovery from './components/ActivityDiscovery';
+import Contact from './components/contact';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
@@ -60,6 +61,7 @@ class App extends Component {
             <Route exact path="/activities/:identifier/comment" render={() => <AddComment updateUser={this.updateTheUser} loggedInUser={this.state.loggedInUser} />} />
             <Route exact path='/signup' render={() => <Signup updateUser={this.updateTheUser} />} />
             <Route exact path='/login' render={() => <Login updateUser={this.updateTheUser} />} />
+            <Route exact path='/contact' render={() => <Contact/>} />
             {/* <Route exact path="/userprofile" render={() => <Userprofile userInSession={this.state.loggedInUser} updateUser={this.updateTheUser} />} /> */}
             <Route exact path="/user/:userID" render={(props) => {
               if (this.state.loggedInUser) {

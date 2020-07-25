@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Container, Row } from 'react-bootstrap';
+import {Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import './../App.css';
@@ -54,13 +54,14 @@ componentDidMount() {
         return (
             <div>
                 <h1>Extraordinary things to do</h1>
-                <h2>Try something new today</h2>
+                <h3>Try something new today</h3>
                 {/* <HorizontalCards inputArray={discoveryArr}/> */}
                 <Container>
                 <Row>
                 {discoveryArr.map(activity => {
                 return (
-                <div  className=".col-xs-6 .col-sm-4" id="card" key={activity._id}>
+                    <Col xs={12} sm={6} md={6} lg={4}>
+                <div>
                 <Link to={"/activities/" + activity._id} >
 
                 <div className="activity-card">
@@ -70,13 +71,14 @@ componentDidMount() {
 
                 <h5>{activity.title}</h5>
 
-                <p>{activity.description}</p>
+                {/* <p>{activity.description}</p> */}
                 <p>{activity.location}</p>
                 </div>
                 </div>
                 </Link>
 
                 </div>
+                </Col>
             )
         })}                
                 </Row>

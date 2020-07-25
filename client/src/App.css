@@ -59,6 +59,7 @@
   height: 200px;
   width: 300px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 
@@ -69,11 +70,10 @@
   height: 350px;
   margin-bottom: 10px;
   border-radius: 10px;
-  margin-right: 0px;
-  max-width: 300px;
-  /* padding: 15px 20px; */
-
+  padding: 15px 20px;
+  overflow: hidden;
 }
+
 
 .img-div {
   padding: 0px;
@@ -84,9 +84,6 @@
   padding: 15px;
 }
 
-#card {
-  padding-right: 10px;
-}
 
 #interest-tag {
   background-color: #905949;
@@ -95,11 +92,11 @@
   text-transform: uppercase;
   margin: 0px;
   letter-spacing: 1px;
-  line-height: 1.5;
+  line-height: 1;
   padding: 5px;
-  font-size: 10px;
-  height: 25px;
-  margin-bottom: 10px;
+  font-size: 8px;
+  height: 15px;
+  margin-bottom: 2px;
   margin-right: 5px;
 }
 
@@ -139,4 +136,60 @@
   padding: 15px;
   text-align: center;
 
+}
+
+#activity-hello {
+  margin-top: 15px;
+}
+
+#activity-interest-match-card {
+  margin-top: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .container {
+    max-width: 100%;
+  }
+}
+
+
+
+
+.hardContactFacts {}
+
+.singleContactInfo {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.singleContactInfo div {
+  margin: 20px;
+}
+
+.allContacts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.singleContact {
+  margin: 20px;
+  padding: 10px;
+  max-width: 400px;
+  min-width: 400px;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+
+}
+
+.namebox {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.namebox a {
+  margin-left: 10px;
 }

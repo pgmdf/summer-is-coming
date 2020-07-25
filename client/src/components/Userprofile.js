@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import { Card, Image, Nav, Col } from 'react-bootstrap';
+import { Card, Image, Nav, Col, Row } from 'react-bootstrap';
 import axios from "axios";
 /*import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faClipboard } from '@fortawesome/free-solid-svg-icons';
@@ -108,57 +108,85 @@ class Userprofile extends Component {
         </Card>
 
         <br />
-        <Card border="dark" className="box-white flex-row text-left">
+        <Card border="dark" className="box-white">
 
-          <div className="margin10 full-width">
-            <Card.Title className="text-center"><h3>My Favorite Activities</h3></Card.Title>
-            <div classname="flex-row">
+          <Card.Title id="lists" className="text-center"><h3>My Favorite Activities</h3></Card.Title>
+
+          <Col xs={12} sm={6} md={6} lg={4}>
+            <div>
               {this.state.user.myFavoriteActivities.length > 0 ? this.state.user.myFavoriteActivities.map((fav, key) =>
                 <Link to={"/activities/" + fav._id} key={fav._id} className="border-bottom">
-                  <div className="flex-row">
-                    <div id="profileimage">
-                      <Image src={fav.pictureUrl} alt={fav.title} rounded fluid className="no-border" />
+                  <div className="activity-card">
+                    <div className="img-div">
+                      <Image src={fav.pictureUrl} alt={fav.title} className="activity-img" />
                     </div>
-                    <div className="margin10">
-                      {fav.title}
+                    <div className="text-div">
+                      <h3>{fav.title}</h3>
+                      <div>
+                        {fav.tags.map(tag => {
+                          return (
+                            <span id="interest-tag">{tag}</span>
+                          )
+                        })}
+                      </div>
+                      <p>{fav.location}</p>
                     </div>
                   </div><br />
                 </Link>) : <div className="text-center margin0">I've no Favorite Activities yet.</div>}
             </div>
-          </div>
+          </Col>
         </Card>
         <br />
 
-        <Card border="dark" className="box-white flex-row text-left">
 
-          <div className="margin10 full-width">
-            <Card.Title className="text-center"><h3>My Bucket List</h3></Card.Title>
-            <div classname="flex-row">
-              {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) =>
-                <Link to={"/activities/" + b._id} key={key._id} className="border-bottom">
-                  <div className="flex-row">
-                    <div id="profileimage">
-                      <Image src={b.pictureUrl} alt={b.title} rounded fluid className="no-border" />
-                    </div>
-                    <div className="margin10">
-                      {b.title}
-                      {/* Favs und bucket list icons HERE to add and remove direct */}
-                      {/*                       <div>{this.props.loggedInUser ?
+
+        <Card border="dark" className="box-white">
+          
+
+            <Card.Title id="lists" className="text-center"><h3>My Bucket List</h3></Card.Title>
+
+            <Col xs={12} sm={6} md={6} lg={4}>
+
+              <div>
+              
+                {this.state.user.myBucketlist.length > 0 ? this.state.user.myBucketlist.map((b, key) =>
+                
+                  <Link to={"/activities/" + b._id} key={key._id} className="border-bottom">
+                    <div className="activity-card">
+                      <div className="img-div">
+                        <Image src={b.pictureUrl} alt={b.title} className="activity-img" />
+                      </div>
+                      <div className="text-div">
+                        <h3>{b.title}</h3>
+                        <div>
+                          {b.tags.map(tag => {
+                            return (
+                              <span id="interest-tag">{tag}</span>
+                            )
+                          })}
+                        </div>
+                        <p>{b.location}</p>
+                        {/* Favs und bucket list icons HERE to add and remove direct */}
+                        {/*                       <div>{this.props.loggedInUser ?
                         <p>{this.state.myBucketlistArr.includes(this.state.activity._id) ?
                           <Button onClick={this.updateUserBucketlistRemoveHandler}><FontAwesomeIcon icon={faClipboard} size={"1x"} style={{ color: "#FFF" }} /> Remove from my bucket list</Button>
                           : <Button onClick={this.updateUserBucketlistAddHandler}><FontAwesomeIcon icon={farClipboard} size={"1x"} style={{ color: "#FFF" }} /> Add to my bucket list</Button>}</p>
                         : null}
                       </div> */}
 
-                    </div>
-                  </div><br />
-                </Link>) : <div className="text-center margin0">I've got nothing to do.</div>}
-            </div>
-          </div>
+                      </div>
+                    </div><br />
+                  </Link>) : <div className="text-center margin0">I've got nothing to do.</div>}
+              </div>
+
+
+            </Col>
         </Card>
+
         <Col>
           <Link to="/activities">Go to all activities</Link>
         </Col>
+        <br />
       </div>
     );
   }

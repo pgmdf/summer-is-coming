@@ -10,6 +10,7 @@ class Navigation extends React.Component {
     state = {
         login: this.props.userInSession
     }
+    
     logout = () => {
         return axios.post('/api/logout', {})
             .then(response => response.data)
@@ -55,6 +56,7 @@ class Navigation extends React.Component {
                                     <Nav.Link href="/">Logout</Nav.Link>
                                 </button>
                                 : ""}
+                                <Nav.Link href="/contact">Contact</Nav.Link>
 
 
 

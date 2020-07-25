@@ -209,8 +209,6 @@ ul {
 }
 
 input {
-    width: 300px;
-    height: 35px;
     font-size: 15pt;
     line-height: 16px;
     display: flex;
@@ -223,6 +221,20 @@ input {
     padding: 10px;
 }
 
+#username {
+    max-width: 300px;
+    height: 35px;
+}
+
+#title,
+#location {
+    justify-self: center;
+}
+
+#description {
+    justify-self: center;
+}
+
 input:active,
 input:focus {
     border-color: #E5FFF3;
@@ -231,6 +243,10 @@ input:focus {
 
 .img-max-width {
     max-width: 100%;
+}
+
+#activ-img {
+    max-width: 350px;
 }
 
 .activity {
@@ -317,16 +333,22 @@ input:focus {
 .box-white {
     width: 75%;
 }
+.interests {
+    max-width: 90%;
+    align-self: center;
+}
 
 /* responsive, for smaller screens */
 
 @media (max-width: 1024px) {
+
     .profile,
     .activity,
     .box-grey,
     .box-white {
         width: 100%;
     }
+
     .flex-row {
         display: flex;
         flex-wrap: wrap;
@@ -350,6 +372,7 @@ input:focus {
     width: 171px;
     height: 180px;
     border: 3px solid #ffffff;
+    object-fit: cover;
 }
 
 #profile-info {
@@ -370,5 +393,16 @@ input:focus {
 }
 
 .no-bg {
-    background-color: none;
+    background: none;
 }
+
+#edit-interests>li{
+    display: inline;
+    background: none;
+}
+
+#edit-interests ul {
+    background: none;
+    max-height: 5px;
+}
+

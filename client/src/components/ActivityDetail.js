@@ -100,7 +100,9 @@ class ActivityDetail extends Component {
         <Container>
           <Row>
             <Col xs={12} sm={6}><h1>{this.state.activity.title}</h1>
-              <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" /></Col>
+            <div id="activ-img">
+              <img src={this.state.activity.pictureUrl} alt={this.state.activity.title} className="img-fluid img-max-width" />
+              </div></Col>
             <Col xs={12} sm={6}><p>Tags: <strong>{this.state.activity.tags.map(tags => <li key={tags} className="no-bullets">{tags}</li>)}</strong></p>
               <p>Location: {this.state.activity.location}<br />
               {/* //TODO: finish #rating in beta-version 
@@ -123,7 +125,7 @@ class ActivityDetail extends Component {
               </div>
               <Accordion className="img-max-width">
                 <Card>
-                  <Card.Header>
+                  <Card.Header className="no-bg">
                     <Accordion.Toggle as={Button} eventKey="0" className="img-max-width">
                       Show recent comments
                   </Accordion.Toggle>
