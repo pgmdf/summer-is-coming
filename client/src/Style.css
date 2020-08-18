@@ -1,3 +1,7 @@
+/* #F65858  - red color */
+/* #008294 - türkis */
+/* #757575 - dunkelgrau */
+
 /* delete after */
 
 #E5FFF3 {
@@ -29,8 +33,8 @@
 /* TODO */
 /* change URL background image */
 body {
-    background-color: floralwhite;
-    background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/background-pattern.png?raw=true");
+    /* background-color: floralwhite; */
+    /* background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/background-pattern.png?raw=true"); */
     background-position: 0 0;
     background-repeat: repeat-x -y;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

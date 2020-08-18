@@ -22,6 +22,9 @@ class Navigation extends React.Component {
             <div className="App">
                 <Navbar bg="light" expand="lg" className="sticky-nav">
                     <Navbar.Brand href="/"> <Image src="https://github.com/pgmdf/summer-is-coming/blob/master/client/public/z-logo-final-2zeilig.png?raw=true" height="35px" /> </Navbar.Brand>
+
+                    <Navbar.Brand href="/"> <Image src="client/public/logonew.png" height="35px" /> </Navbar.Brand>
+
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
 
