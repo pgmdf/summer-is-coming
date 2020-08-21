@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import './../App.css';
+import '../../App.css';
 // import HorizontalCards from './HorizontalCards';
 
 
@@ -17,7 +17,7 @@ export class ActivityDiscovery extends Component {
 
 // This is my activities data from the database
 componentDidMount() {
-    axios.get('/activities').then((response) => {
+    axios.get('/api/activities').then((response) => {
         console.log('Activity data', response.data)
       this.setState({
         activitiesArr: response.data,
@@ -50,32 +50,46 @@ componentDidMount() {
     console.log('discoveryArr', discoveryArr)
 
 
+
         return (
             <div>
-                <h1>Activities Discovery</h1>
-                <h2>Try something new today!</h2>
+                <h1>Extraordinary things to do</h1>
+                <h3>Try something new today</h3>
                 {/* <HorizontalCards inputArray={discoveryArr}/> */}
                 <Container>
                 <Row>
                 {discoveryArr.map(activity => {
                 return (
-                <div  className=".col-xs-6 .col-sm-4" id="card" key={activity._id}>
+                    <Col xs={12} sm={6} md={6} lg={4}>
+                <div>
                 <Link to={"/activities/" + activity._id} >
 
                 <div className="activity-card">
-                <div className="img-div"><img className="activity-img" src={activity.pictureUrl}></img></div>
+                <div className="img-div"><img className="activity-img" src={activity.pictureUrl} alt={activity.name}></img></div>
                 <div className="text-div">
-                <div id="interest-tag"> <p>{activity.tags}</p></div>
+
+
+                <div>
+                    {activity.tags.map(tag => {
+                            return (
+                                <span id="interest-tag">{tag}</span>
+                            )
+                        })}
+                </div>
+
+
+                {/* <div id="interest-tag"> <p>{activity.tags}</p></div> */}
 
                 <h5>{activity.title}</h5>
 
-                <p>{activity.description}</p>
+                {/* <p>{activity.description}</p> */}
                 <p>{activity.location}</p>
                 </div>
                 </div>
                 </Link>
 
                 </div>
+                </Col>
             )
         })}                
                 </Row>

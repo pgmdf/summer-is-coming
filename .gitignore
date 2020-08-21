@@ -6,3 +6,8 @@ npm-debug.log
 
 # Environment Variables should NEVER be published
 .env
+
+client/build/index.html
+
+# production
+/build

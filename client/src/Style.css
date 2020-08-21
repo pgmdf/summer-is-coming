@@ -1,3 +1,9 @@
+/* #F65858  - red color */
+/* #008294 - türkis */
+/* #757575 - dunkelgrau */
+
+/* font-family: 'Graphik Meetup',-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif; */
+
 /* delete after */
 
 #E5FFF3 {
@@ -29,11 +35,12 @@
 /* TODO */
 /* change URL background image */
 body {
-    background-color: floralwhite;
-    background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/background-pattern.png?raw=true");
+    /* background-color: floralwhite; */
+    /* background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/background-pattern.png?raw=true"); */
     background-position: 0 0;
     background-repeat: repeat-x -y;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Graphik Meetup, BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     font-style: normal;
     font-weight: normal;
     font-size: 12pt;
@@ -42,18 +49,50 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    padding-top: 70px;
+    /* padding-top: 70px; */
 }
 
+.margin0 {
+    margin: 0px;
+}
+
+.padding0 {
+    padding: 0px;
+}
+
+.center {
+    align-self: center;
+}
+
+/* NAVBAR  */
 .sticky-nav {
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 1;
-    opacity: 0.75;
+    opacity: 0.9;
     position: fixed;
     top: 0;
 }
+
+.navbar-collapse {}
+
+/* @media (max-width: 990px) {
+    .sticky-nav {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+    }
+    .navbar-collapse {
+        opacity: 0.9;
+    }
+} */
+
+/* NAVBAR END */
 
 .flex-row {
     display: flex;
@@ -74,7 +113,7 @@ h2,
 h3,
 h4,
 h5 {
-    color: #17838A;
+    color: black;
 }
 
 h1 {
@@ -89,6 +128,10 @@ h3 {
     font-size: 15pt;
 }
 
+h4 {
+    font-size: 12pt;
+}
+
 a,
 a:visited {
     color: #17838A;
@@ -99,6 +142,16 @@ a:hover,
 a:active {
     color: #E5FFF3;
     text-decoration: none !important;
+}
+
+.bold-head {
+    font-weight: bold;
+    color: #17838A;
+    display: inline;
+}
+
+.text-bright {
+    color: #E5FFF3;
 }
 
 .fixed-nav {
@@ -112,6 +165,7 @@ a:active {
     height: 35px;
     background: rgba(255, 255, 255, 0.2);
     border: 1.5px solid #53595B;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
     border-radius: 10px;
     font-size: 15pt;
     line-height: 16px;
@@ -122,16 +176,33 @@ a:active {
     color: #17838A;
 }
 
-li {
+ul {
+    list-style: none;
+}
+
+.inline {
     display: inline;
 }
 
+.border-bottom {
+    border-bottom: 1px solid #E5FFF3;
+}
+
+.box-shadow {
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+a:hover {
+    color:#008294;
+  }
 
 .btn:hover {
-    background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/button-background-black.png?raw=true");
+    background-color: #008294;
+    /* background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/button-background-black.png?raw=true");
     background-color: rgba(0, 0, 0, 0.2);
     border: 1.5px solid #53595B;
     border-radius: 10px;
+    box-shadow: inset 1px 1px 2px #17838A; */
 }
 
 .btn-primary:disabled {
@@ -141,19 +212,38 @@ li {
     pointer-events: none;
 }
 
+.btn:active,
+.btn:focus {
+    border-color: 1px solid #117788;
+    background-color: none;
+    outline: none;
+}
+
 input {
-    width: 300px;
-    height: 35px;
     font-size: 15pt;
     line-height: 16px;
     display: flex;
     align-items: center;
     color: #17838A;
     background: #FFFFFF;
-    opacity: 0.75;
+    opacity: 0.65;
     box-shadow: inset 1px 1px 2px #17838A;
     border-radius: 10px;
     padding: 10px;
+}
+
+#username {
+    max-width: 300px;
+    height: 35px;
+}
+
+#title,
+#location {
+    justify-self: center;
+}
+
+#description {
+    justify-self: center;
 }
 
 input:active,
@@ -166,58 +256,164 @@ input:focus {
     max-width: 100%;
 }
 
+#activ-img {
+    max-width: 350px;
+}
+
+.activity {
+    border-radius: 15px;
+}
+
+.activity img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
 .box-grey {
     background: #53595B;
-    border: 1.5px solid #E5FFF3;
-    border-radius: 10px;
+    border: 1.5px solid #53595B;
+    border-radius: 15px;
     opacity: 0.9;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
     align-items: center;
     text-align: center;
     color: #ffffff;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.45);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
 }
 
-.box-grey > h3 {
+.box-grey>h3 {
     color: #E5FFF3;
 }
 
 .box-white {
     background: rgba(255, 255, 255, 0.2);
     border: 1.5px solid #53595B;
-    border-radius: 10px;
-    opacity: 0.9;
+    border-radius: 15px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+    opacity: 0.95;
     align-items: center;
     text-align: center;
     color: #53595B;
-    text-shadow: 1px 1px 2px #FFFFFF;
+    text-shadow: 2px 2px 3px #FFFFFF;
 }
 
-.box-grey > h3 {
+.box-grey>h3 {
     color: #17838A;
+}
+
+.back-grey {
+    background: rgb(31, 33, 34, 0.35);
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.margin10 {
+    margin: 10px;
+}
+
+.center {
+    align-self: center;
 }
 
 /* for all screens */
 .profile,
 .activity,
-.box-grey
+.box-grey,
 .box-white {
-    max-width: 60%;
+    width: 75%;
+}
+.interests {
+    max-width: 90%;
+    align-self: center;
 }
 
-/* responsive, form smaller screens */
-@media (max-width: 600px) {
-    body {
-        width: 300px;
+/* responsive, for smaller screens */
+
+@media (max-width: 1024px) {
+
+    .profile,
+    .activity,
+    .box-grey,
+    .box-white {
+        width: 100%;
+    }
+
+    .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+}
+
+@media (max-width: 300px) {
+    .btn {
+        width: 90%;
+        min-height: 35px;
     }
 }
 
+/* #profileimage {
+    height: 200px;
+    background-color: #ffffff;
+} */
 
 #profileimage img {
     width: 171px;
     height: 180px;
+    border: 3px solid #ffffff;
+    object-fit: cover;
 }
 
 #profile-info {
     text-align: left;
     margin-left: 20px;
 }
+
+.no-bullets {
+    list-style: none;
+}
+
+.no-border {
+    border: none;
+}
+
+.no-shadow {
+    box-shadow: none;
+}
+
+.no-bg {
+    background: none;
+}
+
+#edit-interests>li{
+    display: inline;
+    background: none;
+}
+
+#edit-interests ul {
+    background: none;
+    max-height: 5px;
+}
+

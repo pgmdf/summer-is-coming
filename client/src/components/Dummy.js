@@ -20,14 +20,25 @@ class Dummy extends React.Component {
                         <div id="C4C4C4"></div>
                         <div id="53595B"></div>
                     </div>
-                    <a href="">Ich bin ein Testlink</a>
-                    <NavLink to="">Ich auch aber LINK</NavLink>
+                    <a href="/home">Ich bin ein Testlink</a>
+                    <NavLink to="/home">Ich auch aber LINK</NavLink>
 
                     <Row>
                         <Col>
                             <h1>Title 1</h1>
                             <h2>Title 2</h2>
                             <h3>Title 3</h3>
+                            <h4>Title 4</h4>
+                            <div className="bold-head">bold-head and inline</div>
+                            <ul className="inline">
+                                <li className="border-bottom">Liststyle</li>
+                                <li>Liststyle</li>
+                                <li className="text-bright">Ich bin Text mit text-bright</li>
+                            </ul>
+                            <div className="flex-row" width="80%">
+                                <div>Divs in display flex </div>
+                                <div className="back-grey max-width">Style grey Background and max width</div>
+                            </div>
                             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
                         </Col>
                     </Row>
@@ -80,7 +91,7 @@ class Dummy extends React.Component {
 
                 <div>
                     <h2>ACTIVITY NAME</h2>
-                    <Card className="activity" border="dark" className="activity">
+                    <Card className="activity" border="dark">
                         <Card.Img src="https://learn.zoner.com/wp-content/uploads/2018/08/landscape-photography-at-every-hour-part-ii-photographing-landscapes-in-rain-or-shine-683x390.jpg" alt="Card image" />
                         <Card.ImgOverlay>
                             <Card.Title>Location Name?</Card.Title>
@@ -116,7 +127,7 @@ class Dummy extends React.Component {
                         <Card.Header>
                             <div className="flex-row">
                                 <div id="profileimage">
-                                    <Image src="https://images-na.ssl-images-amazon.com/images/I/51KR6NipshL._AC_SX355_.jpg" alt="profile-pic" thumbnail />
+                                    <Image src="https://images-na.ssl-images-amazon.com/images/I/51KR6NipshL._AC_SX355_.jpg" alt="profile-pic" thumbnail fluid/>
                                 </div>
                                 <div id="profile-info">
                                     <Card.Title> Chuck's Profile </Card.Title>
