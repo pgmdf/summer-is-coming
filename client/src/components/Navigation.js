@@ -20,7 +20,7 @@ class Navigation extends React.Component {
     render() {
         return (
             <div className="App">
-                <Navbar expand="lg" className="sticky-nav">
+                <Navbar expand="lg" >
                     {/* <Navbar.Brand href="/"> <Image src="https://github.com/pgmdf/summer-is-coming/blob/master/client/public/z-logo-final-2zeilig.png?raw=true" height="35px" /> </Navbar.Brand> */}
 
                     <Navbar.Brand href="/"> <Image src="https://github.com/damaris-goebel/summer-is-coming/blob/master/client/public/logonew.png?raw=true" height="75px" /> </Navbar.Brand>
@@ -29,17 +29,19 @@ class Navigation extends React.Component {
                     <Navbar.Collapse id="basic-navbar-nav">
 
 
-                        <Nav className="mr-auto">
-                            {this.props.user ? "" : <Nav.Link href="/signup"> Signup </Nav.Link>}
-                            {this.props.user ? "" : <Nav.Link href="/login"> Login </Nav.Link>}
+                        <Nav className="ml-auto" >
+                            {this.props.user ? "" : <Nav.Link href="/signup"> Sign up </Nav.Link>}
+                            {this.props.user ? "" : <Nav.Link href="/login"> Log in </Nav.Link>}
                             {/*   
                             {this.props.user ? <Nav.Link href="/activities">Explore activities</Nav.Link> : <Nav.Link href="/signup">Explore activities</Nav.Link>} */}
 
-                            <Nav.Link href="/activities">Explore activities</Nav.Link>
+
+                            {this.props.user ? <Nav.Link href="/activities">Explore activities</Nav.Link> : ""
+                            }
 
                             {/* <Nav.Link href="/activities/discovery">Discover activities</Nav.Link> */}
 
-                            {this.props.user ? <Nav.Link href="/activities/add">Add a new activity</Nav.Link> : <Nav.Link href="/signup">Add a new activity</Nav.Link>}
+                            {this.props.user ? <Nav.Link href="/activities/add">Add a new activity</Nav.Link> : ""}
 
                             {/* <Nav.Link href="/activities/add">Add a new activity</Nav.Link> */}
 
@@ -59,7 +61,7 @@ class Navigation extends React.Component {
                                     <Nav.Link href="/">Logout</Nav.Link>
                                 </button>
                                 : ""}
-                                <Nav.Link href="/contact">Contact</Nav.Link>
+                                {/* <Nav.Link href="/contact">Contact</Nav.Link> */}
 
 
 

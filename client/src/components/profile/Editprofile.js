@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './../App.css';
-import './../Style.css'
-import interests from '../configs/interests';
+import '../../App.css';
+import '../../Style.css'
+import interests from '../../configs/interests';
 import { Redirect, Link } from 'react-router-dom';
 import { Card, Image, Nav, Button, Col, Form } from 'react-bootstrap';
 

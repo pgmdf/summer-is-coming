@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import './../App.css';
+import '../../App.css';
 // import HorizontalCards from './HorizontalCards';
 
 

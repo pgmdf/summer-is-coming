@@ -5,8 +5,8 @@ import './../Style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import ActivityAdd from './ActivityAdd';
-import ActivityInterestMatch from './ActivityInterestMatch'
+import ActivityAdd from './activities/ActivityAdd';
+import ActivityInterestMatch from './activities/ActivityInterestMatch'
 import interests from '../configs/interests';
 
 

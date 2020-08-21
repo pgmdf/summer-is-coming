@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import "./../App.css";
+import "../../App.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Card, Image, Nav, Col, Row } from 'react-bootstrap';
 import axios from "axios";

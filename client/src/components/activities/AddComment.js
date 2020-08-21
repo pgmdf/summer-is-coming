@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import './../App.css';
+import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 

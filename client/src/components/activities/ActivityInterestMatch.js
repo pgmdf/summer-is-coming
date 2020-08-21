@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Container, Row, Col} from 'react-bootstrap'
-import './../App.css';
+import '../../App.css';
 import { Link } from 'react-router-dom';
 
 

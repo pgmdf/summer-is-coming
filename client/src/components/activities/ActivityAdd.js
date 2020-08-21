@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./../App.css";
+import "../../App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { Form, Button } from "react-bootstrap";
-import interests from '../configs/interests';
+import interests from '../../configs/interests';
 
 
 let spinnerHeight = "0px"

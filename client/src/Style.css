@@ -39,7 +39,8 @@ body {
     /* background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/background-pattern.png?raw=true"); */
     background-position: 0 0;
     background-repeat: repeat-x -y;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Graphik Meetup, BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     font-style: normal;
     font-weight: normal;
     font-size: 12pt;
@@ -48,7 +49,7 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    padding-top: 70px;
+    /* padding-top: 70px; */
 }
 
 .margin0 {
@@ -112,7 +113,7 @@ h2,
 h3,
 h4,
 h5 {
-    color: #17838A;
+    color: black;
 }
 
 h1 {
@@ -191,13 +192,17 @@ ul {
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
 }
 
+a:hover {
+    color:#008294;
+  }
 
 .btn:hover {
-    background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/button-background-black.png?raw=true");
+    background-color: #008294;
+    /* background-image: url("https://github.com/pgmdf/summer-is-coming/blob/master/client/public/button-background-black.png?raw=true");
     background-color: rgba(0, 0, 0, 0.2);
     border: 1.5px solid #53595B;
     border-radius: 10px;
-    box-shadow: inset 1px 1px 2px #17838A;
+    box-shadow: inset 1px 1px 2px #17838A; */
 }
 
 .btn-primary:disabled {
